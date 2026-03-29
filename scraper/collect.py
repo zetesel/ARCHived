@@ -21,7 +21,7 @@ import requests
 
 # Configuration
 GITHUB_API = "https://api.github.com"
-SEARCH_QUERY = "archived:true pushed:<=>{date}"
+SEARCH_QUERY = "archived:true pushed:<={date}"
 PER_PAGE = 100  # Max allowed by GitHub
 MIN_STARS = 10  # Minimum stars threshold (adjust as needed)
 OUTPUT_FILE = "dead-projects.json"

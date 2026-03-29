@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCHived - Dead Open Source Projects</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>ARCHived</h1>
+            <p class="tagline">Discover open source projects that need a new maintainer</p>
+            <p class="subtitle">These projects are archived and unmaintained. Fork them and bring them back to life!</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="filters">
+            <div class="filter-group">
+                <label for="language-filter">Filter by language:</label>
+                <select id="language-filter">
+                    <option value="all">All Languages</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="stars-filter">Minimum stars:</label>
+                <input type="range" id="stars-filter" min="0" max="10000" step="100" value="0">
+                <span id="stars-value">0</span>
+            </div>
+            <div class="filter-group">
+                <label for="sort-by">Sort by:</label>
+                <select id="sort-by">
+                    <option value="stars-desc">Most Stars</option>
+                    <option value="stars-asc">Least Stars</option>
+                    <option value="date-desc">Most Recent</option>
+                    <option value="date-asc">Oldest First</option>
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="name-desc">Name (Z-A)</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="stat">
+                <span class="stat-number" id="total-count">0</span>
+                <span class="stat-label">Dead Projects</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="visible-count">0</span>
+                <span class="stat-label">Showing</span>
+            </div>
+        </section>
+
+        <section class="projects-grid" id="projects-container">
+            <div class="loading">Loading projects...</div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Data collected via GitHub API | Updated <span id="last-updated">weekly</span></p>
+            <p>Found a dead project? <a href="https://github.com/owner/repo/issues/new" target="_blank">Submit it</a></p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
