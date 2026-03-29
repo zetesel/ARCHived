@@ -1,91 +1,123 @@
 # ARCHived
 
-Discover open source projects that are **archived** and **unmaintained** — and give them a second life!
+A static site that lists archived and unmaintained GitHub repositories. Projects are filtered by archived status and inactivity (no commits for 12+ months).
 
-[![Deploy to GitHub Pages](https://github.com/${{ github.repository }}/actions/workflows/scan.yml/badge.svg)](https://github.com/${{ github.repository }}/actions/workflows/scan.yml)
+## Overview
 
-## What is this?
+- Built with plain HTML, CSS, and JavaScript
+- Data collected via GitHub Search API
+- Deployed via GitHub Actions to GitHub Pages
+- Updated weekly on Sunday at 00:00 UTC
 
-A "killedbygoogle" style site that showcases dead/archived GitHub OSS projects. The goal is to help developers find projects they can fork, revive, and continue maintaining.
+## Prerequisites
 
-## How it works
+- Python 3.11+
+- Git
+- GitHub repository (public for Pages)
 
-1. **GitHub scraper** (`scraper/collect.py`) queries GitHub's API for repositories that:
-   - Are marked as `archived`
-   - Have no commits in the last 12+ months
-   - Have at least 10 stars (configurable)
+## Local Development
 
-2. **Static site** displays these projects in a searchable, filterable grid.
-
-3. **GitHub Actions** (`scan.yml`) runs weekly to:
-   - Collect fresh data
-   - Generate the static site
-   - Deploy to GitHub Pages
-
-## Quick Start
-
-### Local development
+1. Install dependencies:
 
 ```bash
-# Install dependencies
 pip install -r scraper/requirements.txt
+```
 
-# Build the site (runs scraper + generates static files)
+2. Build the site:
+
+```bash
 python build.py
+```
 
-# Preview locally
+This runs the scraper and copies assets to `docs/`.
+
+3. Preview locally:
+
+```bash
 python -m http.server 8000 --directory docs
-# Open http://localhost:8000
 ```
 
-### Deployment
+Open http://localhost:8000 in your browser.
 
-1. **Enable GitHub Pages** in your repo settings:
-   - Source: GitHub Actions
-   - Or manually: Set source to `docs/` folder on `main` branch
+## Deployment
 
-2. **Optional**: Add your own `GITHUB_TOKEN` as a secret for higher rate limits (GitHub Actions already has `GITHUB_TOKEN` built-in)
+1. Create a public repository on GitHub and push this code.
 
-3. Push to main — the GitHub Actions workflow will auto-deploy.
+2. Enable GitHub Pages:
+   - Go to Settings → Pages
+   - Set Source to "GitHub Actions" or "Deploy from a branch" → `main` → `/docs`
 
-## Project Structure
-
-```
-.
-├── index.html         # Main page
-├── styles.css         # Styling
-├── app.js             # Filtering & sorting logic
-├── dead-projects.json # Generated data file
-├── build.py           # Build script
-├── scraper/
-│   ├── collect.py     # GitHub API scraper
-│   └── requirements.txt
-├── docs/              # Generated static site (GitHub Pages target)
-└── .github/workflows/
-    └── scan.yml       # Weekly automation workflow
-```
+3. The workflow will deploy automatically on push to main and on the weekly schedule.
 
 ## Configuration
 
-Adjust these in `scraper/collect.py`:
+Edit `scraper/collect.py` to change collection criteria:
 
-- `MIN_STARS`: Minimum star threshold (default: 10)
-- `months`: Inactivity period (default: 12 months)
-- Rate limiting: Works automatically, but set `GITHUB_TOKEN` for higher limits
+- `MIN_STARS` — minimum star count (default: 10)
+- `months` passed to `collect_projects()` — months of inactivity (default: 12)
 
-## Features
+Set `GITHUB_TOKEN` in Actions secrets if you need higher rate limits. The default `GITHUB_TOKEN` works but has lower limits.
 
-- Filter by programming language
-- Filter by minimum stars
-- Sort by: stars, date, name
-- Responsive design (works on mobile)
-- Shows: star count, last commit date, description
+## File Structure
 
-## Want to Contribute?
+```
+.
+├── index.html          # Main page
+├── styles.css          # Styles
+├── app.js              # Client-side filtering/sorting
+├── build.py            # Build script
+├── dead-projects.json  # Generated data (ignored by git, but copied to docs/)
+├── docs/               # Built site (GitHub Pages source)
+│   ├── index.html
+│   ├── styles.css
+│   ├── app.js
+│   └── dead-projects.json
+├── scraper/
+│   ├── collect.py
+│   └── requirements.txt
+└── .github/
+    └── workflows/
+        └── scan.yml   # Weekly build and deploy
+```
 
-Found a dead project that should be listed? Open an issue or submit a PR to add it to `dead-projects.json` directly.
+## How It Works
 
-Alternatively, this site is generated automatically from GitHub's archived repositories, so it will naturally discover new dead projects over time.
+The `build.py` script:
+1. Runs `scraper/collect.py` to fetch archived repositories with no recent activity
+2. Writes `dead-projects.json` with metadata and project list
+3. Copies `index.html`, `styles.css`, `app.js`, and `dead-projects.json` to `docs/`
+
+GitHub Actions runs `build.py` and deploys the `docs/` folder to Pages.
+
+The site displays projects as cards with filtering by language, minimum stars, and sorting options (stars, date, name).
+
+## Data Format
+
+`dead-projects.json` structure:
+
+```json
+{
+  "metadata": {
+    "generated_at": "ISO 8601 timestamp",
+    "total_projects": 1000,
+    "source": "GitHub API",
+    "query": "search query used"
+  },
+  "projects": [
+    {
+      "name": "owner/repo",
+      "description": "...",
+      "url": "https://github.com/...",
+      "stars": 1234,
+      "language": "Python",
+      "last_commit": "2024-01-01T00:00:00Z",
+      "archived": true,
+      "topics": [],
+      "license": "mit"
+    }
+  ]
+}
+```
 
 ## License
 
