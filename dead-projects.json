@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-03-29T01:00:55.162328",
+    "generated_at": "2026-03-29T00:13:48.868429",
     "total_projects": 1000,
     "source": "GitHub API",
     "query": "archived:true pushed:<=2025-04-03",
@@ -131,6 +131,26 @@
       "open_issues": 62
     },
     {
+      "name": "google-research/bert",
+      "description": "TensorFlow code and pre-trained models for BERT",
+      "url": "https://github.com/google-research/bert",
+      "stars": 39944,
+      "language": "Python",
+      "last_commit": "2024-07-23T23:39:41Z",
+      "archived": true,
+      "archived_at": "2026-03-28T10:25:20Z",
+      "topics": [
+        "google",
+        "natural-language-processing",
+        "natural-language-understanding",
+        "nlp",
+        "tensorflow"
+      ],
+      "license": "apache-2.0",
+      "forks": 9707,
+      "open_issues": 881
+    },
+    {
       "name": "karpathy/LLM101n",
       "description": "LLM101n: Let's build a Storyteller",
       "url": "https://github.com/karpathy/LLM101n",
@@ -192,6 +212,42 @@
       "license": "mit",
       "forks": 9690,
       "open_issues": 280
+    },
+    {
+      "name": "alibaba/easyexcel",
+      "description": "快速、简洁、解决大文件内存溢出的java处理Excel工具",
+      "url": "https://github.com/alibaba/easyexcel",
+      "stars": 33767,
+      "language": "Java",
+      "last_commit": "2024-10-29T06:07:07Z",
+      "archived": true,
+      "archived_at": "2026-03-28T12:28:10Z",
+      "topics": [
+        "excel",
+        "java",
+        "jxl",
+        "oom",
+        "poi",
+        "xls",
+        "xlsx"
+      ],
+      "license": "apache-2.0",
+      "forks": 7620,
+      "open_issues": 569
+    },
+    {
+      "name": "AFNetworking/AFNetworking",
+      "description": "A delightful networking framework for iOS, macOS, watchOS, and tvOS.",
+      "url": "https://github.com/AFNetworking/AFNetworking",
+      "stars": 33671,
+      "language": "Objective-C",
+      "last_commit": "2023-01-17T19:30:05Z",
+      "archived": true,
+      "archived_at": "2026-03-28T20:07:25Z",
+      "topics": [],
+      "license": "mit",
+      "forks": 10505,
+      "open_issues": 102
     },
     {
       "name": "adobe/brackets",
@@ -293,6 +349,25 @@
       "license": null,
       "forks": 15751,
       "open_issues": 147
+    },
+    {
+      "name": "ariya/phantomjs",
+      "description": "Scriptable Headless Browser",
+      "url": "https://github.com/ariya/phantomjs",
+      "stars": 29478,
+      "language": "C++",
+      "last_commit": "2022-11-26T19:43:12Z",
+      "archived": true,
+      "archived_at": "2026-03-28T18:28:26Z",
+      "topics": [
+        "automation",
+        "headless",
+        "headless-browser",
+        "phantomjs"
+      ],
+      "license": "bsd-3-clause",
+      "forks": 5707,
+      "open_issues": 14
     },
     {
       "name": "meta-llama/llama3",
@@ -440,6 +515,20 @@
       "license": "mit",
       "forks": 4813,
       "open_issues": 554
+    },
+    {
+      "name": "facebookresearch/Detectron",
+      "description": "FAIR's research platform for object detection research, implementing popular algorithms like Mask R-CNN and RetinaNet.",
+      "url": "https://github.com/facebookresearch/Detectron",
+      "stars": 26399,
+      "language": "Python",
+      "last_commit": "2023-11-20T09:13:34Z",
+      "archived": true,
+      "archived_at": "2026-03-28T18:29:26Z",
+      "topics": [],
+      "license": "apache-2.0",
+      "forks": 5408,
+      "open_issues": 331
     },
     {
       "name": "Igglybuff/awesome-piracy",
@@ -612,6 +701,28 @@
       "open_issues": 237
     },
     {
+      "name": "dylanaraps/neofetch",
+      "description": "🖼️  A command-line system information tool written in bash 3.2+",
+      "url": "https://github.com/dylanaraps/neofetch",
+      "stars": 23598,
+      "language": "Shell",
+      "last_commit": "2024-07-19T20:19:01Z",
+      "archived": true,
+      "archived_at": "2026-03-28T20:57:39Z",
+      "topics": [
+        "bash",
+        "command-line",
+        "commandline",
+        "distro",
+        "neofetch",
+        "screenshot",
+        "script"
+      ],
+      "license": "mit",
+      "forks": 1784,
+      "open_issues": 469
+    },
+    {
       "name": "rome/tools",
       "description": "Unified developer tools for JavaScript, TypeScript, and the web",
       "url": "https://github.com/rome/tools",
@@ -649,6 +760,20 @@
       "open_issues": 5
     },
     {
+      "name": "github/copilot-docs",
+      "description": "Documentation for GitHub Copilot",
+      "url": "https://github.com/github/copilot-docs",
+      "stars": 23253,
+      "language": null,
+      "last_commit": "2023-11-24T03:19:19Z",
+      "archived": true,
+      "archived_at": "2026-03-27T04:35:06Z",
+      "topics": [],
+      "license": "cc-by-4.0",
+      "forks": 2383,
+      "open_issues": 17
+    },
+    {
       "name": "facebookarchive/draft-js",
       "description": "A React framework for building text editors.",
       "url": "https://github.com/facebookarchive/draft-js",
@@ -680,6 +805,26 @@
       "license": null,
       "forks": 610,
       "open_issues": 237
+    },
+    {
+      "name": "zzzgydi/clash-verge",
+      "description": "A Clash GUI based on tauri. Supports Windows, macOS and Linux.",
+      "url": "https://github.com/zzzgydi/clash-verge",
+      "stars": 22039,
+      "language": "TypeScript",
+      "last_commit": "2023-11-03T08:00:47Z",
+      "archived": true,
+      "archived_at": "2026-03-28T20:08:17Z",
+      "topics": [
+        "clash",
+        "cross-platform",
+        "react",
+        "rust",
+        "tauri"
+      ],
+      "license": null,
+      "forks": 3182,
+      "open_issues": 235
     },
     {
       "name": "google/iosched",
@@ -1010,6 +1155,20 @@
       "open_issues": 262
     },
     {
+      "name": "google/web-starter-kit",
+      "description": "Web Starter Kit - a workflow for multi-device websites",
+      "url": "https://github.com/google/web-starter-kit",
+      "stars": 18336,
+      "language": "HTML",
+      "last_commit": "2024-04-22T23:42:34Z",
+      "archived": true,
+      "archived_at": "2026-03-27T08:32:27Z",
+      "topics": [],
+      "license": "apache-2.0",
+      "forks": 2943,
+      "open_issues": 74
+    },
+    {
       "name": "Python-World/python-mini-projects",
       "description": "A collection of simple python mini projects to enhance your python skills",
       "url": "https://github.com/Python-World/python-mini-projects",
@@ -1068,6 +1227,20 @@
       "open_issues": 1
     },
     {
+      "name": "npm/npm",
+      "description": "This repository is moving to: https://github.com/npm/cli",
+      "url": "https://github.com/npm/npm",
+      "stars": 17614,
+      "language": null,
+      "last_commit": "2020-08-07T14:31:21Z",
+      "archived": true,
+      "archived_at": "2026-03-28T23:49:50Z",
+      "topics": [],
+      "license": null,
+      "forks": 2995,
+      "open_issues": 2164
+    },
+    {
       "name": "microsoft/CNTK",
       "description": "Microsoft Cognitive Toolkit (CNTK), an open source deep-learning toolkit",
       "url": "https://github.com/microsoft/CNTK",
@@ -1112,6 +1285,28 @@
       ],
       "license": null,
       "forks": 2978,
+      "open_issues": 0
+    },
+    {
+      "name": "dotnet/corefx",
+      "description": "This repo is used for servicing PR's for .NET Core 2.1 and 3.1. Please visit us at https://github.com/dotnet/runtime ",
+      "url": "https://github.com/dotnet/corefx",
+      "stars": 17525,
+      "language": null,
+      "last_commit": "2023-01-21T00:07:42Z",
+      "archived": true,
+      "archived_at": "2026-03-28T05:41:30Z",
+      "topics": [
+        "coreclr",
+        "corefx",
+        "csharp",
+        "dotnet",
+        "dotnet-core",
+        "dotnetcore",
+        "microsoft"
+      ],
+      "license": null,
+      "forks": 4832,
       "open_issues": 0
     },
     {
@@ -1205,6 +1400,24 @@
       "open_issues": 301
     },
     {
+      "name": "reddit-archive/reddit",
+      "description": "historical code from reddit.com",
+      "url": "https://github.com/reddit-archive/reddit",
+      "stars": 16951,
+      "language": "Python",
+      "last_commit": "2017-10-17T19:57:07Z",
+      "archived": true,
+      "archived_at": "2026-03-28T10:15:03Z",
+      "topics": [
+        "javascript",
+        "python",
+        "reddit"
+      ],
+      "license": "other",
+      "forks": 2865,
+      "open_issues": 304
+    },
+    {
       "name": "h2y/Shadowrocket-ADBlock-Rules",
       "description": "提供多款 Shadowrocket 规则，带广告过滤功能。用于 iOS 未越狱设备选择性地自动翻墙。",
       "url": "https://github.com/h2y/Shadowrocket-ADBlock-Rules",
@@ -1286,6 +1499,47 @@
       "license": "mit",
       "forks": 3343,
       "open_issues": 278
+    },
+    {
+      "name": "twintproject/twint",
+      "description": "An advanced Twitter scraping & OSINT tool written in Python that doesn't use Twitter's API, allowing you to scrape a user's followers, following, Tweets and more while evading most API limitations.",
+      "url": "https://github.com/twintproject/twint",
+      "stars": 16353,
+      "language": "Python",
+      "last_commit": "2023-02-23T13:58:09Z",
+      "archived": true,
+      "archived_at": "2026-03-28T19:32:05Z",
+      "topics": [
+        "elasticsearch",
+        "kibana",
+        "osint",
+        "python",
+        "scrape",
+        "scrape-followers",
+        "scrape-following",
+        "scrape-likes",
+        "tweep",
+        "tweets",
+        "twint",
+        "twitter"
+      ],
+      "license": "mit",
+      "forks": 2777,
+      "open_issues": 589
+    },
+    {
+      "name": "meta-llama/codellama",
+      "description": "Inference code for CodeLlama models",
+      "url": "https://github.com/meta-llama/codellama",
+      "stars": 16333,
+      "language": "Python",
+      "last_commit": "2024-08-12T12:49:54Z",
+      "archived": true,
+      "archived_at": "2026-03-28T20:40:22Z",
+      "topics": [],
+      "license": "other",
+      "forks": 1939,
+      "open_issues": 116
     },
     {
       "name": "avgupta456/github-trends",
@@ -1405,6 +1659,20 @@
       "license": "apache-2.0",
       "forks": 16432,
       "open_issues": 0
+    },
+    {
+      "name": "MatsuriDayo/nekoray",
+      "description": "不再维护，自寻替代品。 Qt based cross-platform GUI proxy configuration manager (backend: sing-box)",
+      "url": "https://github.com/MatsuriDayo/nekoray",
+      "stars": 15291,
+      "language": "C++",
+      "last_commit": "2024-12-12T08:25:39Z",
+      "archived": true,
+      "archived_at": "2026-03-28T20:07:47Z",
+      "topics": [],
+      "license": "gpl-3.0",
+      "forks": 1474,
+      "open_issues": 218
     },
     {
       "name": "OpenEthan/SMSBoom",
@@ -1658,55 +1926,6 @@
       "open_issues": 1355
     },
     {
-      "name": "wkhtmltopdf/wkhtmltopdf",
-      "description": "Convert HTML to PDF using Webkit (QtWebKit)",
-      "url": "https://github.com/wkhtmltopdf/wkhtmltopdf",
-      "stars": 14523,
-      "language": "C++",
-      "last_commit": "2022-11-22T10:32:12Z",
-      "archived": true,
-      "archived_at": "2026-03-28T19:59:50Z",
-      "topics": [],
-      "license": "lgpl-3.0",
-      "forks": 1939,
-      "open_issues": 1355
-    },
-    {
-      "name": "microsoft/nni",
-      "description": "An open source AutoML toolkit for automate machine learning lifecycle, including feature engineering, neural architecture search, model compression and hyper-parameter tuning.",
-      "url": "https://github.com/microsoft/nni",
-      "stars": 14346,
-      "language": "Python",
-      "last_commit": "2024-07-03T10:55:10Z",
-      "archived": true,
-      "archived_at": "2026-03-28T16:27:23Z",
-      "topics": [
-        "automated-machine-learning",
-        "automl",
-        "bayesian-optimization",
-        "data-science",
-        "deep-learning",
-        "deep-neural-network",
-        "distributed",
-        "feature-engineering",
-        "hyperparameter-optimization",
-        "hyperparameter-tuning",
-        "machine-learning",
-        "machine-learning-algorithms",
-        "mlops",
-        "model-compression",
-        "nas",
-        "neural-architecture-search",
-        "neural-network",
-        "python",
-        "pytorch",
-        "tensorflow"
-      ],
-      "license": "mit",
-      "forks": 1853,
-      "open_issues": 415
-    },
-    {
       "name": "microsoft/nni",
       "description": "An open source AutoML toolkit for automate machine learning lifecycle, including feature engineering, neural architecture search, model compression and hyper-parameter tuning.",
       "url": "https://github.com/microsoft/nni",
@@ -1760,24 +1979,6 @@
       "open_issues": 302
     },
     {
-      "name": "youfou/wxpy",
-      "description": "微信机器人 / 可能是最优雅的微信个人号 API ✨✨",
-      "url": "https://github.com/youfou/wxpy",
-      "stars": 14279,
-      "language": "Python",
-      "last_commit": "2019-07-14T17:59:47Z",
-      "archived": true,
-      "archived_at": "2026-03-26T01:29:14Z",
-      "topics": [
-        "api",
-        "wechat",
-        "weixin"
-      ],
-      "license": "mit",
-      "forks": 2387,
-      "open_issues": 302
-    },
-    {
       "name": "angular-ui/bootstrap",
       "description": "PLEASE READ THE PROJECT STATUS BELOW.  Native AngularJS (Angular) directives for Bootstrap. Smaller footprint (20kB gzipped), no 3rd party JS dependencies (jQuery, bootstrap JS) required. Please read the README.md file before submitting an issue!",
       "url": "https://github.com/angular-ui/bootstrap",
@@ -1790,41 +1991,6 @@
       "license": "mit",
       "forks": 6598,
       "open_issues": 335
-    },
-    {
-      "name": "angular-ui/bootstrap",
-      "description": "PLEASE READ THE PROJECT STATUS BELOW.  Native AngularJS (Angular) directives for Bootstrap. Smaller footprint (20kB gzipped), no 3rd party JS dependencies (jQuery, bootstrap JS) required. Please read the README.md file before submitting an issue!",
-      "url": "https://github.com/angular-ui/bootstrap",
-      "stars": 14190,
-      "language": "JavaScript",
-      "last_commit": "2019-02-10T12:36:40Z",
-      "archived": true,
-      "archived_at": "2026-03-28T18:28:41Z",
-      "topics": [],
-      "license": "mit",
-      "forks": 6598,
-      "open_issues": 335
-    },
-    {
-      "name": "vurtun/nuklear",
-      "description": "A single-header ANSI C gui library",
-      "url": "https://github.com/vurtun/nuklear",
-      "stars": 14147,
-      "language": "C",
-      "last_commit": "2020-01-03T21:36:41Z",
-      "archived": true,
-      "archived_at": "2026-03-28T17:03:39Z",
-      "topics": [
-        "c",
-        "c89",
-        "gui",
-        "imgui",
-        "nuklear",
-        "single-header-lib"
-      ],
-      "license": null,
-      "forks": 1104,
-      "open_issues": 236
     },
     {
       "name": "vurtun/nuklear",
@@ -1865,23 +2031,6 @@
       "open_issues": 232
     },
     {
-      "name": "facebookarchive/prepack",
-      "description": "A JavaScript bundle optimizer.",
-      "url": "https://github.com/facebookarchive/prepack",
-      "stars": 14132,
-      "language": "JavaScript",
-      "last_commit": "2022-02-11T05:19:57Z",
-      "archived": true,
-      "archived_at": "2026-03-28T04:20:13Z",
-      "topics": [
-        "javascript",
-        "optimization"
-      ],
-      "license": "other",
-      "forks": 412,
-      "open_issues": 232
-    },
-    {
       "name": "sivel/speedtest-cli",
       "description": "Command line interface for testing internet bandwidth using speedtest.net",
       "url": "https://github.com/sivel/speedtest-cli",
@@ -1899,49 +2048,6 @@
       "license": "apache-2.0",
       "forks": 1925,
       "open_issues": 73
-    },
-    {
-      "name": "sivel/speedtest-cli",
-      "description": "Command line interface for testing internet bandwidth using speedtest.net",
-      "url": "https://github.com/sivel/speedtest-cli",
-      "stars": 14080,
-      "language": "Python",
-      "last_commit": "2024-07-20T16:58:27Z",
-      "archived": true,
-      "archived_at": "2026-03-28T19:25:01Z",
-      "topics": [
-        "python",
-        "python-library",
-        "python-script",
-        "speedtest"
-      ],
-      "license": "apache-2.0",
-      "forks": 1925,
-      "open_issues": 73
-    },
-    {
-      "name": "ConsenSys-archive/truffle",
-      "description": ":warning: The Truffle Suite is being sunset. For information on ongoing support, migration options and FAQs, visit the Consensys blog. Thank you for all the support over the years.",
-      "url": "https://github.com/ConsenSys-archive/truffle",
-      "stars": 13972,
-      "language": "TypeScript",
-      "last_commit": "2024-04-22T08:47:19Z",
-      "archived": true,
-      "archived_at": "2026-03-28T05:24:04Z",
-      "topics": [
-        "blockchain",
-        "ethereum",
-        "framework",
-        "hacktoberfest",
-        "javascript",
-        "smart-contract-tools",
-        "smart-contracts",
-        "solidity",
-        "truffle"
-      ],
-      "license": "mit",
-      "forks": 2307,
-      "open_issues": 527
     },
     {
       "name": "ConsenSys-archive/truffle",
@@ -2005,49 +2111,6 @@
       "open_issues": 272
     },
     {
-      "name": "json-iterator/go",
-      "description": "A high-performance 100% compatible drop-in replacement of \"encoding/json\"",
-      "url": "https://github.com/json-iterator/go",
-      "stars": 13921,
-      "language": "Go",
-      "last_commit": "2024-05-27T09:03:49Z",
-      "archived": true,
-      "archived_at": "2026-03-28T18:29:23Z",
-      "topics": [
-        "deserialization",
-        "go",
-        "golang",
-        "json",
-        "json-parser",
-        "parser",
-        "serialization",
-        "serializer"
-      ],
-      "license": "mit",
-      "forks": 1058,
-      "open_issues": 272
-    },
-    {
-      "name": "zhongyi-tong/electronic-wechat",
-      "description": ":speech_balloon: A better WeChat on macOS and Linux. Built with Electron by Zhongyi Tong.",
-      "url": "https://github.com/zhongyi-tong/electronic-wechat",
-      "stars": 13886,
-      "language": "JavaScript",
-      "last_commit": "2020-09-30T02:05:55Z",
-      "archived": true,
-      "archived_at": "2026-03-28T23:27:14Z",
-      "topics": [
-        "electron",
-        "linux",
-        "macos",
-        "web-wechat",
-        "wechat"
-      ],
-      "license": "mit",
-      "forks": 2679,
-      "open_issues": 208
-    },
-    {
       "name": "zhongyi-tong/electronic-wechat",
       "description": ":speech_balloon: A better WeChat on macOS and Linux. Built with Electron by Zhongyi Tong.",
       "url": "https://github.com/zhongyi-tong/electronic-wechat",
@@ -2071,37 +2134,11 @@
       "name": "google/WebFundamentals",
       "description": "Former git repo for WebFundamentals on developers.google.com",
       "url": "https://github.com/google/WebFundamentals",
-      "stars": 13881,
+      "stars": 13882,
       "language": "JavaScript",
       "last_commit": "2022-08-10T14:38:07Z",
       "archived": true,
-      "archived_at": "2026-03-28T04:22:54Z",
-      "topics": [
-        "best-practices",
-        "chrome",
-        "chrome-browser",
-        "css",
-        "html",
-        "html5",
-        "javascript",
-        "mobile-web",
-        "progressive-web-app",
-        "web",
-        "web-app"
-      ],
-      "license": "apache-2.0",
-      "forks": 2538,
-      "open_issues": 1201
-    },
-    {
-      "name": "google/WebFundamentals",
-      "description": "Former git repo for WebFundamentals on developers.google.com",
-      "url": "https://github.com/google/WebFundamentals",
-      "stars": 13881,
-      "language": "JavaScript",
-      "last_commit": "2022-08-10T14:38:07Z",
-      "archived": true,
-      "archived_at": "2026-03-28T04:22:54Z",
+      "archived_at": "2026-03-29T00:03:06Z",
       "topics": [
         "best-practices",
         "chrome",
@@ -2150,36 +2187,6 @@
       "open_issues": 248
     },
     {
-      "name": "eczarny/spectacle",
-      "description": "Spectacle allows you to organize your windows without using a mouse.",
-      "url": "https://github.com/eczarny/spectacle",
-      "stars": 13647,
-      "language": "Objective-C",
-      "last_commit": "2022-01-15T17:32:42Z",
-      "archived": true,
-      "archived_at": "2026-03-23T22:53:28Z",
-      "topics": [],
-      "license": "other",
-      "forks": 841,
-      "open_issues": 148
-    },
-    {
-      "name": "apache/incubator-weex",
-      "description": "Apache Weex (Incubating)",
-      "url": "https://github.com/apache/incubator-weex",
-      "stars": 13647,
-      "language": "C++",
-      "last_commit": "2021-05-31T09:47:25Z",
-      "archived": true,
-      "archived_at": "2026-03-28T23:27:22Z",
-      "topics": [
-        "weex"
-      ],
-      "license": "apache-2.0",
-      "forks": 1786,
-      "open_issues": 248
-    },
-    {
       "name": "philipwalton/flexbugs",
       "description": "A community-curated list of flexbox issues and cross-browser workarounds for them.",
       "url": "https://github.com/philipwalton/flexbugs",
@@ -2192,43 +2199,6 @@
       "license": "mit",
       "forks": 490,
       "open_issues": 88
-    },
-    {
-      "name": "philipwalton/flexbugs",
-      "description": "A community-curated list of flexbox issues and cross-browser workarounds for them.",
-      "url": "https://github.com/philipwalton/flexbugs",
-      "stars": 13580,
-      "language": null,
-      "last_commit": "2024-01-19T22:00:42Z",
-      "archived": true,
-      "archived_at": "2026-03-25T18:31:15Z",
-      "topics": [],
-      "license": "mit",
-      "forks": 490,
-      "open_issues": 88
-    },
-    {
-      "name": "tink-crypto/tink",
-      "description": "Tink is a multi-language, cross-platform, open source library that provides cryptographic APIs that are secure, easy to use correctly, and hard(er) to misuse.",
-      "url": "https://github.com/tink-crypto/tink",
-      "stars": 13559,
-      "language": "Java",
-      "last_commit": "2024-04-17T11:08:35Z",
-      "archived": true,
-      "archived_at": "2026-03-26T22:47:55Z",
-      "topics": [
-        "cpp",
-        "crypto",
-        "cryptography",
-        "go",
-        "java",
-        "javascript",
-        "objc",
-        "security"
-      ],
-      "license": "apache-2.0",
-      "forks": 1185,
-      "open_issues": 0
     },
     {
       "name": "tink-crypto/tink",
@@ -2375,11 +2345,11 @@
       "name": "schickling/chromeless",
       "description": "🖥  Chrome automation made simple. Runs locally or headless on AWS Lambda.",
       "url": "https://github.com/schickling/chromeless",
-      "stars": 13240,
+      "stars": 13241,
       "language": "TypeScript",
       "last_commit": "2018-11-13T02:23:55Z",
       "archived": true,
-      "archived_at": "2026-03-24T16:56:47Z",
+      "archived_at": "2026-03-29T00:03:28Z",
       "topics": [
         "chrome",
         "graphcool",
@@ -2650,7 +2620,7 @@
         "scala"
       ],
       "license": "apache-2.0",
-      "forks": 1916,
+      "forks": 1915,
       "open_issues": 80
     },
     {
@@ -5209,7 +5179,7 @@
         "substrate"
       ],
       "license": "apache-2.0",
-      "forks": 2654,
+      "forks": 2653,
       "open_issues": 627
     },
     {
@@ -6016,11 +5986,11 @@
       "name": "P3TERX/Actions-OpenWrt",
       "description": "A template for building OpenWrt with GitHub Actions | 使用 GitHub Actions 在线云编译 OpenWrt 固件",
       "url": "https://github.com/P3TERX/Actions-OpenWrt",
-      "stars": 7628,
+      "stars": 7629,
       "language": "Shell",
       "last_commit": "2024-03-02T08:44:16Z",
       "archived": true,
-      "archived_at": "2026-03-28T01:35:01Z",
+      "archived_at": "2026-03-29T00:00:57Z",
       "topics": [
         "actions",
         "actions-openwrt",
@@ -6031,7 +6001,7 @@
         "openwrt-zh-cn"
       ],
       "license": "mit",
-      "forks": 6865,
+      "forks": 6866,
       "open_issues": 0
     },
     {
@@ -6646,11 +6616,11 @@
       "name": "sstephenson/bats",
       "description": "Bash Automated Testing System",
       "url": "https://github.com/sstephenson/bats",
-      "stars": 7115,
+      "stars": 7116,
       "language": "Shell",
       "last_commit": "2019-09-27T17:21:43Z",
       "archived": true,
-      "archived_at": "2026-03-15T06:51:35Z",
+      "archived_at": "2026-03-29T00:08:37Z",
       "topics": [],
       "license": "mit",
       "forks": 513,
@@ -8105,11 +8075,11 @@
       "name": "michenriksen/gitrob",
       "description": "Reconnaissance tool for GitHub organizations",
       "url": "https://github.com/michenriksen/gitrob",
-      "stars": 6149,
+      "stars": 6150,
       "language": "Go",
       "last_commit": "2022-09-20T18:09:09Z",
       "archived": true,
-      "archived_at": "2026-03-28T15:06:20Z",
+      "archived_at": "2026-03-29T00:07:05Z",
       "topics": [
         "github-api",
         "golang",
