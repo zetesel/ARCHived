@@ -1,0 +1,30 @@
+name: Semgrep Scan
+
+on:
+  schedule:
+    # Run daily at 02:00 UTC
+    - cron: '0 2 * * *'
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  security-events: write  # Required for Code Scanning alerts
+  actions: read
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep
+        # More info at https://github.com/returntocorp/semgrep-action
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: auto
