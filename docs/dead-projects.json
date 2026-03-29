@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-03-29T00:13:48.868429",
+    "generated_at": "2026-03-29T00:22:09.076674",
     "total_projects": 1000,
     "source": "GitHub API",
     "query": "archived:true pushed:<=2025-04-03",
@@ -14,11 +14,11 @@
       "name": "DopplerHQ/awesome-interview-questions",
       "description": ":octocat: A curated awesome list of lists of interview questions. Feel free to contribute! :mortar_board: ",
       "url": "https://github.com/DopplerHQ/awesome-interview-questions",
-      "stars": 81697,
+      "stars": 81698,
       "language": null,
       "last_commit": "2024-07-29T14:21:23Z",
       "archived": true,
-      "archived_at": "2026-03-28T23:15:38Z",
+      "archived_at": "2026-03-29T00:19:11Z",
       "topics": [
         "android-interview-questions",
         "angularjs-interview-questions",
@@ -6813,7 +6813,7 @@
       "archived_at": "2026-03-26T17:14:53Z",
       "topics": [],
       "license": "other",
-      "forks": 2089,
+      "forks": 2088,
       "open_issues": 0
     },
     {
@@ -7001,11 +7001,11 @@
       "name": "RMerl/asuswrt-merlin",
       "description": "Enhanced version of Asus's router firmware (Asuswrt) (legacy code base)",
       "url": "https://github.com/RMerl/asuswrt-merlin",
-      "stars": 6764,
+      "stars": 6765,
       "language": null,
       "last_commit": "2019-07-13T20:37:41Z",
       "archived": true,
-      "archived_at": "2026-03-28T18:28:37Z",
+      "archived_at": "2026-03-29T00:13:48Z",
       "topics": [
         "asus-routers",
         "asuswrt-merlin",
@@ -15841,11 +15841,11 @@
       "name": "htr-tech/nexphisher",
       "description": "Advanced Phishing tool",
       "url": "https://github.com/htr-tech/nexphisher",
-      "stars": 3760,
+      "stars": 3761,
       "language": "Shell",
       "last_commit": "2022-10-12T09:34:43Z",
       "archived": true,
-      "archived_at": "2026-03-28T21:30:39Z",
+      "archived_at": "2026-03-29T00:16:37Z",
       "topics": [
         "htr-tech",
         "linux",
