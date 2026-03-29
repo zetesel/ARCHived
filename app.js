@@ -104,40 +104,88 @@ function applyFilters() {
     renderProjects();
 }
 
-// Render projects to DOM
+// Render projects to DOM using safe DOM APIs
 function renderProjects() {
     if (filteredProjects.length === 0) {
-        projectsContainer.innerHTML = `
-            <div class="no-results">
-                <h3>No projects match your filters</h3>
-                <p>Try adjusting your filters to see more results.</p>
-            </div>
+        projectsContainer.innerHTML = '';
+        const noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.innerHTML = `
+            <h3>No projects match your filters</h3>
+            <p>Try adjusting your filters to see more results.</p>
         `;
+        projectsContainer.appendChild(noResults);
         return;
     }
 
-    projectsContainer.innerHTML = filteredProjects.map(project => `
-        <article class="project-card">
-            <div class="card-header">
-                <a href="${project.url}" target="_blank" class="project-name">${escapeHtml(project.name)}</a>
-                ${project.language ? `<span class="project-language">${escapeHtml(project.language)}</span>` : ''}
-            </div>
-            <p class="project-description">${escapeHtml(project.description || 'No description provided')}</p>
-            <div class="card-stats">
-                <span class="stat-item" title="Stars">
-                    ⭐ ${project.stars.toLocaleString()}
-                </span>
-                <span class="stat-item" title="Last commit">
-                    📅 ${formatDateAgo(project.last_commit)}
-                </span>
-            </div>
-            <div class="card-actions">
-                <a href="${project.url}" target="_blank" class="btn btn-primary">
-                    View on GitHub
-                </a>
-            </div>
-        </article>
-    `).join('');
+    projectsContainer.innerHTML = '';
+
+    const fragment = document.createDocumentFragment();
+
+    filteredProjects.forEach(project => {
+        const card = document.createElement('article');
+        card.className = 'project-card';
+
+        // Header with name link and language badge
+        const header = document.createElement('div');
+        header.className = 'card-header';
+
+        const nameLink = document.createElement('a');
+        nameLink.href = project.url;
+        nameLink.target = '_blank';
+        nameLink.className = 'project-name';
+        nameLink.textContent = project.name;
+        header.appendChild(nameLink);
+
+        if (project.language) {
+            const langSpan = document.createElement('span');
+            langSpan.className = 'project-language';
+            langSpan.textContent = project.language;
+            header.appendChild(langSpan);
+        }
+
+        card.appendChild(header);
+
+        // Description
+        const desc = document.createElement('p');
+        desc.className = 'project-description';
+        desc.textContent = project.description || 'No description provided';
+        card.appendChild(desc);
+
+        // Stats
+        const stats = document.createElement('div');
+        stats.className = 'card-stats';
+
+        const starsStat = document.createElement('span');
+        starsStat.className = 'stat-item';
+        starsStat.title = 'Stars';
+        starsStat.textContent = `⭐ ${project.stars.toLocaleString()}`;
+        stats.appendChild(starsStat);
+
+        const dateStat = document.createElement('span');
+        dateStat.className = 'stat-item';
+        dateStat.title = 'Last commit';
+        dateStat.textContent = `📅 ${formatDateAgo(project.last_commit)}`;
+        stats.appendChild(dateStat);
+
+        card.appendChild(stats);
+
+        // Actions
+        const actions = document.createElement('div');
+        actions.className = 'card-actions';
+
+        const viewBtn = document.createElement('a');
+        viewBtn.href = project.url;
+        viewBtn.target = '_blank';
+        viewBtn.className = 'btn btn-primary';
+        viewBtn.textContent = 'View on GitHub';
+        actions.appendChild(viewBtn);
+
+        card.appendChild(actions);
+        fragment.appendChild(card);
+    });
+
+    projectsContainer.appendChild(fragment);
 }
 
 // Utility: Escape HTML to prevent XSS
