@@ -19,12 +19,15 @@ async function loadProjects() {
         if (!response.ok) {
             throw new Error('Failed to load projects data');
         }
-        projects = await response.json();
+        const data = await response.json();
+        projects = data.projects || [];
         filteredProjects = [...projects];
 
         // Update last updated date
-        if (projects.length > 0 && projects[0].collected_at) {
-            const date = new Date(projects[0].collected_at);
+        // Find collected_at in metadata or first project
+        const collectedAt = data.metadata?.generated_at || projects[0]?.collected_at;
+        if (collectedAt) {
+            const date = new Date(collectedAt);
             lastUpdated.textContent = date.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
@@ -49,7 +52,7 @@ async function loadProjects() {
 
 // Populate language filter with available languages
 function populateLanguages() {
-    const languages = [...new Set(projects.map(p => p.language).filter(Boolean)].sort();
+    const languages = [...new Set(projects.map(p => p.language).filter(Boolean))].sort();
     languageFilter.innerHTML = '<option value="all">All Languages</option>';
 
     languages.forEach(lang => {
