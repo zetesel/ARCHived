@@ -19,7 +19,10 @@ const nextPageBtn = document.getElementById('next-page');
 const pageInfo = document.getElementById('page-info');
 
 let currentPage = 1;
-let pageSize = parseInt(pageSizeSelect.value || '50', 10);
+let pageSizeRaw = pageSizeSelect.value || '50';
+let pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10);
+let virtualized = pageSize === 'all';
+let virtualWindow = { start: 0, end: 20 };
 
 // Load data
 async function loadProjects() {
@@ -195,10 +198,19 @@ function renderProjects() {
 
     const fragment = document.createDocumentFragment();
 
-    // Determine slice for current page
-    const start = (currentPage - 1) * pageSize;
-    const end = start + pageSize;
-    const pageItems = filteredProjects.slice(start, end);
+    // Determine items to render depending on pagination vs virtualization
+    let pageItems;
+    if (pageSize === 'all') {
+        // Virtualized window — render virtualWindow.start..end
+        const start = Math.max(0, virtualWindow.start);
+        const end = Math.min(filteredProjects.length, virtualWindow.end);
+        pageItems = filteredProjects.slice(start, end);
+    } else {
+        // Paginated slice
+        const start = (currentPage - 1) * pageSize;
+        const end = start + pageSize;
+        pageItems = filteredProjects.slice(start, end);
+    }
 
     pageItems.forEach(project => {
         const card = document.createElement('article');
@@ -277,6 +289,45 @@ function renderProjects() {
     });
 
     projectsContainer.appendChild(fragment);
+
+    // If using virtualization, ensure a scroll listener is attached to update window
+    if (pageSize === 'all') {
+        attachVirtualScroll();
+    } else {
+        detachVirtualScroll();
+    }
+}
+
+function attachVirtualScroll() {
+    if (window._virtualScrollAttached) return;
+    window._virtualScrollAttached = true;
+    window.addEventListener('scroll', onVirtualScroll, { passive: true });
+}
+
+function detachVirtualScroll() {
+    if (!window._virtualScrollAttached) return;
+    window._virtualScrollAttached = false;
+    window.removeEventListener('scroll', onVirtualScroll);
+}
+
+function onVirtualScroll() {
+    // Compute approximate index based on scroll position and card height
+    const approxCardHeight = 140; // px — rough guess; adjust as needed
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const itemsPerViewport = Math.ceil(viewportHeight / approxCardHeight) + 2;
+    const firstVisibleIndex = Math.floor(scrollTop / approxCardHeight) - 2;
+    const start = Math.max(0, firstVisibleIndex);
+    const end = start + itemsPerViewport * 3;
+
+    // Update virtual window and re-render only if window changed significantly
+    if (start !== virtualWindow.start || end !== virtualWindow.end) {
+        virtualWindow.start = start;
+        virtualWindow.end = Math.min(filteredProjects.length, end);
+        // Re-render
+        projectsContainer.innerHTML = '';
+        renderProjects();
+    }
 }
 
 // Utility: Escape HTML to prevent XSS
@@ -309,8 +360,12 @@ starsFilter.addEventListener('input', function() {
 });
 sortBy.addEventListener('change', applyFilters);
 pageSizeSelect.addEventListener('change', function() {
-    pageSize = parseInt(this.value, 10) || 50;
+    pageSizeRaw = this.value;
+    pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10) || 50;
+    virtualized = pageSize === 'all';
     currentPage = 1;
+    // Reset virtual window
+    virtualWindow = { start: 0, end: 20 };
     applyFilters();
 });
 prevPageBtn.addEventListener('click', function() {
