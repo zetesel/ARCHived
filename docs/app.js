@@ -23,6 +23,15 @@ async function loadProjects() {
         projects = data.projects || [];
         filteredProjects = [...projects];
 
+        // Coerce numeric/date fields once to avoid repeated work during sorting/filtering
+        projects.forEach(p => {
+            const starsNum = Number(p.stars);
+            p.stars = Number.isFinite(starsNum) ? starsNum : 0;
+            const ts = Date.parse(p.last_commit || '');
+            p._last_commit_ts = Number.isFinite(ts) ? ts : 0;
+            p.name = p.name || '';
+        });
+
         // Update last updated date
         // Find collected_at in metadata or first project
         const collectedAt = data.metadata?.generated_at || projects[0]?.collected_at;
@@ -67,11 +76,38 @@ function populateLanguages() {
 function applyFilters() {
     const selectedLanguage = languageFilter.value;
     const minStars = parseInt(starsFilter.value);
+    const rawQuery = (document.getElementById && document.getElementById('text-search') && document.getElementById('text-search').value) ? document.getElementById('text-search').value.trim() : '';
+    const queryLower = rawQuery.toLowerCase();
 
-    // Filter
+    // If using a text search input elsewhere in the docs build, allow for its presence
+    let fuseMatches = null;
+    if (rawQuery && typeof Fuse !== 'undefined') {
+        try {
+            const limit = projects.length || 10000;
+            const results = new Fuse(projects.map(p => ({ name: p.name || '', description: p.description || '', topics: (p.topics || []).join(' ') })), { keys: ['name', 'description', 'topics'], threshold: 0.4 }).search(rawQuery, { limit });
+            fuseMatches = new Set(results.map(r => r.item && r.item.name).filter(Boolean));
+        } catch (e) {
+            console.warn('Fuse (docs) failed, falling back to substring search', e);
+            fuseMatches = null;
+        }
+    }
+
+    // Filter — if a rawQuery exists do text matching, otherwise simple filters
     filteredProjects = projects.filter(project => {
         const matchesLanguage = selectedLanguage === 'all' || project.language === selectedLanguage;
         const matchesStars = project.stars >= minStars;
+
+        if (rawQuery) {
+            if (fuseMatches) {
+                const matchesText = fuseMatches.has(project.name);
+                return matchesLanguage && matchesStars && matchesText;
+            }
+
+            const hay = [project.name, project.description, (project.topics || []).join(' ')].filter(Boolean).join(' ').toLowerCase();
+            const matchesText = hay.indexOf(queryLower) !== -1;
+            return matchesLanguage && matchesStars && matchesText;
+        }
+
         return matchesLanguage && matchesStars;
     });
 
@@ -84,9 +120,9 @@ function applyFilters() {
             case 'stars-asc':
                 return a.stars - b.stars;
             case 'date-desc':
-                return new Date(b.last_commit) - new Date(a.last_commit);
+                return (b._last_commit_ts || 0) - (a._last_commit_ts || 0);
             case 'date-asc':
-                return new Date(a.last_commit) - new Date(b.last_commit);
+                return (a._last_commit_ts || 0) - (b._last_commit_ts || 0);
             case 'name-asc':
                 return a.name.localeCompare(b.name);
             case 'name-desc':
