@@ -31,10 +31,15 @@ jobs:
           pip install --upgrade pip
           pip install -r scraper/requirements.txt
 
-      - name: Run scraper
+      - name: Run scraper and build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python build.py
+          # Customize these if you want to change collection criteria
+          ARCHIVED_MONTHS: '12'
+          ARCHIVED_MIN_STARS: '10'
+        run: |
+          python scraper/collect.py --months "$ARCHIVED_MONTHS" --min-stars "$ARCHIVED_MIN_STARS" --output dead-projects.json
+          python build.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

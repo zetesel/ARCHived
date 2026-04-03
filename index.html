@@ -20,6 +20,10 @@
 
     <main class="container">
         <section class="filters">
+            <div class="filter-group search-group">
+                <label for="text-search">Search:</label>
+                <input type="search" id="text-search" placeholder="Search name, description, topics...">
+            </div>
             <div class="filter-group">
                 <label for="language-filter">Filter by language:</label>
                 <select id="language-filter">
@@ -68,5 +72,7 @@
     </footer>
 
     <script src="app.js?v=3"></script>
+    <!-- Fuse.js for fuzzy client-side search -->
+    <script src="https://unpkg.com/fuse.js@6.6.2/dist/fuse.basic.min.js"></script>
 </body>
 </html>

@@ -51,12 +51,17 @@ Open http://localhost:8000 in your browser.
 
 ## Configuration
 
-Edit `scraper/collect.py` to change collection criteria:
+The scraper is configurable via CLI flags or environment variables in CI.
 
-- `MIN_STARS` — minimum star count (default: 10)
-- `months` passed to `collect_projects()` — months of inactivity (default: 12)
+Locally you can run:
 
-Set `GITHUB_TOKEN` in Actions secrets if you need higher rate limits. The default `GITHUB_TOKEN` works but has lower limits.
+```bash
+python scraper/collect.py --months 12 --min-stars 10 --output dead-projects.json
+```
+
+In CI the workflow sets `ARCHIVED_MONTHS` and `ARCHIVED_MIN_STARS` which are passed to the scraper. Set `GITHUB_TOKEN` in Actions secrets if you need higher rate limits. The default `GITHUB_TOKEN` works but has lower limits.
+
+Note about GitHub Search API limits: the Search API only returns up to 1000 results for any query. If a query matches more than 1000 repositories the scraper will stop at that cap and the generated metadata will include "truncated": true. To cover more results you can run multiple, narrower queries (for example split by language or star ranges) and merge outputs.
 
 ## File Structure
 

@@ -15,6 +15,7 @@ import json
 import time
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
+import argparse
 
 import requests
 
@@ -42,8 +43,11 @@ def calculate_date_threshold(months: int = 12) -> str:
     return threshold.strftime("%Y-%m-%d")
 
 
-def search_repositories(query: str, page: int = 1) -> Optional[Dict[str, Any]]:
-    """Search GitHub repositories with pagination."""
+def search_repositories(query: str, page: int = 1, max_retries: int = 3) -> Optional[Dict[str, Any]]:
+    """Search GitHub repositories with pagination and retries.
+
+    Returns JSON on success or None on failure.
+    """
     url = f"{GITHUB_API}/search/repositories"
     params = {
         "q": query,
@@ -54,22 +58,53 @@ def search_repositories(query: str, page: int = 1) -> Optional[Dict[str, Any]]:
     }
     headers = get_auth_headers()
 
-    try:
-        response = requests.get(url, params=params, headers=headers, timeout=30)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.HTTPError as e:
-        if response.status_code == 403:
-            print("ERROR: Rate limit exceeded. Set GITHUB_TOKEN environment variable.")
-            print("       Without auth, only 10 requests/minute are allowed.")
-        elif response.status_code == 401:
-            print("ERROR: Invalid GITHUB_TOKEN. Check your token permissions.")
-        else:
-            print(f"ERROR: HTTP {response.status_code}: {response.text[:200]}")
-        return None
-    except requests.exceptions.RequestException as e:
-        print(f"ERROR: Request failed: {e}")
-        return None
+    for attempt in range(1, max_retries + 1):
+        try:
+            response = requests.get(url, params=params, headers=headers, timeout=30)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.HTTPError as e:
+            resp = getattr(e, 'response', None)
+            status = resp.status_code if resp is not None else None
+
+            # Surface rate limit information when available
+            if resp is not None and resp.headers:
+                remaining = resp.headers.get('X-RateLimit-Remaining')
+                reset = resp.headers.get('X-RateLimit-Reset')
+                if remaining is not None:
+                    print(f"Rate limit remaining: {remaining}")
+                if reset is not None:
+                    try:
+                        reset_ts = int(reset)
+                        reset_time = datetime.fromtimestamp(reset_ts)
+                        print(f"Rate limit resets at: {reset_time.isoformat()}")
+                    except Exception:
+                        pass
+
+            # Retry on transient server errors
+            if status in (429, 502, 503, 504) and attempt < max_retries:
+                wait = 2 ** attempt
+                print(f"Transient HTTP {status} — retrying in {wait}s (attempt {attempt}/{max_retries})...")
+                time.sleep(wait)
+                continue
+
+            if status == 403:
+                print("ERROR: Access forbidden or rate limited. Set GITHUB_TOKEN environment variable for higher limits.")
+            elif status == 401:
+                print("ERROR: Invalid GITHUB_TOKEN. Check your token permissions.")
+            else:
+                text = resp.text[:200] if resp is not None else str(e)
+                print(f"ERROR: HTTP {status}: {text}")
+            return None
+        except requests.exceptions.RequestException as e:
+            # Network or other errors — retry a few times
+            if attempt < max_retries:
+                wait = 2 ** attempt
+                print(f"Request failed: {e}. Retrying in {wait}s (attempt {attempt}/{max_retries})...")
+                time.sleep(wait)
+                continue
+            print(f"ERROR: Request failed after {max_retries} attempts: {e}")
+            return None
 
 
 def parse_repository(item: Dict[str, Any]) -> Dict[str, Any]:
@@ -99,7 +134,10 @@ def should_include_repo(repo: Dict[str, Any], min_stars: int) -> bool:
 
 
 def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[str, Any]]:
-    """Main collection logic."""
+    """Main collection logic.
+
+    Returns a tuple: (list_of_repos, truncated_flag)
+    """
     date_threshold = calculate_date_threshold(months)
     query = SEARCH_QUERY.format(date=date_threshold)
 
@@ -109,6 +147,8 @@ def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[
     all_repos = []
     page = 1
     total_collected = 0
+    truncated = False
+    max_pages = None
 
     while True:
         print(f"  Fetching page {page}...")
@@ -116,6 +156,16 @@ def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[
 
         if not data or "items" not in data:
             break
+
+        # Detect GitHub Search API 1000-result cap on the first page
+        if page == 1:
+            total_count = data.get('total_count', 0)
+            if total_count > PER_PAGE * 10:
+                truncated = True
+                max_pages = 10
+                print(f"WARNING: GitHub Search API limits results to 1000. total_count={total_count}. Results will be truncated.")
+            else:
+                max_pages = (total_count + PER_PAGE - 1) // PER_PAGE if total_count > 0 else None
 
         items = data["items"]
         if not items:
@@ -135,25 +185,32 @@ def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[
 
         page += 1
 
+        # If we have a hard cap on pages (1000 results), stop when reached
+        if max_pages is not None and page > max_pages:
+            break
+
         # Rate limiting: be nice to GitHub's API
         time.sleep(2 if os.environ.get("GITHUB_TOKEN") else 10)
 
     print(f"\nCollected {len(all_repos)} projects from {total_collected} total results")
-    return all_repos
+    if truncated:
+        print("NOTE: Results were truncated due to API limits.")
+    return all_repos, truncated
 
 
-def save_json(data: List[Dict[str, Any]], path: str):
+def save_json(data: List[Dict[str, Any]], path: str, months: int, min_stars: int, truncated: bool = False):
     """Save data to JSON file with metadata."""
     output = {
         "metadata": {
             "generated_at": datetime.now().isoformat(),
             "total_projects": len(data),
             "source": "GitHub API",
-            "query": SEARCH_QUERY.format(date=calculate_date_threshold()),
+            "query": SEARCH_QUERY.format(date=calculate_date_threshold(months)),
             "criteria": {
-                "min_stars": MIN_STARS,
-                "max_months_inactive": 12
-            }
+                "min_stars": min_stars,
+                "max_months_inactive": months,
+            },
+            "truncated": bool(truncated)
         },
         "projects": sorted(data, key=lambda x: x["stars"], reverse=True)
     }
@@ -170,9 +227,16 @@ def main():
     print("ARCHived - GitHub Dead Projects Scraper")
     print("=" * 60)
 
+    parser = argparse.ArgumentParser(description='Collect archived/unmaintained GitHub projects')
+    parser.add_argument('--months', type=int, default=12, help='Months of inactivity to consider (default: 12)')
+    parser.add_argument('--min-stars', type=int, default=MIN_STARS, help=f'Minimum stars (default: {MIN_STARS})')
+    parser.add_argument('--output', type=str, default=OUTPUT_FILE, help=f'Output JSON file (default: {OUTPUT_FILE})')
+
+    args = parser.parse_args()
+
     try:
-        projects = collect_projects()
-        save_json(projects, OUTPUT_FILE)
+        projects, truncated = collect_projects(months=args.months, min_stars=args.min_stars)
+        save_json(projects, args.output, months=args.months, min_stars=args.min_stars, truncated=truncated)
         print("\n✓ Complete!")
         return 0
     except KeyboardInterrupt:

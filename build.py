@@ -22,8 +22,9 @@ STATIC_FILES = ["index.html", "styles.css", "app.js", "dead-projects.json"]
 def run_scraper():
     """Execute the scraper script to generate fresh data."""
     print("Running scraper...")
+    # Run scraper with defaults; allow collect.py to accept CLI args in the future
     result = subprocess.run(
-        [sys.executable, "scraper/collect.py"],
+        [sys.executable, "scraper/collect.py", "--months", "12", "--min-stars", "10"],
         capture_output=True,
         text=True
     )

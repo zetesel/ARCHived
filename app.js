@@ -1,10 +1,12 @@
 // State
 let projects = [];
 let filteredProjects = [];
+let fuse = null;
 
 // DOM Elements
 const projectsContainer = document.getElementById('projects-container');
 const languageFilter = document.getElementById('language-filter');
+const textSearch = document.getElementById('text-search');
 const starsFilter = document.getElementById('stars-filter');
 const starsValue = document.getElementById('stars-value');
 const sortBy = document.getElementById('sort-by');
@@ -38,6 +40,18 @@ async function loadProjects() {
         }
 
         populateLanguages();
+
+        // Initialize Fuse (fuzzy search) if available
+        initFuse();
+
+        // Set stars slider max dynamically from data to improve UX
+        const maxStars = projects.reduce((max, p) => Math.max(max, p.stars || 0), 0);
+        // Ensure a reasonable minimum max
+        const sliderMax = Math.max(100, Math.ceil(maxStars / 100) * 100);
+        starsFilter.max = sliderMax;
+        starsFilter.value = 0;
+        starsValue.textContent = parseInt(starsFilter.value).toLocaleString();
+
         applyFilters();
     } catch (error) {
         console.error('Error loading projects:', error);
@@ -47,6 +61,37 @@ async function loadProjects() {
                 <p>Please try again later.</p>
             </div>
         `;
+    }
+}
+
+// Initialize Fuse.js if available to provide fuzzy search
+function initFuse() {
+    if (typeof Fuse === 'undefined' || !projects.length) return;
+
+    // Configure Fuse to search name, description, and topics
+    const options = {
+        keys: [
+            { name: 'name', weight: 0.7 },
+            { name: 'description', weight: 0.2 },
+            { name: 'topics', weight: 0.1 }
+        ],
+        threshold: 0.4,
+        ignoreLocation: true,
+    };
+
+    // Create a lightweight copy of projects for Fuse
+    const fuseList = projects.map(p => ({
+        name: p.name || '',
+        description: p.description || '',
+        topics: (p.topics || []).join(' '),
+    }));
+
+    try {
+        fuse = new Fuse(fuseList, options);
+    } catch (e) {
+        // If Fuse initialization fails, fall back to substring search
+        console.warn('Fuse initialization failed, falling back to substring search', e);
+        fuse = null;
     }
 }
 
@@ -67,11 +112,27 @@ function populateLanguages() {
 function applyFilters() {
     const selectedLanguage = languageFilter.value;
     const minStars = parseInt(starsFilter.value);
+    const rawQuery = (textSearch && textSearch.value) ? textSearch.value.trim() : '';
+    const query = rawQuery.toLowerCase();
 
     // Filter
     filteredProjects = projects.filter(project => {
         const matchesLanguage = selectedLanguage === 'all' || project.language === selectedLanguage;
         const matchesStars = project.stars >= minStars;
+        // Text search: use Fuse.js if available for fuzzy search
+        if (rawQuery) {
+            if (fuse) {
+                // Fuse is built on a separate lightweight list; perform a fuzzy search to get matches
+                const results = fuse.search(rawQuery, { limit: 10000 }).map(r => r.item && r.item.name).filter(Boolean);
+                const matchesText = results.indexOf(project.name) !== -1;
+                return matchesLanguage && matchesStars && matchesText;
+            }
+
+            // Fallback: simple substring search across name/description/topics
+            const hay = [project.name, project.description, (project.topics || []).join(' ')].filter(Boolean).join(' ').toLowerCase();
+            const matchesText = hay.indexOf(query) !== -1;
+            return matchesLanguage && matchesStars && matchesText;
+        }
         return matchesLanguage && matchesStars;
     });
 
@@ -211,6 +272,7 @@ function formatDateAgo(dateString) {
 
 // Event Listeners
 languageFilter.addEventListener('change', applyFilters);
+if (textSearch) textSearch.addEventListener('input', applyFilters);
 starsFilter.addEventListener('input', function() {
     starsValue.textContent = parseInt(this.value).toLocaleString();
     applyFilters();
