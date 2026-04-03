@@ -1,13 +1,14 @@
 import json
 import responses
-import sys
+import importlib.util
 from pathlib import Path
 
-# Ensure repository root is on sys.path so 'scraper' package is importable in CI
+# Load scraper.collect directly from file to avoid import issues in CI
 repo_root = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(repo_root))
-
-from scraper import collect
+collect_path = repo_root / 'scraper' / 'collect.py'
+spec = importlib.util.spec_from_file_location('scraper.collect', str(collect_path))
+collect = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(collect)
 
 
 def sample_item():
