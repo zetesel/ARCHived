@@ -21,6 +21,10 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Set PYTHONPATH for local package imports
+        # Ensure the runner can import the local `scraper` package when running Python
+        run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
+
       - name: Install dependencies
         run: |
           pip install --upgrade pip
