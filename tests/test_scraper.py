@@ -73,8 +73,8 @@ def test_collect_projects_truncation_and_pagination():
 
     projects, truncated = collect.collect_projects(months=1, min_stars=0)
 
-    # Because we mock only two pages of PER_PAGE each, collected length should be 200
+    # When total_count > 1000 the collector enforces the API cap and collects up to 10 pages
     assert isinstance(projects, list)
-    assert len(projects) == collect.PER_PAGE * 2
+    assert len(projects) == collect.PER_PAGE * 10
     # truncated should be True because total_count > 1000 (we simulated that)
     assert truncated is True
