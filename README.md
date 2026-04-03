@@ -63,6 +63,17 @@ In CI the workflow sets `ARCHIVED_MONTHS` and `ARCHIVED_MIN_STARS` which are pas
 
 Note about GitHub Search API limits: the Search API only returns up to 1000 results for any query. If a query matches more than 1000 repositories the scraper will stop at that cap and the generated metadata will include "truncated": true. To cover more results you can run multiple, narrower queries (for example split by language or star ranges) and merge outputs.
 
+Split collection helper
+-----------------------
+
+To automatically collect more than 1000 results, use the provided split collector which runs multiple searches split by star ranges and merges results:
+
+```bash
+python scraper/split_collect.py --months 12 --min-stars 10 --output dead-projects.json
+```
+
+This will run a set of pragmatic star-range buckets, deduplicate by repo full name, and write a merged JSON with bucket metadata.
+
 ## File Structure
 
 ```
