@@ -33,6 +33,8 @@ jobs:
       - name: Run split collector (merge by stars)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Optional: prefer a PAT provided as a secret for higher rate limits
+          SPLIT_COLLECT_PAT: ${{ secrets.SPLIT_COLLECT_PAT }}
         run: |
           # Debug: show current commit and the split_collect.py header
           git rev-parse --verify HEAD || true

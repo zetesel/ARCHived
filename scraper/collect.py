@@ -30,7 +30,8 @@ OUTPUT_FILE = "dead-projects.json"
 
 def get_auth_headers() -> Dict[str, str]:
     """Build headers with GitHub token if available."""
-    token = os.environ.get("GITHUB_TOKEN")
+    # Prefer an explicit PAT for split collection if provided via secret
+    token = os.environ.get("SPLIT_COLLECT_PAT") or os.environ.get("GITHUB_TOKEN")
     headers = {"Accept": "application/vnd.github.v3+json"}
     if token:
         headers["Authorization"] = f"token {token}"
