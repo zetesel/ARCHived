@@ -24,6 +24,10 @@ from scraper.collect import (
     parse_repository,
     search_repositories,
 )
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 def make_star_buckets(min_stars: int) -> List[Tuple[int, int]]:
@@ -63,7 +67,7 @@ def run_bucket(low: int, high: int, months: int, min_stars: int) -> Tuple[List[D
         bucket_label = f"{low}..{high}"
 
     query = f"archived:true pushed:<={date_threshold} {stars_q}"
-    print(f"Collecting bucket: {bucket_label} -> query: {query}")
+    logger.info("Collecting bucket: %s -> query: %s", bucket_label, query)
 
     page = 1
     collected = []
@@ -79,7 +83,7 @@ def run_bucket(low: int, high: int, months: int, min_stars: int) -> Tuple[List[D
             total_count = int(data.get('total_count', 0))
             if total_count > PER_PAGE * 10:
                 truncated = True
-                print(f"  WARNING: bucket {bucket_label} total_count={total_count} (truncated by API)")
+                logger.warning("bucket %s total_count=%s (truncated by API)", bucket_label, total_count)
 
         items = data['items']
         if not items:
@@ -148,7 +152,7 @@ def main():
             needed = max(2, (total // (PER_PAGE * 10)) + 1)
             # Cap the number of sub-buckets
             num_sub = min(needed, args.max_sub_buckets)
-            print(f"Refining truncated bucket {low}..{high} into {num_sub} sub-buckets (total_count={total})")
+            logger.info("Refining truncated bucket %s..%s into %s sub-buckets (total_count=%s)", low, high, num_sub, total)
             width = max(1, (high - low + 1) // num_sub)
             sub_low = low
             sub_lists = []
@@ -199,7 +203,7 @@ def main():
     with open(args.output, 'w', encoding='utf-8') as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
-    print(f"Saved merged results to {args.output} ({len(merged)} projects)")
+    logger.info("Saved merged results to %s (%s projects)", args.output, len(merged))
 
 
 if __name__ == '__main__':

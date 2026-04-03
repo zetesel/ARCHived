@@ -14,10 +14,13 @@ import sys
 import json
 import time
 from datetime import datetime, timedelta
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 import argparse
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+import logging
 
 
 # Configuration
@@ -26,6 +29,25 @@ SEARCH_QUERY = "archived:true pushed:<={date}"
 PER_PAGE = 100  # Max allowed by GitHub
 MIN_STARS = 10  # Minimum stars threshold (adjust as needed)
 OUTPUT_FILE = "dead-projects.json"
+
+# Logger
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+
+
+def make_session(total_retries: int = 5, backoff_factor: float = 1.0) -> requests.Session:
+    """Create a requests Session with a retry strategy mounted."""
+    session = requests.Session()
+    retries = Retry(
+        total=total_retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=[429, 502, 503, 504],
+        allowed_methods=["GET"],
+    )
+    adapter = HTTPAdapter(max_retries=retries)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
 
 
 def get_auth_headers() -> Dict[str, str]:
@@ -39,12 +61,15 @@ def get_auth_headers() -> Dict[str, str]:
 
 
 def calculate_date_threshold(months: int = 12) -> str:
-    """Calculate the date X months ago in YYYY-MM-DD format."""
+    """Calculate the date X months ago in YYYY-MM-DD format.
+
+    Uses a simple approximation of 30 days per month to avoid an external dependency.
+    """
     threshold = datetime.now() - timedelta(days=30 * months)
     return threshold.strftime("%Y-%m-%d")
 
 
-def search_repositories(query: str, page: int = 1, max_retries: int = 3) -> Optional[Dict[str, Any]]:
+def search_repositories(query: str, page: int = 1, max_retries: int = 3, session: Optional[requests.Session] = None) -> Optional[Dict[str, Any]]:
     """Search GitHub repositories with pagination and retries.
 
     Returns JSON on success or None on failure.
@@ -59,52 +84,63 @@ def search_repositories(query: str, page: int = 1, max_retries: int = 3) -> Opti
     }
     headers = get_auth_headers()
 
+    sess = session or make_session()
+
     for attempt in range(1, max_retries + 1):
         try:
-            response = requests.get(url, params=params, headers=headers, timeout=30)
+            response = sess.get(url, params=params, headers=headers, timeout=30)
+
+            # Rate-limit headers (for debugging)
+            remaining = response.headers.get('X-RateLimit-Remaining')
+            reset = response.headers.get('X-RateLimit-Reset')
+            if remaining is not None:
+                logger.debug('Rate limit remaining: %s', remaining)
+            if reset is not None:
+                try:
+                    reset_ts = int(reset)
+                    reset_time = datetime.fromtimestamp(reset_ts)
+                    logger.debug('Rate limit resets at: %s', reset_time.isoformat())
+                except Exception:
+                    pass
+
+            # If rate limited and reset header present, sleep until reset
+            if response.status_code == 403 and remaining == '0' and reset is not None:
+                try:
+                    reset_ts = int(reset)
+                    sleep_s = max(0, reset_ts - int(time.time())) + 5
+                    logger.warning('Rate limited — sleeping %s seconds until reset', sleep_s)
+                    time.sleep(sleep_s)
+                    continue
+                except Exception:
+                    logger.error('Rate limited but could not parse reset header')
+
             response.raise_for_status()
             return response.json()
         except requests.exceptions.HTTPError as e:
-            resp = getattr(e, 'response', None)
-            status = resp.status_code if resp is not None else None
-
-            # Surface rate limit information when available
-            if resp is not None and resp.headers:
-                remaining = resp.headers.get('X-RateLimit-Remaining')
-                reset = resp.headers.get('X-RateLimit-Reset')
-                if remaining is not None:
-                    print(f"Rate limit remaining: {remaining}")
-                if reset is not None:
-                    try:
-                        reset_ts = int(reset)
-                        reset_time = datetime.fromtimestamp(reset_ts)
-                        print(f"Rate limit resets at: {reset_time.isoformat()}")
-                    except Exception:
-                        pass
-
+            status = getattr(e.response, 'status_code', None)
             # Retry on transient server errors
             if status in (429, 502, 503, 504) and attempt < max_retries:
                 wait = 2 ** attempt
-                print(f"Transient HTTP {status} — retrying in {wait}s (attempt {attempt}/{max_retries})...")
+                logger.warning('Transient HTTP %s — retrying in %s s (attempt %s/%s)', status, wait, attempt, max_retries)
                 time.sleep(wait)
                 continue
 
             if status == 403:
-                print("ERROR: Access forbidden or rate limited. Set GITHUB_TOKEN environment variable for higher limits.")
+                logger.error('Access forbidden or rate limited. Set GITHUB_TOKEN environment variable for higher limits.')
             elif status == 401:
-                print("ERROR: Invalid GITHUB_TOKEN. Check your token permissions.")
+                logger.error('Invalid GITHUB_TOKEN. Check your token permissions.')
             else:
-                text = resp.text[:200] if resp is not None else str(e)
-                print(f"ERROR: HTTP {status}: {text}")
+                text = (e.response.text[:200] if getattr(e, 'response', None) is not None else str(e))
+                logger.error('HTTP %s: %s', status, text)
             return None
         except requests.exceptions.RequestException as e:
             # Network or other errors — retry a few times
             if attempt < max_retries:
                 wait = 2 ** attempt
-                print(f"Request failed: {e}. Retrying in {wait}s (attempt {attempt}/{max_retries})...")
+                logger.warning('Request failed: %s. Retrying in %s s (attempt %s/%s)', e, wait, attempt, max_retries)
                 time.sleep(wait)
                 continue
-            print(f"ERROR: Request failed after {max_retries} attempts: {e}")
+            logger.error('Request failed after %s attempts: %s', max_retries, e)
             return None
 
 
@@ -134,7 +170,7 @@ def should_include_repo(repo: Dict[str, Any], min_stars: int) -> bool:
     return True
 
 
-def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[str, Any]]:
+def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> Tuple[List[Dict[str, Any]], bool]:
     """Main collection logic.
 
     Returns a tuple: (list_of_repos, truncated_flag)
@@ -142,8 +178,8 @@ def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[
     date_threshold = calculate_date_threshold(months)
     query = SEARCH_QUERY.format(date=date_threshold)
 
-    print(f"Searching GitHub for archived projects with no commits since {date_threshold}...")
-    print(f"Query: {query}")
+    logger.info("Searching GitHub for archived projects with no commits since %s...", date_threshold)
+    logger.info("Query: %s", query)
 
     all_repos = []
     page = 1
@@ -152,7 +188,7 @@ def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[
     max_pages = None
 
     while True:
-        print(f"  Fetching page {page}...")
+        logger.info("Fetching page %s", page)
         data = search_repositories(query, page)
 
         if not data or "items" not in data:
@@ -164,7 +200,7 @@ def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[
             if total_count > PER_PAGE * 10:
                 truncated = True
                 max_pages = 10
-                print(f"WARNING: GitHub Search API limits results to 1000. total_count={total_count}. Results will be truncated.")
+                logger.warning("GitHub Search API limits results to 1000. total_count=%s. Results will be truncated.", total_count)
             else:
                 max_pages = (total_count + PER_PAGE - 1) // PER_PAGE if total_count > 0 else None
 
@@ -193,9 +229,9 @@ def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> List[Dict[
         # Rate limiting: be nice to GitHub's API
         time.sleep(2 if os.environ.get("GITHUB_TOKEN") else 10)
 
-    print(f"\nCollected {len(all_repos)} projects from {total_collected} total results")
+    logger.info("Collected %s projects from %s total results", len(all_repos), total_collected)
     if truncated:
-        print("NOTE: Results were truncated due to API limits.")
+        logger.warning("Results were truncated due to API limits.")
     return all_repos, truncated
 
 
@@ -219,14 +255,14 @@ def save_json(data: List[Dict[str, Any]], path: str, months: int, min_stars: int
     with open(path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
-    print(f"Saved to {path} ({len(data)} projects)")
+    logger.info("Saved to %s (%s projects)", path, len(data))
 
 
 def main():
     """Main entry point."""
-    print("=" * 60)
-    print("ARCHived - GitHub Dead Projects Scraper")
-    print("=" * 60)
+    logger.info("%s", "=" * 60)
+    logger.info("ARCHived - GitHub Dead Projects Scraper")
+    logger.info("%s", "=" * 60)
 
     parser = argparse.ArgumentParser(description='Collect archived/unmaintained GitHub projects')
     parser.add_argument('--months', type=int, default=12, help='Months of inactivity to consider (default: 12)')
@@ -241,10 +277,10 @@ def main():
         print("\n✓ Complete!")
         return 0
     except KeyboardInterrupt:
-        print("\n\nInterrupted by user")
+        logger.info("Interrupted by user")
         return 130
     except Exception as e:
-        print(f"\nFatal error: {e}", file=sys.stderr)
+        logger.exception("Fatal error: %s", e)
         return 1
 
 

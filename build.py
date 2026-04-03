@@ -12,20 +12,24 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+import logging
 
 
 # Configuration
 DOCS_DIR = Path("docs")
 STATIC_FILES = ["index.html", "styles.css", "app.js", "dead-projects.json"]
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+
 
 def run_scraper():
     """Execute the scraper script to generate fresh data."""
-    print("Running scraper...")
+    logger.info("Running scraper...")
     # Run scraper with defaults; allow collect.py to accept CLI args in the future
     # Allow skipping scraper for faster CI/debugging via env var
     if os.environ.get('SKIP_SCRAPER', '').lower() in ('1', 'true', 'yes'):
-        print('SKIP_SCRAPER set; skipping scraper run')
+        logger.info('SKIP_SCRAPER set; skipping scraper run')
         return True
 
     result = subprocess.run(
@@ -34,12 +38,13 @@ def run_scraper():
         text=True
     )
 
-    print(result.stdout)
+    if result.stdout:
+        logger.info(result.stdout)
     if result.stderr:
-        print("STDERR:", result.stderr)
+        logger.warning("STDERR: %s", result.stderr)
 
     if result.returncode != 0:
-        print("ERROR: Scraper failed!")
+        logger.error("Scraper failed!")
         return False
 
     return True
@@ -48,29 +53,29 @@ def run_scraper():
 def ensure_docs_dir():
     """Create docs directory if it doesn't exist."""
     DOCS_DIR.mkdir(exist_ok=True)
-    print(f"Ensured {DOCS_DIR}/ directory exists")
+    logger.info("Ensured %s/ directory exists", DOCS_DIR)
 
 
 def copy_static_files():
     """Copy all static files to docs directory."""
-    print("Copying static files to docs/...")
+    logger.info("Copying static files to docs/...")
     for file in STATIC_FILES:
         src = Path(file)
         dst = DOCS_DIR / file
         if src.exists():
             shutil.copy2(src, dst)
-            print(f"  ✓ {file}")
+            logger.info("  ✓ %s", file)
         else:
-            print(f"  ✗ {file} not found!")
+            logger.error("  ✗ %s not found!", file)
             return False
     return True
 
 
 def main():
     """Main build pipeline."""
-    print("=" * 60)
-    print("ARCHived - Site Builder")
-    print("=" * 60)
+    logger.info("%s", "=" * 60)
+    logger.info("ARCHived - Site Builder")
+    logger.info("%s", "=" * 60)
 
     # Step 1: Run scraper
     if not run_scraper():
@@ -78,7 +83,7 @@ def main():
 
     # Check that dead-projects.json was created
     if not Path("dead-projects.json").exists():
-        print("ERROR: dead-projects.json not generated!")
+        logger.error("dead-projects.json not generated!")
         return 1
 
     # Step 2: Prepare docs directory
@@ -88,16 +93,16 @@ def main():
     if not copy_static_files():
         return 1
 
-    print("\n" + "=" * 60)
-    print("✓ Build complete!")
-    print("=" * 60)
-    print(f"\nThe site is ready in the '{DOCS_DIR}/' folder.")
-    print("To preview locally:")
-    print("  python -m http.server 8000 --directory docs")
-    print("\nPush to GitHub to deploy:")
-    print("  git add docs/")
-    print("  git commit -m 'Update dead projects'")
-    print("  git push")
+    logger.info("%s", "\n" + "=" * 60)
+    logger.info("✓ Build complete!")
+    logger.info("%s", "=" * 60)
+    logger.info("The site is ready in the '%s/' folder.", DOCS_DIR)
+    logger.info("To preview locally:")
+    logger.info("  python -m http.server 8000 --directory docs")
+    logger.info("Push to GitHub to deploy:")
+    logger.info("  git add docs/")
+    logger.info("  git commit -m 'Update dead projects'")
+    logger.info("  git push")
 
     return 0
 
