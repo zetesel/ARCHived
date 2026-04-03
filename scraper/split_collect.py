@@ -116,6 +116,8 @@ def main():
     parser.add_argument('--months', type=int, default=12)
     parser.add_argument('--min-stars', type=int, default=10)
     parser.add_argument('--output', type=str, default='dead-projects.json')
+    parser.add_argument('--max-sub-buckets', type=int, default=200,
+                        help='Maximum number of sub-buckets to create when refining truncated buckets')
     args = parser.parse_args()
 
     buckets = make_star_buckets(args.min_stars)
@@ -133,7 +135,52 @@ def main():
             'truncated': bool(truncated),
         })
 
-    merged = merge_results(all_lists)
+    # If any buckets were truncated, attempt to refine them by splitting into subranges
+    refined_all_lists = []
+    refined_bucket_meta = []
+
+    for meta, repos in zip(bucket_meta, all_lists):
+        if meta['truncated'] and meta['high'] != -1:
+            low = meta['low']
+            high = meta['high']
+            total = meta.get('total_count', 0)
+            # Determine how many sub-buckets are needed so each subquery should be <= 1000
+            needed = max(2, (total // (PER_PAGE * 10)) + 1)
+            # Cap the number of sub-buckets
+            num_sub = min(needed, args.max_sub_buckets)
+            print(f"Refining truncated bucket {low}..{high} into {num_sub} sub-buckets (total_count={total})")
+            width = max(1, (high - low + 1) // num_sub)
+            sub_low = low
+            sub_lists = []
+            sub_meta = []
+            for i in range(num_sub):
+                sub_high = sub_low + width - 1
+                # ensure last bucket reaches `high`
+                if i == num_sub - 1:
+                    sub_high = high
+                if sub_high < sub_low:
+                    sub_high = sub_low
+                projects_sub, truncated_sub, total_count_sub = run_bucket(sub_low, sub_high, args.months, args.min_stars)
+                sub_lists.append(projects_sub)
+                sub_meta.append({
+                    'low': sub_low,
+                    'high': sub_high,
+                    'collected': len(projects_sub),
+                    'total_count': total_count_sub,
+                    'truncated': bool(truncated_sub),
+                })
+                sub_low = sub_high + 1
+
+            # Append all subresults
+            refined_all_lists.extend(sub_lists)
+            refined_bucket_meta.extend(sub_meta)
+        else:
+            # No refinement needed; keep original data
+            refined_all_lists.append(repos)
+            refined_bucket_meta.append(meta)
+
+    merged = merge_results(refined_all_lists)
+    bucket_meta = refined_bucket_meta
 
     output = {
         'metadata': {

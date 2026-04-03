@@ -39,7 +39,7 @@ jobs:
           # Debug: show current commit and the split_collect.py header
           git rev-parse --verify HEAD || true
           sed -n '1,120p' scraper/split_collect.py || true
-          python scraper/split_collect.py --months 12 --min-stars 10 --output dead-projects.json
+          python scraper/split_collect.py --months 12 --min-stars 10 --output dead-projects.json --max-sub-buckets 200
 
       - name: Upload merged data artifact (dead-projects.json)
         uses: actions/upload-artifact@v4
