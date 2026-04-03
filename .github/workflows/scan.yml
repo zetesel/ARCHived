@@ -50,7 +50,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Upload generated data artifact (dead-projects.json)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dead-projects-json
+          path: dead-projects.json
+
+      - name: Upload site artifact (docs)
         uses: actions/upload-pages-artifact@v3
         with:
           path: './docs'
