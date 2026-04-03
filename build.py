@@ -23,6 +23,11 @@ def run_scraper():
     """Execute the scraper script to generate fresh data."""
     print("Running scraper...")
     # Run scraper with defaults; allow collect.py to accept CLI args in the future
+    # Allow skipping scraper for faster CI/debugging via env var
+    if os.environ.get('SKIP_SCRAPER', '').lower() in ('1', 'true', 'yes'):
+        print('SKIP_SCRAPER set; skipping scraper run')
+        return True
+
     result = subprocess.run(
         [sys.executable, "scraper/collect.py", "--months", "12", "--min-stars", "10"],
         capture_output=True,
