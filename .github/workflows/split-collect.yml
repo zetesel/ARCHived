@@ -34,8 +34,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Increase max sub-buckets to refine truncated ranges conservatively
-          python scraper/split_collect.py --months 12 --min-stars 10 --output dead-projects.json --max-sub-buckets 100
+          # Debug: show current commit and the split_collect.py header
+          git rev-parse --verify HEAD || true
+          sed -n '1,120p' scraper/split_collect.py || true
+          python scraper/split_collect.py --months 12 --min-stars 10 --output dead-projects.json
 
       - name: Upload merged data artifact (dead-projects.json)
         uses: actions/upload-artifact@v4
