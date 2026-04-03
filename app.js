@@ -23,6 +23,8 @@ let pageSizeRaw = pageSizeSelect.value || '50';
 let pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10);
 let virtualized = pageSize === 'all';
 let virtualWindow = { start: 0, end: 20 };
+let cardHeight = 140; // px estimate; we'll measure after first render
+let _virtualRaf = null;
 
 // Load data
 async function loadProjects() {
@@ -293,8 +295,55 @@ function renderProjects() {
     // If using virtualization, ensure a scroll listener is attached to update window
     if (pageSize === 'all') {
         attachVirtualScroll();
+        // Use spacers to preserve overall scroll height
+        const total = filteredProjects.length;
+        const topHeight = (virtualWindow.start || 0) * cardHeight;
+        const bottomHeight = Math.max(0, (total - (virtualWindow.end || 0)) * cardHeight);
+
+        let topSpacer = document.getElementById('virtual-top');
+        let bottomSpacer = document.getElementById('virtual-bottom');
+
+        if (!topSpacer) {
+            topSpacer = document.createElement('div');
+            topSpacer.id = 'virtual-top';
+            projectsContainer.insertBefore(topSpacer, projectsContainer.firstChild);
+        }
+        if (!bottomSpacer) {
+            bottomSpacer = document.createElement('div');
+            bottomSpacer.id = 'virtual-bottom';
+            projectsContainer.appendChild(bottomSpacer);
+        }
+
+        topSpacer.style.height = topHeight + 'px';
+        bottomSpacer.style.height = bottomHeight + 'px';
+
+        // Measure card height after rendering cards and adjust if necessary
+        requestAnimationFrame(() => {
+            const firstCard = projectsContainer.querySelector('.project-card');
+            if (firstCard) {
+                const measured = firstCard.getBoundingClientRect().height;
+                if (measured > 10 && Math.abs(measured - cardHeight) / cardHeight > 0.1) {
+                    cardHeight = measured;
+                    // Recompute window and re-render with updated height
+                    const scrollTop = window.scrollY || window.pageYOffset;
+                    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                    const itemsPerViewport = Math.ceil(viewportHeight / cardHeight) + 2;
+                    const firstVisibleIndex = Math.floor(scrollTop / cardHeight) - 2;
+                    virtualWindow.start = Math.max(0, firstVisibleIndex);
+                    virtualWindow.end = Math.min(filteredProjects.length, virtualWindow.start + itemsPerViewport * 3);
+                    // Re-render
+                    projectsContainer.innerHTML = '';
+                    renderProjects();
+                }
+            }
+        });
     } else {
         detachVirtualScroll();
+        // Remove spacers if present
+        const topSpacer = document.getElementById('virtual-top');
+        const bottomSpacer = document.getElementById('virtual-bottom');
+        if (topSpacer) topSpacer.remove();
+        if (bottomSpacer) bottomSpacer.remove();
     }
 }
 
@@ -311,23 +360,26 @@ function detachVirtualScroll() {
 }
 
 function onVirtualScroll() {
-    // Compute approximate index based on scroll position and card height
-    const approxCardHeight = 140; // px — rough guess; adjust as needed
-    const scrollTop = window.scrollY || window.pageYOffset;
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const itemsPerViewport = Math.ceil(viewportHeight / approxCardHeight) + 2;
-    const firstVisibleIndex = Math.floor(scrollTop / approxCardHeight) - 2;
-    const start = Math.max(0, firstVisibleIndex);
-    const end = start + itemsPerViewport * 3;
+    // Use requestAnimationFrame to debounce rapid scroll events
+    if (_virtualRaf) return;
+    _virtualRaf = requestAnimationFrame(() => {
+        _virtualRaf = null;
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const itemsPerViewport = Math.ceil(viewportHeight / cardHeight) + 2;
+        const firstVisibleIndex = Math.floor(scrollTop / cardHeight) - 2;
+        const start = Math.max(0, firstVisibleIndex);
+        const end = start + itemsPerViewport * 3;
 
-    // Update virtual window and re-render only if window changed significantly
-    if (start !== virtualWindow.start || end !== virtualWindow.end) {
-        virtualWindow.start = start;
-        virtualWindow.end = Math.min(filteredProjects.length, end);
-        // Re-render
-        projectsContainer.innerHTML = '';
-        renderProjects();
-    }
+        // Update virtual window and re-render only if changed
+        if (start !== virtualWindow.start || end !== virtualWindow.end) {
+            virtualWindow.start = start;
+            virtualWindow.end = Math.min(filteredProjects.length, end);
+            // Re-render content only (spacers handled in renderProjects)
+            projectsContainer.innerHTML = '';
+            renderProjects();
+        }
+    });
 }
 
 // Utility: Escape HTML to prevent XSS
