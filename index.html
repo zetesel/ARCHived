@@ -46,6 +46,17 @@
                     <option value="name-desc">Name (Z-A)</option>
                 </select>
             </div>
+            <div class="filter-group pagination-controls">
+                <label for="page-size">Results per page:</label>
+                <select id="page-size">
+                    <option value="20">20</option>
+                    <option value="50" selected>50</option>
+                    <option value="100">100</option>
+                </select>
+                <button id="prev-page" aria-label="Previous page">Prev</button>
+                <span id="page-info">Page 1</span>
+                <button id="next-page" aria-label="Next page">Next</button>
+            </div>
         </section>
 
         <section class="stats">

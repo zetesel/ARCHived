@@ -13,6 +13,13 @@ const sortBy = document.getElementById('sort-by');
 const totalCount = document.getElementById('total-count');
 const visibleCount = document.getElementById('visible-count');
 const lastUpdated = document.getElementById('last-updated');
+const pageSizeSelect = document.getElementById('page-size');
+const prevPageBtn = document.getElementById('prev-page');
+const nextPageBtn = document.getElementById('next-page');
+const pageInfo = document.getElementById('page-info');
+
+let currentPage = 1;
+let pageSize = parseInt(pageSizeSelect.value || '50', 10);
 
 // Load data
 async function loadProjects() {
@@ -161,8 +168,13 @@ function applyFilters() {
     totalCount.textContent = projects.length.toLocaleString();
     visibleCount.textContent = filteredProjects.length.toLocaleString();
 
-    // Render
+    // Reset pagination if current page would be out of range
+    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    if (currentPage > maxPages) currentPage = maxPages;
+
+    // Render paginated view
     renderProjects();
+    updatePaginationInfo();
 }
 
 // Render projects to DOM using safe DOM APIs
@@ -183,7 +195,12 @@ function renderProjects() {
 
     const fragment = document.createDocumentFragment();
 
-    filteredProjects.forEach(project => {
+    // Determine slice for current page
+    const start = (currentPage - 1) * pageSize;
+    const end = start + pageSize;
+    const pageItems = filteredProjects.slice(start, end);
+
+    pageItems.forEach(project => {
         const card = document.createElement('article');
         card.className = 'project-card';
 
@@ -242,6 +259,19 @@ function renderProjects() {
         viewBtn.textContent = 'View on GitHub';
         actions.appendChild(viewBtn);
 
+        // Express interest button: opens a prefilled issue on the repo
+        const interestBtn = document.createElement('a');
+        // Prefill issue title and body using GitHub's query params
+        const issueTitle = encodeURIComponent(`I would like to help maintain ${project.name}`);
+        const issueBody = encodeURIComponent(`Hi,\n\nI am interested in helping maintain **${project.name}**.\n\nReasons:\n- \n\nPlease let me know if there are any steps to transfer or collaborate on maintenance.\n\nThanks!`);
+        // Use the repo's issues/new URL
+        const issueUrl = project.url.replace(/\/$/, '') + `/issues/new?title=${issueTitle}&body=${issueBody}`;
+        interestBtn.href = issueUrl;
+        interestBtn.target = '_blank';
+        interestBtn.className = 'btn btn-secondary';
+        interestBtn.textContent = 'Express interest';
+        actions.appendChild(interestBtn);
+
         card.appendChild(actions);
         fragment.appendChild(card);
     });
@@ -278,6 +308,31 @@ starsFilter.addEventListener('input', function() {
     applyFilters();
 });
 sortBy.addEventListener('change', applyFilters);
+pageSizeSelect.addEventListener('change', function() {
+    pageSize = parseInt(this.value, 10) || 50;
+    currentPage = 1;
+    applyFilters();
+});
+prevPageBtn.addEventListener('click', function() {
+    if (currentPage > 1) {
+        currentPage -= 1;
+        applyFilters();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+nextPageBtn.addEventListener('click', function() {
+    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    if (currentPage < maxPages) {
+        currentPage += 1;
+        applyFilters();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+
+function updatePaginationInfo() {
+    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    pageInfo.textContent = `Page ${currentPage} of ${maxPages}`;
+}
 
 // Initialize
 loadProjects();
