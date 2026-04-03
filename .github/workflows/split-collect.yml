@@ -1,0 +1,39 @@
+name: Split Collect
+
+on:
+  schedule:
+    - cron: '0 6 * * 0' # weekly on Sunday 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  split-collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r scraper/requirements.txt
+
+      - name: Run split collector (merge by stars)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scraper/split_collect.py --months 12 --min-stars 10 --output dead-projects.json
+
+      - name: Upload merged data artifact (dead-projects.json)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dead-projects-json-merged
+          path: dead-projects.json

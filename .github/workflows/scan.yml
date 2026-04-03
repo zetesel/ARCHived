@@ -31,6 +31,10 @@ jobs:
           pip install --upgrade pip
           pip install -r scraper/requirements.txt
 
+      - name: Set PYTHONPATH for tests
+        run: |
+          echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
+
       - name: Run tests
         run: |
           # Run unit tests (tests use responses to mock network)
@@ -46,6 +50,30 @@ jobs:
         run: |
           python scraper/collect.py --months "$ARCHIVED_MONTHS" --min-stars "$ARCHIVED_MIN_STARS" --output dead-projects.json
           python build.py
+
+      - name: Check for API truncation
+        env:
+          FAIL_ON_TRUNCATED: 'false'
+        run: |
+          if [ ! -f dead-projects.json ]; then
+            echo "dead-projects.json not found, skipping truncation check"
+            exit 0
+          fi
+          python - <<'PY'
+import json
+f='dead-projects.json'
+with open(f) as fh:
+    data=json.load(fh)
+tr=data.get('metadata',{}).get('truncated', False)
+print('truncated=',tr)
+import os,sys
+if tr:
+    if os.environ.get('FAIL_ON_TRUNCATED','false').lower() in ('1','true','yes'):
+        print('ERROR: Results truncated by GitHub Search API')
+        sys.exit(1)
+    else:
+        print('WARNING: Results truncated by GitHub Search API — see dead-projects.json')
+PY
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
