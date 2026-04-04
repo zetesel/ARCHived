@@ -12,13 +12,14 @@ on:
 permissions:
   contents: read
   pages: write
-  # id-token not required for normal scraping/deploy; remove to reduce scope
+  id-token: write
 
 jobs:
   scrape-and-deploy:
     permissions:
       contents: read
       pages: write
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
