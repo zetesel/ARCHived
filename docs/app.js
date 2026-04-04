@@ -1,30 +1,94 @@
-// State
+// Defer initialization until the DOM is ready and guard missing elements.
 let projects = [];
 let filteredProjects = [];
 let fuse = null;
 
-// DOM Elements
-const projectsContainer = document.getElementById('projects-container');
-const languageFilter = document.getElementById('language-filter');
-const textSearch = document.getElementById('text-search');
-const starsFilter = document.getElementById('stars-filter');
-const starsValue = document.getElementById('stars-value');
-const sortBy = document.getElementById('sort-by');
-const totalCount = document.getElementById('total-count');
-const visibleCount = document.getElementById('visible-count');
-const lastUpdated = document.getElementById('last-updated');
-const pageSizeSelect = document.getElementById('page-size');
-const prevPageBtn = document.getElementById('prev-page');
-const nextPageBtn = document.getElementById('next-page');
-const pageInfo = document.getElementById('page-info');
+// Elements and UI state will be initialized on DOMContentLoaded
+let projectsContainer;
+let languageFilter;
+let textSearch;
+let starsFilter;
+let starsValue;
+let sortBy;
+let totalCount;
+let visibleCount;
+let lastUpdated;
+let pageSizeSelect;
+let prevPageBtn;
+let nextPageBtn;
+let pageInfo;
 
 let currentPage = 1;
-let pageSizeRaw = pageSizeSelect.value || '50';
-let pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10);
-let virtualized = pageSize === 'all';
+let pageSizeRaw = '50';
+let pageSize = 50; // number or 'all'
+let virtualized = false;
 let virtualWindow = { start: 0, end: 20 };
 let cardHeight = 140; // px estimate; we'll measure after first render
 let _virtualRaf = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Query DOM elements now that the document is ready. If critical elements
+    // are missing, bail gracefully to avoid runtime exceptions in environments
+    // where the script is loaded on a page without the app markup.
+    projectsContainer = document.getElementById('projects-container');
+    if (!projectsContainer) return; // nothing to do
+
+    languageFilter = document.getElementById('language-filter');
+    textSearch = document.getElementById('text-search');
+    starsFilter = document.getElementById('stars-filter');
+    starsValue = document.getElementById('stars-value');
+    sortBy = document.getElementById('sort-by');
+    totalCount = document.getElementById('total-count');
+    visibleCount = document.getElementById('visible-count');
+    lastUpdated = document.getElementById('last-updated');
+    pageSizeSelect = document.getElementById('page-size');
+    prevPageBtn = document.getElementById('prev-page');
+    nextPageBtn = document.getElementById('next-page');
+    pageInfo = document.getElementById('page-info');
+
+    // Initial page size
+    if (pageSizeSelect && pageSizeSelect.value) {
+        pageSizeRaw = pageSizeSelect.value;
+        pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10) || 50;
+        virtualized = pageSize === 'all';
+    }
+
+    // Attach event listeners that depend on the DOM
+    languageFilter && languageFilter.addEventListener('change', applyFilters);
+    if (textSearch) textSearch.addEventListener('input', applyFilters);
+    starsFilter && starsFilter.addEventListener('input', function() {
+        starsValue && (starsValue.textContent = parseInt(this.value).toLocaleString());
+        applyFilters();
+    });
+    sortBy && sortBy.addEventListener('change', applyFilters);
+    pageSizeSelect && pageSizeSelect.addEventListener('change', function() {
+        pageSizeRaw = this.value;
+        pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10) || 50;
+        virtualized = pageSize === 'all';
+        currentPage = 1;
+        // Reset virtual window
+        virtualWindow = { start: 0, end: 20 };
+        applyFilters();
+    });
+    prevPageBtn && prevPageBtn.addEventListener('click', function() {
+        if (currentPage > 1) {
+            currentPage -= 1;
+            applyFilters();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+    nextPageBtn && nextPageBtn.addEventListener('click', function() {
+        const maxPages = computeMaxPages();
+        if (currentPage < maxPages) {
+            currentPage += 1;
+            applyFilters();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+
+    // Kick off loading data
+    loadProjects();
+});
 
 // Load data
 async function loadProjects() {
@@ -202,7 +266,7 @@ function applyFilters() {
     visibleCount.textContent = filteredProjects.length.toLocaleString();
 
     // Reset pagination if current page would be out of range
-    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    const maxPages = computeMaxPages();
     if (currentPage > maxPages) currentPage = maxPages;
 
     // Render paginated view
@@ -251,10 +315,17 @@ function renderProjects() {
         header.className = 'card-header';
 
         const nameLink = document.createElement('a');
-        nameLink.href = project.url;
-        nameLink.target = '_blank';
+        const safeUrl = sanitizeUrl(project.url);
+        if (safeUrl) {
+            nameLink.href = safeUrl;
+            nameLink.target = '_blank';
+            nameLink.rel = 'noopener noreferrer';
+        } else {
+            nameLink.href = '#';
+            nameLink.addEventListener('click', e => e.preventDefault());
+        }
         nameLink.className = 'project-name';
-        nameLink.textContent = project.name;
+        nameLink.textContent = project.name || 'Unnamed';
         header.appendChild(nameLink);
 
         if (project.language) {
@@ -295,8 +366,15 @@ function renderProjects() {
         actions.className = 'card-actions';
 
         const viewBtn = document.createElement('a');
-        viewBtn.href = project.url;
-        viewBtn.target = '_blank';
+        const safeView = sanitizeUrl(project.url);
+        if (safeView) {
+            viewBtn.href = safeView;
+            viewBtn.target = '_blank';
+            viewBtn.rel = 'noopener noreferrer';
+        } else {
+            viewBtn.href = '#';
+            viewBtn.addEventListener('click', e => e.preventDefault());
+        }
         viewBtn.className = 'btn btn-primary';
         viewBtn.textContent = 'View on GitHub';
         actions.appendChild(viewBtn);
@@ -306,10 +384,25 @@ function renderProjects() {
         // Prefill issue title and body using GitHub's query params
         const issueTitle = encodeURIComponent(`I would like to help maintain ${project.name}`);
         const issueBody = encodeURIComponent(`Hi,\n\nI am interested in helping maintain **${project.name}**.\n\nReasons:\n- \n\nPlease let me know if there are any steps to transfer or collaborate on maintenance.\n\nThanks!`);
-        // Use the repo's issues/new URL
-        const issueUrl = project.url.replace(/\/$/, '') + `/issues/new?title=${issueTitle}&body=${issueBody}`;
-        interestBtn.href = issueUrl;
-        interestBtn.target = '_blank';
+        // Safely construct issue URL only if project.url is a valid repo URL
+        const parsed = sanitizeUrl(project.url);
+        if (parsed) {
+            try {
+                const u = new URL(parsed);
+                // Build issues URL from origin + pathname to avoid injection
+                const base = `${u.origin}${u.pathname.replace(/\/$/, '')}`;
+                const issueUrl = `${base}/issues/new?title=${issueTitle}&body=${issueBody}`;
+                interestBtn.href = issueUrl;
+                interestBtn.target = '_blank';
+                interestBtn.rel = 'noopener noreferrer';
+            } catch (e) {
+                interestBtn.href = '#';
+                interestBtn.addEventListener('click', ev => ev.preventDefault());
+            }
+        } else {
+            interestBtn.href = '#';
+            interestBtn.addEventListener('click', ev => ev.preventDefault());
+        }
         interestBtn.className = 'btn btn-secondary';
         interestBtn.textContent = 'Express interest';
         actions.appendChild(interestBtn);
@@ -417,11 +510,25 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// Utility: sanitize external URLs to avoid javascript: or other unsafe schemes
+function sanitizeUrl(raw) {
+    if (!raw) return null;
+    try {
+        const url = new URL(raw, window.location.href);
+        if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
+        return url.toString();
+    } catch (e) {
+        return null;
+    }
+}
+
 // Utility: Format date as "X months ago"
 function formatDateAgo(dateString) {
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) return 'Unknown';
     const now = new Date();
     const diffMs = now - date;
+    if (diffMs < 0) return 'In the future';
     const diffMonths = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 30));
 
     if (diffMonths < 1) {
@@ -431,43 +538,15 @@ function formatDateAgo(dateString) {
     return `${diffMonths} month${diffMonths !== 1 ? 's' : ''} ago`;
 }
 
-// Event Listeners
-languageFilter.addEventListener('change', applyFilters);
-if (textSearch) textSearch.addEventListener('input', applyFilters);
-starsFilter.addEventListener('input', function() {
-    starsValue.textContent = parseInt(this.value).toLocaleString();
-    applyFilters();
-});
-sortBy.addEventListener('change', applyFilters);
-pageSizeSelect.addEventListener('change', function() {
-    pageSizeRaw = this.value;
-    pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10) || 50;
-    virtualized = pageSize === 'all';
-    currentPage = 1;
-    // Reset virtual window
-    virtualWindow = { start: 0, end: 20 };
-    applyFilters();
-});
-prevPageBtn.addEventListener('click', function() {
-    if (currentPage > 1) {
-        currentPage -= 1;
-        applyFilters();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-});
-nextPageBtn.addEventListener('click', function() {
-    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
-    if (currentPage < maxPages) {
-        currentPage += 1;
-        applyFilters();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-});
+function computeMaxPages() {
+    if (!pageSize || pageSize === 'all') return 1;
+    return Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+}
 
 function updatePaginationInfo() {
-    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    if (!pageInfo) return;
+    const maxPages = computeMaxPages();
     pageInfo.textContent = `Page ${currentPage} of ${maxPages}`;
 }
 
-// Initialize
-loadProjects();
+// Note: event listeners and initial load are attached on DOMContentLoaded
