@@ -61,7 +61,7 @@ jobs:
       - name: Install Node deps
         if: matrix.include.name == 'frontend-smoke'
         run: |
-          npm ci
+          npm install
 
       - name: Start simple HTTP server
         if: matrix.include.name == 'frontend-smoke'
