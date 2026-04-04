@@ -17,7 +17,7 @@ import logging
 
 # Configuration
 DOCS_DIR = Path("docs")
-STATIC_FILES = ["index.html", "styles.css", "app.js", "dead-projects.json"]
+STATIC_FILES = ["index.html", "about.html", "styles.css", "app.js", "dead-projects.json"]
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")

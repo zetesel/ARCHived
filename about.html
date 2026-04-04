@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ARCHived</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-content {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .about-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e5e5;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-section h2 {
+            font-size: 1.375rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #6366f1;
+            display: inline-block;
+        }
+
+        .about-section p {
+            color: #444444;
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+
+        .about-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.75rem 0;
+        }
+
+        .about-section ul li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #444444;
+            line-height: 1.6;
+        }
+
+        .about-section ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        .about-section a {
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .about-section a:hover {
+            text-decoration: underline;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .criteria-item {
+            background: #f8f8ff;
+            border: 1px solid #e0e0f0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .criteria-item .criteria-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .criteria-item .criteria-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+        }
+
+        .criteria-item .criteria-desc {
+            font-size: 0.8rem;
+            color: #666666;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                margin: 1.5rem auto;
+            }
+
+            .criteria-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>ARCHived</h1>
+            <p class="tagline">Discover open source projects that need a new maintainer</p>
+            <nav class="hero-nav">
+                <a href="index.html">Browse Projects</a>
+                <a href="about.html" class="active">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="about-content">
+        <section class="about-section">
+            <h2>What is ARCHived?</h2>
+            <p>
+                ARCHived is a directory of open source GitHub repositories that have been archived by their
+                owners and have seen no activity for at least 12 months. These projects may still be useful,
+                but they no longer have active maintainers.
+            </p>
+            <p>
+                If you discover a project that fits your needs, you can fork it, adopt it, or reach out to
+                the original authors about transferring ownership — helping bring it back to life.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>Collection Criteria</h2>
+            <p>A repository is listed in ARCHived when it meets <strong>all</strong> of the following:</p>
+            <div class="criteria-grid">
+                <div class="criteria-item">
+                    <div class="criteria-icon">📦</div>
+                    <div class="criteria-label">Archived</div>
+                    <div class="criteria-desc">Marked as archived by the owner on GitHub</div>
+                </div>
+                <div class="criteria-item">
+                    <div class="criteria-icon">💤</div>
+                    <div class="criteria-label">Inactive ≥ 12 months</div>
+                    <div class="criteria-desc">No commits pushed in the last 12 months</div>
+                </div>
+                <div class="criteria-item">
+                    <div class="criteria-icon">⭐</div>
+                    <div class="criteria-label">10+ Stars</div>
+                    <div class="criteria-desc">At least 10 GitHub stars to filter noise</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2>How It Works</h2>
+            <p>
+                Data is collected daily using the <a href="https://docs.github.com/en/rest/search" target="_blank">GitHub Search API</a>.
+                To overcome the API's built-in 1,000-result cap, queries are split into multiple
+                star-range buckets (e.g. 10–99 ⭐, 100–499 ⭐, 500–999 ⭐, …) and the results are
+                merged and deduplicated. This allows the dataset to grow well beyond 1,000 projects.
+            </p>
+            <ul>
+                <li>Queries run daily via GitHub Actions (00:00 UTC)</li>
+                <li>Results are saved as a static JSON file and served via GitHub Pages</li>
+                <li>Client-side filtering, sorting, and fuzzy search powered by <a href="https://fusejs.io/" target="_blank">Fuse.js</a></li>
+                <li>No server-side processing — fully static and fast</li>
+            </ul>
+        </section>
+
+        <section class="about-section">
+            <h2>Contributing</h2>
+            <p>Found a dead project that isn't listed? Know of a project that has been revived?</p>
+            <ul>
+                <li>
+                    <a href="https://github.com/zetesel/ARCHived/issues/new" target="_blank">Open an issue</a>
+                    to suggest additions or report inaccuracies
+                </li>
+                <li>
+                    <a href="https://github.com/zetesel/ARCHived" target="_blank">Fork the repository</a>
+                    and submit a pull request
+                </li>
+            </ul>
+            <p>
+                ARCHived is itself open source. The scraper, build pipeline, and front-end are all available
+                under the MIT licence.
+            </p>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Data collected via GitHub API | Updated <span id="last-updated">daily</span></p>
+            <p>Found a dead project? <a href="https://github.com/zetesel/ARCHived/issues/new" target="_blank">Submit it</a></p>
+        </div>
+    </footer>
+</body>
+</html>
