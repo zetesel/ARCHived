@@ -10,9 +10,10 @@ function isHttpScheme(href) {
 }
 
 (async () => {
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
+  let browser;
   try {
+    browser = await chromium.launch();
+    const page = await browser.newPage();
     await page.goto('http://localhost:8000/index.html', { waitUntil: 'networkidle' });
 
     // Wait for projects container to render
@@ -25,7 +26,6 @@ function isHttpScheme(href) {
     }));
     if (!scriptStatus.hasSanitize || !scriptStatus.hasFormat) {
       console.error('Required frontend helpers missing');
-      await browser.close();
       process.exit(2);
     }
 
@@ -104,11 +104,11 @@ function isHttpScheme(href) {
     console.log('Page info:', pageInfo);
 
     console.log('Frontend smoke tests passed');
-    await browser.close();
     process.exit(0);
   } catch (e) {
     console.error('Frontend smoke failed:', e);
-    await browser.close();
     process.exit(3);
+  } finally {
+    if (browser) await browser.close();
   }
 })();

@@ -33,48 +33,62 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Set up Node (for frontend smoke)
-        if: matrix.include.name == 'frontend-smoke'
+        if: matrix.name == 'frontend-smoke'
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Install Python deps
-        if: matrix.include.name == 'python-tests'
+        if: matrix.name == 'python-tests'
         run: |
           python -m pip install --upgrade pip
           pip install -r scraper/requirements.txt
 
       - name: Run Python tests
-        if: matrix.include.name == 'python-tests'
+        if: matrix.name == 'python-tests'
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: |
           python -m pytest -q --junitxml=results.xml
 
       - name: Upload Python test results
-        if: always() && matrix.include.name == 'python-tests'
+        if: always() && matrix.name == 'python-tests'
         uses: actions/upload-artifact@v4
         with:
           name: pytest-results
           path: results.xml
 
       - name: Install Node deps
-        if: matrix.include.name == 'frontend-smoke'
+        if: matrix.name == 'frontend-smoke'
         run: |
           npm install
 
+      - name: Install Playwright browsers
+        if: matrix.name == 'frontend-smoke'
+        run: |
+          npx playwright install --with-deps chromium
+
       - name: Start simple HTTP server
-        if: matrix.include.name == 'frontend-smoke'
+        if: matrix.name == 'frontend-smoke'
         run: |
           python -m http.server 8000 --directory docs &
           echo $! > server.pid
 
+      - name: Wait for HTTP server
+        if: matrix.name == 'frontend-smoke'
+        run: |
+          for i in $(seq 1 10); do
+            curl -sf http://localhost:8000/index.html && break
+            echo "Waiting for server... attempt $i"
+            sleep 1
+          done
+
       - name: Run frontend smoke
-        if: matrix.include.name == 'frontend-smoke'
+        if: matrix.name == 'frontend-smoke'
         run: |
           node tests/frontend.smoke.js
 
       - name: Stop server
-        if: matrix.include.name == 'frontend-smoke'
+        if: matrix.name == 'frontend-smoke'
         run: |
           kill $(cat server.pid) || true

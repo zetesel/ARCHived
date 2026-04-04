@@ -266,7 +266,7 @@ function applyFilters() {
     visibleCount.textContent = filteredProjects.length.toLocaleString();
 
     // Reset pagination if current page would be out of range
-    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    const maxPages = computeMaxPages();
     if (currentPage > maxPages) currentPage = maxPages;
 
     // Render paginated view
