@@ -1,0 +1,34 @@
+# Ignore virtualenvs and Python/packaging artifacts
+.venv
+.venv*/
+.venv_test/
+venv/
+venv*/
+**/site-packages/**
+
+# Ignore build and distribution artifacts
+dist/
+build/
+*.egg-info/
+
+# Ignore node and other vendored directories
+node_modules/
+vendor/
+third_party/
+
+# Ignore generated docs/artifacts
+docs/
+dead-projects.json
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Environment files
+.env
+.env.*
