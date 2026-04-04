@@ -31,6 +31,14 @@ jobs:
           pip install --upgrade pip
           pip install -r scraper/requirements.txt
 
+      - name: Run pip-audit
+        run: |
+          set -e
+          python -m pip install --upgrade pip-audit
+          # Run pip-audit but don't fail the job automatically — change
+          # the trailing `|| true` to make the step fail if you prefer.
+          python -m pip_audit -r scraper/requirements.txt || true
+
       - name: Set PYTHONPATH for tests
         run: |
           echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
@@ -54,25 +62,8 @@ jobs:
         env:
           FAIL_ON_TRUNCATED: 'false'
         run: |
-          if [ ! -f dead-projects.json ]; then
-            echo "dead-projects.json not found, skipping truncation check"
-            exit 0
-          fi
-          python - <<'PY'
-import json
-f='dead-projects.json'
-with open(f) as fh:
-    data=json.load(fh)
-tr=data.get('metadata',{}).get('truncated', False)
-print('truncated=',tr)
-import os,sys
-if tr:
-    if os.environ.get('FAIL_ON_TRUNCATED','false').lower() in ('1','true','yes'):
-        print('ERROR: Results truncated by GitHub Search API')
-        sys.exit(1)
-    else:
-        print('WARNING: Results truncated by GitHub Search API — see dead-projects.json')
-PY
+          pip install --upgrade pip || true
+          python scripts/check_truncation.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
