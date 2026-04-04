@@ -96,14 +96,34 @@ def main():
     logger.info("ARCHived - Site Builder")
     logger.info("%s", "=" * 60)
 
-    # Step 1: Run scraper
-    if not run_scraper():
-        return 1
+    # Step 1: Run scraper. If it fails, allow continuation when an existing
+    # docs/ artifact already contains dead-projects.json (use last-known
+    # generated data to avoid blocking deployments on transient scraper/GitHub
+    # API issues). If neither exists, treat as a hard failure.
+    scraper_ok = run_scraper()
 
-    # Check that dead-projects.json was created
-    if not Path("dead-projects.json").exists():
-        logger.error("dead-projects.json not generated!")
-        return 1
+    # If scraper failed, try to fall back to docs/dead-projects.json
+    if not scraper_ok:
+        logger.warning("Scraper failed; attempting to proceed using existing docs/ artifact if present")
+
+    # Check that dead-projects.json was created at the repository root. If not,
+    # fall back to docs/dead-projects.json (copy it to the root) so CI steps
+    # that expect dead-projects.json at the workspace root (upload-artifact)
+    # still work.
+    root_dead = Path("dead-projects.json")
+    docs_dead = DOCS_DIR / "dead-projects.json"
+
+    if not root_dead.exists():
+        if docs_dead.exists():
+            logger.warning("root dead-projects.json missing — copying %s -> %s", docs_dead, root_dead)
+            try:
+                shutil.copy2(docs_dead, root_dead)
+            except Exception as e:
+                logger.exception("Failed to copy fallback dead-projects.json: %s", e)
+                return 1
+        else:
+            logger.error("dead-projects.json not generated and no fallback found in %s", DOCS_DIR)
+            return 1
 
     # Step 2: Prepare docs directory
     ensure_docs_dir()
