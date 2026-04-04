@@ -32,18 +32,42 @@ OUTPUT_FILE = "dead-projects.json"
 
 # Logger
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+
+# Configurable knobs (can be overridden in tests via environment variables)
+# Maximum seconds we will sleep when hitting a rate limit reset. Prevents
+# CI/workflows from sleeping for hours if the GitHub reset header is far
+# in the future.
+MAX_RATE_LIMIT_SLEEP = int(os.environ.get("MAX_RATE_LIMIT_SLEEP", "60"))
+# Pause between pages (with/without token). Defaults match previous behavior
+# but can be shortened during tests by setting PAGE_SLEEP_WITH_TOKEN / PAGE_SLEEP_NO_TOKEN.
+PAGE_SLEEP_WITH_TOKEN = float(os.environ.get("PAGE_SLEEP_WITH_TOKEN", "2"))
+PAGE_SLEEP_NO_TOKEN = float(os.environ.get("PAGE_SLEEP_NO_TOKEN", "10"))
+
+# Avoid calling basicConfig eagerly when imported by tests/runners; callers
+# should configure logging as needed. If nothing configured, provide a sane
+# default to avoid 'No handlers could be found' messages.
+if not logging.getLogger().handlers:
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 
 def make_session(total_retries: int = 5, backoff_factor: float = 1.0) -> requests.Session:
-    """Create a requests Session with a retry strategy mounted."""
+    """Create a requests Session with a retry strategy mounted.
+
+    Support both older and newer urllib3 Retry constructor parameter names
+    (method_whitelist vs allowed_methods) for compatibility.
+    """
     session = requests.Session()
-    retries = Retry(
+    retry_kwargs = dict(
         total=total_retries,
         backoff_factor=backoff_factor,
         status_forcelist=[429, 502, 503, 504],
-        allowed_methods=["GET"],
     )
+    try:
+        retries = Retry(**retry_kwargs, allowed_methods=["GET"])
+    except TypeError:
+        # Older urllib3 uses method_whitelist
+        retries = Retry(**retry_kwargs, method_whitelist=["GET"])  # type: ignore[arg-type]
+
     adapter = HTTPAdapter(max_retries=retries)
     session.mount("https://", adapter)
     session.mount("http://", adapter)
@@ -103,12 +127,19 @@ def search_repositories(query: str, page: int = 1, max_retries: int = 3, session
                 except Exception:
                     pass
 
-            # If rate limited and reset header present, sleep until reset
+            # If rate limited and reset header present, sleep until reset — but
+            # cap the sleep to avoid very long sleeps in CI/workflows.
             if response.status_code == 403 and remaining == '0' and reset is not None:
                 try:
                     reset_ts = int(reset)
                     sleep_s = max(0, reset_ts - int(time.time())) + 5
-                    logger.warning('Rate limited — sleeping %s seconds until reset', sleep_s)
+                    # Read cap at runtime so tests can override via environment
+                    cap = int(os.environ.get("MAX_RATE_LIMIT_SLEEP", str(MAX_RATE_LIMIT_SLEEP)))
+                    if sleep_s > cap:
+                        logger.warning('Rate limited — computed sleep %ss exceeds cap %ss; capping', sleep_s, cap)
+                        sleep_s = cap
+                    else:
+                        logger.warning('Rate limited — sleeping %s seconds until reset', sleep_s)
                     time.sleep(sleep_s)
                     continue
                 except Exception:
@@ -156,7 +187,8 @@ def parse_repository(item: Dict[str, Any]) -> Dict[str, Any]:
         "archived": item["archived"],
         "archived_at": item.get("updated_at"),  # GitHub doesn't provide exact archive date
         "topics": item.get("topics", []),
-        "license": item["license"]["key"] if item["license"] else None,
+        # License can be None or a dict without 'key'; guard against KeyError
+        "license": (item.get("license") or {}).get("key") if item.get("license") else None,
         "forks": item["forks_count"],
         "open_issues": item["open_issues_count"]
     }
@@ -226,8 +258,8 @@ def collect_projects(months: int = 12, min_stars: int = MIN_STARS) -> Tuple[List
         if max_pages is not None and page > max_pages:
             break
 
-        # Rate limiting: be nice to GitHub's API
-        time.sleep(2 if os.environ.get("GITHUB_TOKEN") else 10)
+        # Rate limiting: be nice to GitHub's API. Use configured per-page sleeps
+        time.sleep(PAGE_SLEEP_WITH_TOKEN if os.environ.get("GITHUB_TOKEN") else PAGE_SLEEP_NO_TOKEN)
 
     logger.info("Collected %s projects from %s total results", len(all_repos), total_collected)
     if truncated:

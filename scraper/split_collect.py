@@ -23,6 +23,8 @@ from scraper.collect import (
     calculate_date_threshold,
     parse_repository,
     search_repositories,
+    PAGE_SLEEP_WITH_TOKEN,
+    PAGE_SLEEP_NO_TOKEN,
 )
 import logging
 
@@ -99,8 +101,8 @@ def run_bucket(low: int, high: int, months: int, min_stars: int) -> Tuple[List[D
             break
 
         page += 1
-        # be polite
-        time.sleep(2 if os.environ.get('GITHUB_TOKEN') else 10)
+        # be polite — honor configured page sleep values so tests can shorten waits
+        time.sleep(PAGE_SLEEP_WITH_TOKEN if os.environ.get('GITHUB_TOKEN') else PAGE_SLEEP_NO_TOKEN)
 
     return collected, truncated, total_count
 

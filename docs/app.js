@@ -1,16 +1,30 @@
 // State
 let projects = [];
 let filteredProjects = [];
+let fuse = null;
 
 // DOM Elements
 const projectsContainer = document.getElementById('projects-container');
 const languageFilter = document.getElementById('language-filter');
+const textSearch = document.getElementById('text-search');
 const starsFilter = document.getElementById('stars-filter');
 const starsValue = document.getElementById('stars-value');
 const sortBy = document.getElementById('sort-by');
 const totalCount = document.getElementById('total-count');
 const visibleCount = document.getElementById('visible-count');
 const lastUpdated = document.getElementById('last-updated');
+const pageSizeSelect = document.getElementById('page-size');
+const prevPageBtn = document.getElementById('prev-page');
+const nextPageBtn = document.getElementById('next-page');
+const pageInfo = document.getElementById('page-info');
+
+let currentPage = 1;
+let pageSizeRaw = pageSizeSelect.value || '50';
+let pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10);
+let virtualized = pageSize === 'all';
+let virtualWindow = { start: 0, end: 20 };
+let cardHeight = 140; // px estimate; we'll measure after first render
+let _virtualRaf = null;
 
 // Load data
 async function loadProjects() {
@@ -25,10 +39,15 @@ async function loadProjects() {
 
         // Coerce numeric/date fields once to avoid repeated work during sorting/filtering
         projects.forEach(p => {
+            // Ensure stars is a number
             const starsNum = Number(p.stars);
             p.stars = Number.isFinite(starsNum) ? starsNum : 0;
+
+            // Parse last_commit into a timestamp for fast sorting; keep original string for display
             const ts = Date.parse(p.last_commit || '');
             p._last_commit_ts = Number.isFinite(ts) ? ts : 0;
+
+            // Ensure name is a string
             p.name = p.name || '';
         });
 
@@ -47,6 +66,18 @@ async function loadProjects() {
         }
 
         populateLanguages();
+
+        // Initialize Fuse (fuzzy search) if available
+        initFuse();
+
+        // Set stars slider max dynamically from data to improve UX
+        const maxStars = projects.reduce((max, p) => Math.max(max, p.stars || 0), 0);
+        // Ensure a reasonable minimum max
+        const sliderMax = Math.max(100, Math.ceil(maxStars / 100) * 100);
+        starsFilter.max = sliderMax;
+        starsFilter.value = 0;
+        starsValue.textContent = parseInt(starsFilter.value).toLocaleString();
+
         applyFilters();
     } catch (error) {
         console.error('Error loading projects:', error);
@@ -56,6 +87,37 @@ async function loadProjects() {
                 <p>Please try again later.</p>
             </div>
         `;
+    }
+}
+
+// Initialize Fuse.js if available to provide fuzzy search
+function initFuse() {
+    if (typeof Fuse === 'undefined' || !projects.length) return;
+
+    // Configure Fuse to search name, description, and topics
+    const options = {
+        keys: [
+            { name: 'name', weight: 0.7 },
+            { name: 'description', weight: 0.2 },
+            { name: 'topics', weight: 0.1 }
+        ],
+        threshold: 0.4,
+        ignoreLocation: true,
+    };
+
+    // Create a lightweight copy of projects for Fuse
+    const fuseList = projects.map(p => ({
+        name: p.name || '',
+        description: p.description || '',
+        topics: (p.topics || []).join(' '),
+    }));
+
+    try {
+        fuse = new Fuse(fuseList, options);
+    } catch (e) {
+        // If Fuse initialization fails, fall back to substring search
+        console.warn('Fuse initialization failed, falling back to substring search', e);
+        fuse = null;
     }
 }
 
@@ -76,33 +138,36 @@ function populateLanguages() {
 function applyFilters() {
     const selectedLanguage = languageFilter.value;
     const minStars = parseInt(starsFilter.value);
-    const rawQuery = (document.getElementById && document.getElementById('text-search') && document.getElementById('text-search').value) ? document.getElementById('text-search').value.trim() : '';
+    const rawQuery = (textSearch && textSearch.value) ? textSearch.value.trim() : '';
     const queryLower = rawQuery.toLowerCase();
 
-    // If using a text search input elsewhere in the docs build, allow for its presence
+    // If using Fuse.js, run the fuzzy search once per query and cache the matching names
     let fuseMatches = null;
-    if (rawQuery && typeof Fuse !== 'undefined') {
+    if (rawQuery && fuse) {
         try {
+            // Limit to projects.length for reasonable bounds; Fuse will handle internal limits
             const limit = projects.length || 10000;
-            const results = new Fuse(projects.map(p => ({ name: p.name || '', description: p.description || '', topics: (p.topics || []).join(' ') })), { keys: ['name', 'description', 'topics'], threshold: 0.4 }).search(rawQuery, { limit });
+            const results = fuse.search(rawQuery, { limit });
             fuseMatches = new Set(results.map(r => r.item && r.item.name).filter(Boolean));
         } catch (e) {
-            console.warn('Fuse (docs) failed, falling back to substring search', e);
+            // If Fuse fails for any reason, fall back to substring matching
+            console.warn('Fuse search failed, falling back to substring search', e);
             fuseMatches = null;
         }
     }
 
-    // Filter — if a rawQuery exists do text matching, otherwise simple filters
+    // Filter — use the precomputed fuseMatches set if available to avoid repeated expensive searches
     filteredProjects = projects.filter(project => {
         const matchesLanguage = selectedLanguage === 'all' || project.language === selectedLanguage;
         const matchesStars = project.stars >= minStars;
 
         if (rawQuery) {
-            if (fuseMatches) {
+            if (fuse && fuseMatches) {
                 const matchesText = fuseMatches.has(project.name);
                 return matchesLanguage && matchesStars && matchesText;
             }
 
+            // Fallback: simple substring search across name/description/topics
             const hay = [project.name, project.description, (project.topics || []).join(' ')].filter(Boolean).join(' ').toLowerCase();
             const matchesText = hay.indexOf(queryLower) !== -1;
             return matchesLanguage && matchesStars && matchesText;
@@ -136,8 +201,13 @@ function applyFilters() {
     totalCount.textContent = projects.length.toLocaleString();
     visibleCount.textContent = filteredProjects.length.toLocaleString();
 
-    // Render
+    // Reset pagination if current page would be out of range
+    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    if (currentPage > maxPages) currentPage = maxPages;
+
+    // Render paginated view
     renderProjects();
+    updatePaginationInfo();
 }
 
 // Render projects to DOM using safe DOM APIs
@@ -158,7 +228,21 @@ function renderProjects() {
 
     const fragment = document.createDocumentFragment();
 
-    filteredProjects.forEach(project => {
+    // Determine items to render depending on pagination vs virtualization
+    let pageItems;
+    if (pageSize === 'all') {
+        // Virtualized window — render virtualWindow.start..end
+        const start = Math.max(0, virtualWindow.start);
+        const end = Math.min(filteredProjects.length, virtualWindow.end);
+        pageItems = filteredProjects.slice(start, end);
+    } else {
+        // Paginated slice
+        const start = (currentPage - 1) * pageSize;
+        const end = start + pageSize;
+        pageItems = filteredProjects.slice(start, end);
+    }
+
+    pageItems.forEach(project => {
         const card = document.createElement('article');
         card.className = 'project-card';
 
@@ -217,11 +301,113 @@ function renderProjects() {
         viewBtn.textContent = 'View on GitHub';
         actions.appendChild(viewBtn);
 
+        // Express interest button: opens a prefilled issue on the repo
+        const interestBtn = document.createElement('a');
+        // Prefill issue title and body using GitHub's query params
+        const issueTitle = encodeURIComponent(`I would like to help maintain ${project.name}`);
+        const issueBody = encodeURIComponent(`Hi,\n\nI am interested in helping maintain **${project.name}**.\n\nReasons:\n- \n\nPlease let me know if there are any steps to transfer or collaborate on maintenance.\n\nThanks!`);
+        // Use the repo's issues/new URL
+        const issueUrl = project.url.replace(/\/$/, '') + `/issues/new?title=${issueTitle}&body=${issueBody}`;
+        interestBtn.href = issueUrl;
+        interestBtn.target = '_blank';
+        interestBtn.className = 'btn btn-secondary';
+        interestBtn.textContent = 'Express interest';
+        actions.appendChild(interestBtn);
+
         card.appendChild(actions);
         fragment.appendChild(card);
     });
 
     projectsContainer.appendChild(fragment);
+
+    // If using virtualization, ensure a scroll listener is attached to update window
+    if (pageSize === 'all') {
+        attachVirtualScroll();
+        // Use spacers to preserve overall scroll height
+        const total = filteredProjects.length;
+        const topHeight = (virtualWindow.start || 0) * cardHeight;
+        const bottomHeight = Math.max(0, (total - (virtualWindow.end || 0)) * cardHeight);
+
+        let topSpacer = document.getElementById('virtual-top');
+        let bottomSpacer = document.getElementById('virtual-bottom');
+
+        if (!topSpacer) {
+            topSpacer = document.createElement('div');
+            topSpacer.id = 'virtual-top';
+            projectsContainer.insertBefore(topSpacer, projectsContainer.firstChild);
+        }
+        if (!bottomSpacer) {
+            bottomSpacer = document.createElement('div');
+            bottomSpacer.id = 'virtual-bottom';
+            projectsContainer.appendChild(bottomSpacer);
+        }
+
+        topSpacer.style.height = topHeight + 'px';
+        bottomSpacer.style.height = bottomHeight + 'px';
+
+        // Measure card height after rendering cards and adjust if necessary
+        requestAnimationFrame(() => {
+            const firstCard = projectsContainer.querySelector('.project-card');
+            if (firstCard) {
+                const measured = firstCard.getBoundingClientRect().height;
+                if (measured > 10 && Math.abs(measured - cardHeight) / cardHeight > 0.1) {
+                    cardHeight = measured;
+                    // Recompute window and re-render with updated height
+                    const scrollTop = window.scrollY || window.pageYOffset;
+                    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+                    const itemsPerViewport = Math.ceil(viewportHeight / cardHeight) + 2;
+                    const firstVisibleIndex = Math.floor(scrollTop / cardHeight) - 2;
+                    virtualWindow.start = Math.max(0, firstVisibleIndex);
+                    virtualWindow.end = Math.min(filteredProjects.length, virtualWindow.start + itemsPerViewport * 3);
+                    // Re-render
+                    projectsContainer.innerHTML = '';
+                    renderProjects();
+                }
+            }
+        });
+    } else {
+        detachVirtualScroll();
+        // Remove spacers if present
+        const topSpacer = document.getElementById('virtual-top');
+        const bottomSpacer = document.getElementById('virtual-bottom');
+        if (topSpacer) topSpacer.remove();
+        if (bottomSpacer) bottomSpacer.remove();
+    }
+}
+
+function attachVirtualScroll() {
+    if (window._virtualScrollAttached) return;
+    window._virtualScrollAttached = true;
+    window.addEventListener('scroll', onVirtualScroll, { passive: true });
+}
+
+function detachVirtualScroll() {
+    if (!window._virtualScrollAttached) return;
+    window._virtualScrollAttached = false;
+    window.removeEventListener('scroll', onVirtualScroll);
+}
+
+function onVirtualScroll() {
+    // Use requestAnimationFrame to debounce rapid scroll events
+    if (_virtualRaf) return;
+    _virtualRaf = requestAnimationFrame(() => {
+        _virtualRaf = null;
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const itemsPerViewport = Math.ceil(viewportHeight / cardHeight) + 2;
+        const firstVisibleIndex = Math.floor(scrollTop / cardHeight) - 2;
+        const start = Math.max(0, firstVisibleIndex);
+        const end = start + itemsPerViewport * 3;
+
+        // Update virtual window and re-render only if changed
+        if (start !== virtualWindow.start || end !== virtualWindow.end) {
+            virtualWindow.start = start;
+            virtualWindow.end = Math.min(filteredProjects.length, end);
+            // Re-render content only (spacers handled in renderProjects)
+            projectsContainer.innerHTML = '';
+            renderProjects();
+        }
+    });
 }
 
 // Utility: Escape HTML to prevent XSS
@@ -247,11 +433,41 @@ function formatDateAgo(dateString) {
 
 // Event Listeners
 languageFilter.addEventListener('change', applyFilters);
+if (textSearch) textSearch.addEventListener('input', applyFilters);
 starsFilter.addEventListener('input', function() {
     starsValue.textContent = parseInt(this.value).toLocaleString();
     applyFilters();
 });
 sortBy.addEventListener('change', applyFilters);
+pageSizeSelect.addEventListener('change', function() {
+    pageSizeRaw = this.value;
+    pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10) || 50;
+    virtualized = pageSize === 'all';
+    currentPage = 1;
+    // Reset virtual window
+    virtualWindow = { start: 0, end: 20 };
+    applyFilters();
+});
+prevPageBtn.addEventListener('click', function() {
+    if (currentPage > 1) {
+        currentPage -= 1;
+        applyFilters();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+nextPageBtn.addEventListener('click', function() {
+    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    if (currentPage < maxPages) {
+        currentPage += 1;
+        applyFilters();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+});
+
+function updatePaginationInfo() {
+    const maxPages = Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+    pageInfo.textContent = `Page ${currentPage} of ${maxPages}`;
+}
 
 // Initialize
 loadProjects();

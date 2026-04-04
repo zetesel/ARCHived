@@ -1,6 +1,11 @@
 """scraper package init
 
-This file makes the scraper directory importable for tests and tooling.
+Keep this file lightweight: avoid importing submodules at package import
+time to prevent side effects and circular imports when importing
+individual submodules (e.g. scraper.logging_config).
 """
 
-from .collect import *  # re-export for convenience in tests
+__all__ = [
+    # Explicit re-exports can be added here if needed, e.g.
+    # 'collect', 'split_collect'
+]

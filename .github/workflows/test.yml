@@ -17,7 +17,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Cache pip
         uses: actions/cache@v4
@@ -36,7 +36,7 @@ jobs:
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: |
-          python -m pytest -q --junitxml=results.xml || true
+          python -m pytest -q --junitxml=results.xml
 
       - name: Upload test results
         if: always()
