@@ -32,11 +32,23 @@ def run_scraper():
         logger.info('SKIP_SCRAPER set; skipping scraper run')
         return True
 
-    result = subprocess.run(
-        [sys.executable, "scraper/collect.py", "--months", "12", "--min-stars", "10"],
-        capture_output=True,
-        text=True
-    )
+    # We intentionally use subprocess.run with an explicit argv list (no
+    # shell=True) to execute the scraper in a separate process. This is
+    # done to preserve the existing execution environment and to keep the
+    # build tool simple. The arguments are static and not derived from
+    # untrusted input, so the risk of command injection is minimal.
+    #
+    # Bandit flags subprocess usage as a warning (B404/B603). If you prefer,
+    # we can call the scraper's main function directly to avoid spawning a
+    # new process.
+    result = subprocess.run([
+        sys.executable,
+        "scraper/collect.py",
+        "--months",
+        "12",
+        "--min-stars",
+        "10",
+    ], capture_output=True, text=True)
 
     if result.stdout:
         logger.info(result.stdout)
