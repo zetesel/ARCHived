@@ -10,6 +10,11 @@ on:
 jobs:
   pytest:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: python-tests
+          - name: frontend-smoke
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,20 +32,49 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Install dependencies
+      - name: Set up Node (for frontend smoke)
+        if: matrix.include.name == 'frontend-smoke'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Python deps
+        if: matrix.include.name == 'python-tests'
         run: |
           python -m pip install --upgrade pip
           pip install -r scraper/requirements.txt
 
-      - name: Run tests
+      - name: Run Python tests
+        if: matrix.include.name == 'python-tests'
         env:
           PYTHONPATH: ${{ github.workspace }}
         run: |
           python -m pytest -q --junitxml=results.xml
 
-      - name: Upload test results
-        if: always()
+      - name: Upload Python test results
+        if: always() && matrix.include.name == 'python-tests'
         uses: actions/upload-artifact@v4
         with:
           name: pytest-results
           path: results.xml
+
+      - name: Install Node deps
+        if: matrix.include.name == 'frontend-smoke'
+        run: |
+          npm ci
+
+      - name: Start simple HTTP server
+        if: matrix.include.name == 'frontend-smoke'
+        run: |
+          python -m http.server 8000 --directory docs &
+          echo $! > server.pid
+
+      - name: Run frontend smoke
+        if: matrix.include.name == 'frontend-smoke'
+        run: |
+          node tests/frontend.smoke.js
+
+      - name: Stop server
+        if: matrix.include.name == 'frontend-smoke'
+        run: |
+          kill $(cat server.pid) || true
