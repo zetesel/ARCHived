@@ -10,9 +10,9 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: write
+  contents: read
   pages: write
-  id-token: write
+  # id-token not required for normal scraping/deploy; remove to reduce scope
 
 jobs:
   scrape-and-deploy:
