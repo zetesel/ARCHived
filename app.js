@@ -309,10 +309,17 @@ function renderProjects() {
         header.className = 'card-header';
 
         const nameLink = document.createElement('a');
-        nameLink.href = project.url;
-        nameLink.target = '_blank';
+        const safeUrl = sanitizeUrl(project.url);
+        if (safeUrl) {
+            nameLink.href = safeUrl;
+            nameLink.target = '_blank';
+            nameLink.rel = 'noopener noreferrer';
+        } else {
+            nameLink.href = '#';
+            nameLink.addEventListener('click', e => e.preventDefault());
+        }
         nameLink.className = 'project-name';
-        nameLink.textContent = project.name;
+        nameLink.textContent = project.name || 'Unnamed';
         header.appendChild(nameLink);
 
         if (project.language) {
@@ -353,8 +360,15 @@ function renderProjects() {
         actions.className = 'card-actions';
 
         const viewBtn = document.createElement('a');
-        viewBtn.href = project.url;
-        viewBtn.target = '_blank';
+        const safeView = sanitizeUrl(project.url);
+        if (safeView) {
+            viewBtn.href = safeView;
+            viewBtn.target = '_blank';
+            viewBtn.rel = 'noopener noreferrer';
+        } else {
+            viewBtn.href = '#';
+            viewBtn.addEventListener('click', e => e.preventDefault());
+        }
         viewBtn.className = 'btn btn-primary';
         viewBtn.textContent = 'View on GitHub';
         actions.appendChild(viewBtn);
@@ -364,10 +378,25 @@ function renderProjects() {
         // Prefill issue title and body using GitHub's query params
         const issueTitle = encodeURIComponent(`I would like to help maintain ${project.name}`);
         const issueBody = encodeURIComponent(`Hi,\n\nI am interested in helping maintain **${project.name}**.\n\nReasons:\n- \n\nPlease let me know if there are any steps to transfer or collaborate on maintenance.\n\nThanks!`);
-        // Use the repo's issues/new URL
-        const issueUrl = project.url.replace(/\/$/, '') + `/issues/new?title=${issueTitle}&body=${issueBody}`;
-        interestBtn.href = issueUrl;
-        interestBtn.target = '_blank';
+        // Safely construct issue URL only if project.url is a valid repo URL
+        const parsed = sanitizeUrl(project.url);
+        if (parsed) {
+            try {
+                const u = new URL(parsed);
+                // Build issues URL from origin + pathname to avoid injection
+                const base = `${u.origin}${u.pathname.replace(/\/$/, '')}`;
+                const issueUrl = `${base}/issues/new?title=${issueTitle}&body=${issueBody}`;
+                interestBtn.href = issueUrl;
+                interestBtn.target = '_blank';
+                interestBtn.rel = 'noopener noreferrer';
+            } catch (e) {
+                interestBtn.href = '#';
+                interestBtn.addEventListener('click', ev => ev.preventDefault());
+            }
+        } else {
+            interestBtn.href = '#';
+            interestBtn.addEventListener('click', ev => ev.preventDefault());
+        }
         interestBtn.className = 'btn btn-secondary';
         interestBtn.textContent = 'Express interest';
         actions.appendChild(interestBtn);
@@ -473,6 +502,18 @@ function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
+}
+
+// Utility: sanitize external URLs to avoid javascript: or other unsafe schemes
+function sanitizeUrl(raw) {
+    if (!raw) return null;
+    try {
+        const url = new URL(raw, window.location.href);
+        if (url.protocol !== 'http:' && url.protocol !== 'https:') return null;
+        return url.toString();
+    } catch (e) {
+        return null;
+    }
 }
 
 // Utility: Format date as "X months ago"
