@@ -24,42 +24,49 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 
 
 def run_scraper():
-    """Execute the scraper script to generate fresh data."""
-    logger.info("Running scraper...")
-    # Run scraper with defaults; allow collect.py to accept CLI args in the future
-    # Allow skipping scraper for faster CI/debugging via env var
+    """Execute the scraper module in-process to avoid subprocess overhead.
+
+    This imports the scraper and invokes its CLI function programmatically.
+    If the scraper's CLI changes we fall back to invoking it as a subprocess.
+    """
+    logger.info("Running scraper (in-process)...")
+
+    # Allow skipping scraper via env var for CI/debugging
     if os.environ.get('SKIP_SCRAPER', '').lower() in ('1', 'true', 'yes'):
         logger.info('SKIP_SCRAPER set; skipping scraper run')
         return True
 
-    # We intentionally use subprocess.run with an explicit argv list (no
-    # shell=True) to execute the scraper in a separate process. This is
-    # done to preserve the existing execution environment and to keep the
-    # build tool simple. The arguments are static and not derived from
-    # untrusted input, so the risk of command injection is minimal.
-    #
-    # Bandit flags subprocess usage as a warning (B404/B603). If you prefer,
-    # we can call the scraper's main function directly to avoid spawning a
-    # new process.
-    result = subprocess.run([
-        sys.executable,
-        "scraper/collect.py",
-        "--months",
-        "12",
-        "--min-stars",
-        "10",
-    ], capture_output=True, text=True)
+    # Try to call the scraper module directly for better testability and to
+    # avoid forking a second Python interpreter. Fall back to subprocess if
+    # import fails for any reason.
+    try:
+        # Import here to avoid overhead when skipping
+        from scraper import collect as scraper_collect
 
-    if result.stdout:
-        logger.info(result.stdout)
-    if result.stderr:
-        logger.warning("STDERR: %s", result.stderr)
-
-    if result.returncode != 0:
-        logger.error("Scraper failed!")
-        return False
-
-    return True
+        # Use collect_projects with default values and write output via save_json
+        projects, truncated = scraper_collect.collect_projects()
+        scraper_collect.save_json(projects, "dead-projects.json", months=12, min_stars=10, truncated=truncated)
+        return True
+    except Exception as e:  # pragma: no cover - fallback path
+        logger.warning("In-process scraper failed (%s). Falling back to subprocess.", e)
+        try:
+            result = subprocess.run([
+                sys.executable,
+                "scraper/collect.py",
+                "--months",
+                "12",
+                "--min-stars",
+                "10",
+            ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+            if result.stdout:
+                logger.info(result.stdout)
+            if result.returncode != 0:
+                logger.error("Scraper subprocess failed: returncode=%s", result.returncode)
+                return False
+            return True
+        except Exception as e2:
+            logger.exception("Failed to run scraper subprocess: %s", e2)
+            return False
 
 
 def ensure_docs_dir():
