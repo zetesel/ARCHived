@@ -52,7 +52,7 @@ jobs:
           # Run semgrep with the recommended security ruleset and fail on findings
           semgrep --config=p/ci --error
 
-      - name: Set PYTHONPATH for tests
+      - name: Set PYTHONPATH for tests and scraper
         run: |
           echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
@@ -64,11 +64,13 @@ jobs:
       - name: Run scraper and build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SPLIT_COLLECT_PAT: ${{ secrets.SPLIT_COLLECT_PAT }}
           # Customize these if you want to change collection criteria
           ARCHIVED_MONTHS: '12'
           ARCHIVED_MIN_STARS: '10'
+          SKIP_SCRAPER: 'true'
         run: |
-          python scraper/collect.py --months "$ARCHIVED_MONTHS" --min-stars "$ARCHIVED_MIN_STARS" --output dead-projects.json
+          python scraper/split_collect.py --months "$ARCHIVED_MONTHS" --min-stars "$ARCHIVED_MIN_STARS" --output dead-projects.json
           python build.py
 
       - name: Check for API truncation
