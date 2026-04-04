@@ -124,8 +124,9 @@ def search_repositories(query: str, page: int = 1, max_retries: int = 3, session
                     reset_ts = int(reset)
                     reset_time = datetime.fromtimestamp(reset_ts)
                     logger.debug('Rate limit resets at: %s', reset_time.isoformat())
-                except Exception:
-                    pass
+                except (ValueError, TypeError):
+                    # reset header was not an int-like value; ignore parsing errors
+                    logger.debug('Could not parse X-RateLimit-Reset header: %r', reset)
 
             # If rate limited and reset header present, sleep until reset — but
             # cap the sleep to avoid very long sleeps in CI/workflows.
@@ -142,8 +143,9 @@ def search_repositories(query: str, page: int = 1, max_retries: int = 3, session
                         logger.warning('Rate limited — sleeping %s seconds until reset', sleep_s)
                     time.sleep(sleep_s)
                     continue
-                except Exception:
-                    logger.error('Rate limited but could not parse reset header')
+                except (ValueError, TypeError, OverflowError) as e:
+                    # Parsing or arithmetic failed; log and continue without sleeping
+                    logger.error('Rate limited but could not parse reset header: %s', e)
 
             response.raise_for_status()
             return response.json()

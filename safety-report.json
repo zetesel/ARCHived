@@ -1,0 +1,145 @@
+
+
++===========================================================================================================================================================================================+
+
+
+DEPRECATED: this command (`check`) has been DEPRECATED, and will be unsupported beyond 01 June 2024.
+
+
+We highly encourage switching to the new `scan` command which is easier to use, more powerful, and can be set up to mimic the deprecated command if required.
+
+
++===========================================================================================================================================================================================+
+
+
+{
+    "report_meta": {
+        "scan_target": "files",
+        "scanned": [
+            "scraper/requirements.txt"
+        ],
+        "scanned_full_path": [
+            "/Users/lukaszozog/GhRepos/ARCHived/scraper/requirements.txt"
+        ],
+        "target_languages": [
+            "python"
+        ],
+        "policy_file": null,
+        "policy_file_source": "local",
+        "audit_and_monitor": false,
+        "api_key": false,
+        "account": "",
+        "local_database_path": null,
+        "safety_version": "3.7.0",
+        "timestamp": "2026-04-04 10:28:50",
+        "packages_found": 3,
+        "vulnerabilities_found": 0,
+        "vulnerabilities_ignored": 0,
+        "remediations_recommended": 0,
+        "telemetry": {
+            "safety_options": {
+                "files": {
+                    "--file": 1
+                },
+                "json": {
+                    "--json": 1
+                }
+            },
+            "safety_version": "3.7.0",
+            "safety_source": "cli",
+            "os_type": "Darwin",
+            "os_release": "25.4.0",
+            "os_description": "macOS-26.4-arm64-arm-64bit",
+            "python_version": "3.9.6",
+            "safety_command": "check"
+        },
+        "git": {
+            "branch": "ci/harden-permissions",
+            "tag": "",
+            "commit": "43ad221367bb92f18fd929e212740b2618ae7cef",
+            "dirty": "True",
+            "origin": "https://github.com/zetesel/ARCHived.git"
+        },
+        "project": null,
+        "json_version": "1.1",
+        "remediations_attempted": 0,
+        "remediations_completed": 0,
+        "remediation_mode": "NON_INTERACTIVE"
+    },
+    "scanned_packages": {
+        "requests": {
+            "name": "requests",
+            "version": null,
+            "requirements": [
+                {
+                    "raw": "requests>=2.33.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "requests",
+                    "specifier": ">=2.33.0",
+                    "url": null,
+                    "found": "/Users/lukaszozog/GhRepos/ARCHived/scraper/requirements.txt"
+                }
+            ]
+        },
+        "pytest": {
+            "name": "pytest",
+            "version": null,
+            "requirements": [
+                {
+                    "raw": "pytest>=7.0.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pytest",
+                    "specifier": ">=7.0.0",
+                    "url": null,
+                    "found": "/Users/lukaszozog/GhRepos/ARCHived/scraper/requirements.txt"
+                }
+            ]
+        },
+        "responses": {
+            "name": "responses",
+            "version": null,
+            "requirements": [
+                {
+                    "raw": "responses>=0.23.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "responses",
+                    "specifier": ">=0.23.0",
+                    "url": null,
+                    "found": "/Users/lukaszozog/GhRepos/ARCHived/scraper/requirements.txt"
+                }
+            ]
+        }
+    },
+    "affected_packages": {},
+    "announcements": [
+        {
+            "type": "warning",
+            "message": "Warning: requests, pytest and responses are unpinned. Safety by default does not report on potential vulnerabilities in unpinned packages. It is recommended to pin your dependencies unless this is a library meant for distribution. To learn more about reporting these, specifier range handling, and options for scanning unpinned packages visit https://docs.pyup.io/docs/safety-range-specs"
+        }
+    ],
+    "vulnerabilities": [],
+    "ignored_vulnerabilities": [],
+    "remediations": {},
+    "remediations_results": {
+        "vulnerabilities_fixed": [],
+        "remediations_applied": {},
+        "remediations_skipped": {}
+    }
+}
+
+
++===========================================================================================================================================================================================+
+
+
+DEPRECATED: this command (`check`) has been DEPRECATED, and will be unsupported beyond 01 June 2024.
+
+
+We highly encourage switching to the new `scan` command which is easier to use, more powerful, and can be set up to mimic the deprecated command if required.
+
+
++===========================================================================================================================================================================================+
+
+
