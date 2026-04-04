@@ -533,9 +533,9 @@ function formatDateAgo(dateString) {
 }
 
 
-function computeMaxPages() {
-    if (!pageSize || pageSize === 'all') return 1;
-    return Math.max(1, Math.ceil(filteredProjects.length / pageSize));
+function computeMaxPages(projectCount = filteredProjects.length, size = pageSize) {
+    if (!size || size === 'all') return 1;
+    return Math.max(1, Math.ceil(projectCount / size));
 }
 
 function updatePaginationInfo() {
