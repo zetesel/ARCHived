@@ -93,7 +93,7 @@ def calculate_date_threshold(months: int = 12) -> str:
     accuracy install python-dateutil and set the env var USE_RELATIVE_DELTA=1
     (the code will fall back to the approximation if dateutil is not present).
     """
-    use_precise = os.environ.get("USE_RELATIVE_DELTA", "0") in ("1", "true", "yes")
+    use_precise = os.environ.get("USE_RELATIVE_DELTA", "0").strip().lower() in ("1", "true", "yes")
     if use_precise:
         try:
             from dateutil.relativedelta import relativedelta
