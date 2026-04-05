@@ -52,7 +52,7 @@ jobs:
           # Run semgrep with the recommended security ruleset and fail on findings
           semgrep --config=p/ci --error
 
-      - name: Set PYTHONPATH for tests and scraper
+      - name: Set PYTHONPATH for tests
         run: |
           echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
@@ -64,14 +64,29 @@ jobs:
       - name: Run scraper and build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SPLIT_COLLECT_PAT: ${{ secrets.SPLIT_COLLECT_PAT }}
           # Customize these if you want to change collection criteria
           ARCHIVED_MONTHS: '12'
           ARCHIVED_MIN_STARS: '10'
-          SKIP_SCRAPER: 'true'
+          # build.py would re-run the scraper by default; skip it here since
+          # collect.py was already invoked above and dead-projects.json exists.
+          SKIP_SCRAPER: '1'
         run: |
-          python scraper/split_collect.py --months "$ARCHIVED_MONTHS" --min-stars "$ARCHIVED_MIN_STARS" --output dead-projects.json
-          python build.py
+          # Ensure pipeline failures are propagated so the job fails when the
+          # underlying commands exit non-zero. Capture stdout/stderr for both
+          # the scraper and the build to aid post-mortem debugging by
+          # uploading them as artifacts.
+          set -e
+          set -o pipefail
+          python scraper/collect.py --months "$ARCHIVED_MONTHS" --min-stars "$ARCHIVED_MIN_STARS" --output dead-projects.json 2>&1 | tee scraper.log
+          python build.py 2>&1 | tee build.log
+
+      - name: Upload scraper and build logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-logs
+          path: |
+            scraper.log
+            build.log
 
       - name: Check for API truncation
         env:
@@ -97,3 +112,14 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Upload diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-diagnostics
+          path: |
+            docs
+            dead-projects.json
+            scraper.log
+            build.log

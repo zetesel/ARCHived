@@ -33,6 +33,10 @@ OUTPUT_FILE = "dead-projects.json"
 # Logger
 logger = logging.getLogger(__name__)
 
+
+class RateLimitAbort(RuntimeError):
+    """Raised when the scraper is aborted due to a rate limit in CI."""
+
 # Configurable knobs (can be overridden in tests via environment variables)
 # Maximum seconds we will sleep when hitting a rate limit reset. Prevents
 # CI/workflows from sleeping for hours if the GitHub reset header is far
@@ -63,10 +67,11 @@ def make_session(total_retries: int = 5, backoff_factor: float = 1.0) -> request
         status_forcelist=[429, 502, 503, 504],
     )
     try:
-        retries = Retry(**retry_kwargs, allowed_methods=["GET"])
+        # Use a set/frozenset for allowed_methods for better compatibility with typing
+        retries = Retry(**retry_kwargs, allowed_methods=frozenset({"GET"}))
     except TypeError:
         # Older urllib3 uses method_whitelist
-        retries = Retry(**retry_kwargs, method_whitelist=["GET"])  # type: ignore[arg-type]
+        retries = Retry(**retry_kwargs, method_whitelist=frozenset({"GET"}))  # type: ignore[arg-type]
 
     adapter = HTTPAdapter(max_retries=retries)
     session.mount("https://", adapter)
@@ -87,8 +92,22 @@ def get_auth_headers() -> Dict[str, str]:
 def calculate_date_threshold(months: int = 12) -> str:
     """Calculate the date X months ago in YYYY-MM-DD format.
 
-    Uses a simple approximation of 30 days per month to avoid an external dependency.
+    Uses a simple approximation of 30 days per month to avoid an external
+    dependency. This is documented behavior; if you need calendar-month
+    accuracy install python-dateutil and set the env var USE_RELATIVE_DELTA=1
+    (the code will fall back to the approximation if dateutil is not present).
     """
+    use_precise = os.environ.get("USE_RELATIVE_DELTA", "0").strip().lower() in ("1", "true", "yes")
+    if use_precise:
+        try:
+            from dateutil.relativedelta import relativedelta
+
+            threshold = datetime.now() - relativedelta(months=months)
+            return threshold.strftime("%Y-%m-%d")
+        except Exception:
+            # dateutil not available or failed; fall back to approximation
+            logger.debug("dateutil not available; falling back to 30-day approximation")
+
     threshold = datetime.now() - timedelta(days=30 * months)
     return threshold.strftime("%Y-%m-%d")
 
@@ -128,24 +147,35 @@ def search_repositories(query: str, page: int = 1, max_retries: int = 3, session
                     # reset header was not an int-like value; ignore parsing errors
                     logger.debug('Could not parse X-RateLimit-Reset header: %r', reset)
 
-            # If rate limited and reset header present, sleep until reset — but
-            # cap the sleep to avoid very long sleeps in CI/workflows.
-            if response.status_code == 403 and remaining == '0' and reset is not None:
+            # If rate limited, prefer Retry-After header if present; otherwise
+            # use X-RateLimit-Reset. Cap sleeps to avoid blocking CI for too long.
+            if response.status_code == 403 and remaining == '0':
+                retry_after = response.headers.get('Retry-After')
                 try:
-                    reset_ts = int(reset)
-                    sleep_s = max(0, reset_ts - int(time.time())) + 5
-                    # Read cap at runtime so tests can override via environment
+                    if retry_after is not None:
+                        sleep_s = int(retry_after)
+                    elif reset is not None:
+                        reset_ts = int(reset)
+                        sleep_s = max(0, reset_ts - int(time.time())) + 5
+                    else:
+                        sleep_s = 5
+
                     cap = int(os.environ.get("MAX_RATE_LIMIT_SLEEP", str(MAX_RATE_LIMIT_SLEEP)))
                     if sleep_s > cap:
                         logger.warning('Rate limited — computed sleep %ss exceeds cap %ss; capping', sleep_s, cap)
                         sleep_s = cap
                     else:
                         logger.warning('Rate limited — sleeping %s seconds until reset', sleep_s)
+
+                    # In CI we prefer to fail fast rather than sleep long
+                    if os.environ.get('CI', '').lower() in ('1', 'true', 'yes') and sleep_s > 10:
+                        logger.error('In CI environment and rate limited — aborting to avoid long sleep')
+                        raise RateLimitAbort('Rate limited in CI; aborting to avoid long sleep')
+
                     time.sleep(sleep_s)
                     continue
                 except (ValueError, TypeError, OverflowError) as e:
-                    # Parsing or arithmetic failed; log and continue without sleeping
-                    logger.error('Rate limited but could not parse reset header: %s', e)
+                    logger.error('Rate limited but could not parse Retry-After/Reset header: %s', e)
 
             response.raise_for_status()
             return response.json()
@@ -308,8 +338,11 @@ def main():
     try:
         projects, truncated = collect_projects(months=args.months, min_stars=args.min_stars)
         save_json(projects, args.output, months=args.months, min_stars=args.min_stars, truncated=truncated)
-        print("\n✓ Complete!")
+        logger.info("\u2713 Complete!")
         return 0
+    except RateLimitAbort as e:
+        logger.error("Aborted due to rate limit: %s", e)
+        return 1
     except KeyboardInterrupt:
         logger.info("Interrupted by user")
         return 130

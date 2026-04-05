@@ -5,6 +5,7 @@
     "playwright": "^1.37.0"
   },
   "scripts": {
-    "test:frontend": "node tests/frontend.smoke.js"
+    "test:frontend": "node tests/frontend.smoke.js",
+    "test": "pytest -q"
   }
 }

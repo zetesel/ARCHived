@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-04-04T01:55:51.993381",
+    "generated_at": "2026-04-04T13:35:31.403787",
     "total_projects": 1000,
     "source": "GitHub API",
     "query": "archived:true pushed:<=2025-04-09",
@@ -15,11 +15,11 @@
       "name": "DopplerHQ/awesome-interview-questions",
       "description": ":octocat: A curated awesome list of lists of interview questions. Feel free to contribute! :mortar_board: ",
       "url": "https://github.com/DopplerHQ/awesome-interview-questions",
-      "stars": 81801,
+      "stars": 81817,
       "language": null,
       "last_commit": "2024-07-29T14:21:23Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:38:38Z",
+      "archived_at": "2026-04-04T11:19:46Z",
       "topics": [
         "android-interview-questions",
         "angularjs-interview-questions",
@@ -37,7 +37,7 @@
         "ruby"
       ],
       "license": null,
-      "forks": 9438,
+      "forks": 9439,
       "open_issues": 48
     },
     {
@@ -48,7 +48,7 @@
       "language": "JavaScript",
       "last_commit": "2023-01-03T10:49:48Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:02:44Z",
+      "archived_at": "2026-04-04T10:31:07Z",
       "topics": [
         "atom",
         "editor",
@@ -59,7 +59,7 @@
         "windows"
       ],
       "license": "mit",
-      "forks": 17257,
+      "forks": 17255,
       "open_issues": 994
     },
     {
@@ -73,18 +73,18 @@
       "archived_at": "2026-04-02T20:03:39Z",
       "topics": [],
       "license": "mit",
-      "forks": 27196,
+      "forks": 27192,
       "open_issues": 461
     },
     {
       "name": "GitSquared/edex-ui",
       "description": "A cross-platform, customizable science fiction terminal emulator with advanced monitoring & touchscreen support.",
       "url": "https://github.com/GitSquared/edex-ui",
-      "stars": 44576,
+      "stars": 44577,
       "language": "JavaScript",
       "last_commit": "2021-10-19T22:38:47Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:02:32Z",
+      "archived_at": "2026-04-04T10:32:10Z",
       "topics": [
         "desktop",
         "edex-ui",
@@ -101,18 +101,18 @@
         "windows"
       ],
       "license": "gpl-3.0",
-      "forks": 3067,
+      "forks": 3068,
       "open_issues": 6
     },
     {
       "name": "dylanaraps/pure-bash-bible",
       "description": "📖 A collection of pure bash alternatives to external processes.",
       "url": "https://github.com/dylanaraps/pure-bash-bible",
-      "stars": 41464,
+      "stars": 41463,
       "language": "Shell",
       "last_commit": "2023-11-28T03:26:23Z",
       "archived": true,
-      "archived_at": "2026-04-03T15:18:44Z",
+      "archived_at": "2026-04-04T10:14:48Z",
       "topics": [
         "bash",
         "bible",
@@ -135,11 +135,11 @@
       "name": "google-research/bert",
       "description": "TensorFlow code and pre-trained models for BERT",
       "url": "https://github.com/google-research/bert",
-      "stars": 39950,
+      "stars": 39955,
       "language": "Python",
       "last_commit": "2024-07-23T23:39:41Z",
       "archived": true,
-      "archived_at": "2026-04-03T21:27:56Z",
+      "archived_at": "2026-04-04T11:29:05Z",
       "topics": [
         "google",
         "natural-language-processing",
@@ -155,11 +155,11 @@
       "name": "karpathy/LLM101n",
       "description": "LLM101n: Let's build a Storyteller",
       "url": "https://github.com/karpathy/LLM101n",
-      "stars": 36649,
+      "stars": 36653,
       "language": null,
       "last_commit": "2024-08-01T01:20:33Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:24:33Z",
+      "archived_at": "2026-04-04T09:14:12Z",
       "topics": [],
       "license": null,
       "forks": 2005,
@@ -169,11 +169,11 @@
       "name": "nativefier/nativefier",
       "description": "Make any web page a desktop application",
       "url": "https://github.com/nativefier/nativefier",
-      "stars": 35336,
+      "stars": 35337,
       "language": "TypeScript",
       "last_commit": "2023-09-29T13:45:16Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:05:35Z",
+      "archived_at": "2026-04-04T08:33:52Z",
       "topics": [
         "desktop-application",
         "electron",
@@ -183,7 +183,7 @@
         "windows"
       ],
       "license": "mit",
-      "forks": 2245,
+      "forks": 2244,
       "open_issues": 258
     },
     {
@@ -211,18 +211,18 @@
       "archived_at": "2026-04-03T06:17:18Z",
       "topics": [],
       "license": "mit",
-      "forks": 9679,
+      "forks": 9678,
       "open_issues": 280
     },
     {
       "name": "alibaba/easyexcel",
       "description": "快速、简洁、解决大文件内存溢出的java处理Excel工具",
       "url": "https://github.com/alibaba/easyexcel",
-      "stars": 33753,
+      "stars": 33754,
       "language": "Java",
       "last_commit": "2024-10-29T06:07:07Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:05:47Z",
+      "archived_at": "2026-04-04T06:48:18Z",
       "topics": [
         "excel",
         "java",
@@ -240,11 +240,11 @@
       "name": "AFNetworking/AFNetworking",
       "description": "A delightful networking framework for iOS, macOS, watchOS, and tvOS.",
       "url": "https://github.com/AFNetworking/AFNetworking",
-      "stars": 33636,
+      "stars": 33635,
       "language": "Objective-C",
       "last_commit": "2023-01-17T19:30:05Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:48:53Z",
+      "archived_at": "2026-04-04T03:54:01Z",
       "topics": [],
       "license": "mit",
       "forks": 10534,
@@ -268,55 +268,55 @@
       "name": "microsoft/MS-DOS",
       "description": "The original sources of MS-DOS 1.25, 2.0, and 4.0 for reference purposes",
       "url": "https://github.com/microsoft/MS-DOS",
-      "stars": 31770,
+      "stars": 31771,
       "language": "Assembly",
       "last_commit": "2024-04-25T22:32:47Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:34:56Z",
+      "archived_at": "2026-04-04T02:54:25Z",
       "topics": [
         "ms-dos"
       ],
       "license": "mit",
-      "forks": 4550,
+      "forks": 4549,
       "open_issues": 3
     },
     {
       "name": "Chanzhaoyu/chatgpt-web",
       "description": "用 Express 和  Vue3 搭建的 ChatGPT 演示网页",
       "url": "https://github.com/Chanzhaoyu/chatgpt-web",
-      "stars": 31750,
+      "stars": 31749,
       "language": "Vue",
       "last_commit": "2024-08-16T15:26:57Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:50:01Z",
+      "archived_at": "2026-04-04T09:30:47Z",
       "topics": [],
       "license": "mit",
-      "forks": 10915,
+      "forks": 10914,
       "open_issues": 1
     },
     {
       "name": "blueimp/jQuery-File-Upload",
       "description": "File Upload widget with multiple file selection, drag&drop support, progress bar, validation and preview images, audio and video for jQuery. Supports cross-domain, chunked and resumable file uploads. Works with any server-side platform (Google App Engine, PHP, Python, Ruby on Rails, Java, etc.) that supports standard HTML form file uploads.",
       "url": "https://github.com/blueimp/jQuery-File-Upload",
-      "stars": 30793,
+      "stars": 30794,
       "language": "PHP",
       "last_commit": "2023-05-25T09:11:07Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:05:32Z",
+      "archived_at": "2026-04-04T09:04:12Z",
       "topics": [],
       "license": "mit",
-      "forks": 7803,
+      "forks": 7802,
       "open_issues": 52
     },
     {
       "name": "iperov/DeepFaceLive",
       "description": "Real-time face swap for PC streaming or video calls",
       "url": "https://github.com/iperov/DeepFaceLive",
-      "stars": 30698,
+      "stars": 30697,
       "language": "Python",
       "last_commit": "2024-11-08T03:07:42Z",
       "archived": true,
-      "archived_at": "2026-04-03T20:45:22Z",
+      "archived_at": "2026-04-04T10:01:14Z",
       "topics": [
         "deepfake",
         "faceswap",
@@ -327,18 +327,18 @@
         "webcam"
       ],
       "license": "gpl-3.0",
-      "forks": 1189,
+      "forks": 1190,
       "open_issues": 1
     },
     {
       "name": "Binaryify/NeteaseCloudMusicApi",
       "description": "网易云音乐 Node.js API service",
       "url": "https://github.com/Binaryify/NeteaseCloudMusicApi",
-      "stars": 30286,
+      "stars": 30285,
       "language": null,
       "last_commit": "2024-02-28T02:47:42Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:04:45Z",
+      "archived_at": "2026-04-04T11:28:54Z",
       "topics": [
         "api",
         "apis",
@@ -367,7 +367,7 @@
         "phantomjs"
       ],
       "license": "bsd-3-clause",
-      "forks": 5705,
+      "forks": 5706,
       "open_issues": 14
     },
     {
@@ -378,7 +378,7 @@
       "language": "Python",
       "last_commit": "2025-01-26T21:39:06Z",
       "archived": true,
-      "archived_at": "2026-04-03T20:16:51Z",
+      "archived_at": "2026-04-04T11:03:12Z",
       "topics": [],
       "license": "other",
       "forks": 3530,
@@ -388,14 +388,14 @@
       "name": "dnSpy/dnSpy",
       "description": ".NET debugger and assembly editor",
       "url": "https://github.com/dnSpy/dnSpy",
-      "stars": 29197,
+      "stars": 29194,
       "language": "C#",
       "last_commit": "2020-12-20T23:55:15Z",
       "archived": true,
-      "archived_at": "2026-04-03T18:32:07Z",
+      "archived_at": "2026-04-04T10:31:23Z",
       "topics": [],
       "license": null,
-      "forks": 5501,
+      "forks": 5502,
       "open_issues": 185
     },
     {
@@ -418,18 +418,18 @@
         "systems-science"
       ],
       "license": null,
-      "forks": 18077,
+      "forks": 18076,
       "open_issues": 1956
     },
     {
       "name": "svc-develop-team/so-vits-svc",
       "description": "SoftVC VITS Singing Voice Conversion",
       "url": "https://github.com/svc-develop-team/so-vits-svc",
-      "stars": 28049,
+      "stars": 28047,
       "language": "Python",
       "last_commit": "2023-11-11T13:11:31Z",
       "archived": true,
-      "archived_at": "2026-04-03T15:32:39Z",
+      "archived_at": "2026-04-04T09:24:52Z",
       "topics": [
         "ai",
         "audio-analysis",
@@ -450,7 +450,7 @@
         "voiceconversion"
       ],
       "license": "agpl-3.0",
-      "forks": 5079,
+      "forks": 5078,
       "open_issues": 27
     },
     {
@@ -479,11 +479,11 @@
       "name": "Homebrew/legacy-homebrew",
       "description": "💀 The former home of Homebrew/homebrew (deprecated)",
       "url": "https://github.com/Homebrew/legacy-homebrew",
-      "stars": 26864,
+      "stars": 26866,
       "language": null,
       "last_commit": "2023-05-04T08:15:20Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:04:39Z",
+      "archived_at": "2026-04-04T05:29:33Z",
       "topics": [],
       "license": null,
       "forks": 11094,
@@ -493,11 +493,11 @@
       "name": "fzaninotto/Faker",
       "description": "Faker is a PHP library that generates fake data for you",
       "url": "https://github.com/fzaninotto/Faker",
-      "stars": 26696,
+      "stars": 26697,
       "language": "PHP",
       "last_commit": "2024-03-20T13:44:54Z",
       "archived": true,
-      "archived_at": "2026-04-03T20:25:45Z",
+      "archived_at": "2026-04-04T00:15:58Z",
       "topics": [],
       "license": "mit",
       "forks": 3594,
@@ -507,11 +507,11 @@
       "name": "facebookresearch/fastText",
       "description": "Library for fast text representation and classification.",
       "url": "https://github.com/facebookresearch/fastText",
-      "stars": 26509,
+      "stars": 26510,
       "language": "HTML",
       "last_commit": "2024-03-22T21:40:44Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:49:43Z",
+      "archived_at": "2026-04-04T02:12:18Z",
       "topics": [],
       "license": "mit",
       "forks": 4813,
@@ -535,11 +535,11 @@
       "name": "Igglybuff/awesome-piracy",
       "description": "A curated list of awesome warez and piracy links",
       "url": "https://github.com/Igglybuff/awesome-piracy",
-      "stars": 26140,
+      "stars": 26139,
       "language": "HTML",
       "last_commit": "2023-06-18T22:05:28Z",
       "archived": true,
-      "archived_at": "2026-04-03T16:29:06Z",
+      "archived_at": "2026-04-04T09:37:38Z",
       "topics": [
         "audiobooks",
         "awesome-list",
@@ -584,11 +584,11 @@
       "name": "HumanSignal/labelImg",
       "description": "LabelImg is now part of the Label Studio community. The popular image annotation tool created by Tzutalin is no longer actively being developed, but you can check out Label Studio, the open source data labeling tool for images, text, hypertext, audio, video and time-series data.",
       "url": "https://github.com/HumanSignal/labelImg",
-      "stars": 24892,
+      "stars": 24891,
       "language": "Python",
       "last_commit": "2024-06-07T20:24:32Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:13:47Z",
+      "archived_at": "2026-04-04T10:43:45Z",
       "topics": [
         "annotations",
         "deep-learning",
@@ -608,14 +608,14 @@
       "name": "proxyee-down-org/proxyee-down",
       "description": "http下载工具，基于http代理，支持多连接分块下载",
       "url": "https://github.com/proxyee-down-org/proxyee-down",
-      "stars": 24780,
+      "stars": 24779,
       "language": "Java",
       "last_commit": "2024-07-16T09:22:28Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:22:32Z",
+      "archived_at": "2026-04-04T06:48:25Z",
       "topics": [],
       "license": "apache-2.0",
-      "forks": 4376,
+      "forks": 4377,
       "open_issues": 214
     },
     {
@@ -636,11 +636,11 @@
       "name": "dotnet-architecture/eShopOnContainers",
       "description": "Cross-platform .NET sample microservices and container based application that runs on Linux Windows and macOS. Powered by .NET 7, Docker Containers and Azure Kubernetes Services. Supports Visual Studio, VS for Mac and CLI based environments with Docker CLI, dotnet CLI, VS Code or any other code editor. Moved to https://github.com/dotnet/eShop.",
       "url": "https://github.com/dotnet-architecture/eShopOnContainers",
-      "stars": 24407,
+      "stars": 24406,
       "language": "C#",
       "last_commit": "2023-11-15T22:27:17Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:23:54Z",
+      "archived_at": "2026-04-04T07:11:17Z",
       "topics": [
         "ddd",
         "ddd-patterns",
@@ -659,11 +659,11 @@
       "name": "vercel/pkg",
       "description": "Package your Node.js project into an executable",
       "url": "https://github.com/vercel/pkg",
-      "stars": 24401,
+      "stars": 24400,
       "language": "JavaScript",
       "last_commit": "2024-01-03T01:38:16Z",
       "archived": true,
-      "archived_at": "2026-04-03T15:39:04Z",
+      "archived_at": "2026-04-04T09:39:47Z",
       "topics": [
         "binaries",
         "cli",
@@ -678,11 +678,11 @@
       "name": "StreisandEffect/streisand",
       "description": "Streisand sets up a new server running your choice of WireGuard, OpenConnect, OpenSSH, OpenVPN, Shadowsocks, sslh, Stunnel, or a Tor bridge. It also generates custom instructions for all of these services. At the end of the run you are given an HTML file with instructions that can be shared with friends, family members, and fellow activists.",
       "url": "https://github.com/StreisandEffect/streisand",
-      "stars": 23655,
+      "stars": 23654,
       "language": "Shell",
       "last_commit": "2021-05-04T09:42:40Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:49:01Z",
+      "archived_at": "2026-04-04T09:37:25Z",
       "topics": [
         "ansible",
         "anyconnect",
@@ -720,7 +720,7 @@
         "script"
       ],
       "license": "mit",
-      "forks": 1784,
+      "forks": 1785,
       "open_issues": 469
     },
     {
@@ -747,11 +747,11 @@
       "name": "LSPosed/LSPosed",
       "description": "LSPosed Framework",
       "url": "https://github.com/LSPosed/LSPosed",
-      "stars": 23327,
+      "stars": 23331,
       "language": "Java",
       "last_commit": "2025-03-04T21:28:36Z",
       "archived": true,
-      "archived_at": "2026-04-03T22:59:56Z",
+      "archived_at": "2026-04-04T10:38:48Z",
       "topics": [
         "android",
         "xposed"
@@ -778,11 +778,11 @@
       "name": "facebookarchive/draft-js",
       "description": "A React framework for building text editors.",
       "url": "https://github.com/facebookarchive/draft-js",
-      "stars": 22829,
+      "stars": 22830,
       "language": "JavaScript",
       "last_commit": "2023-02-06T15:35:05Z",
       "archived": true,
-      "archived_at": "2026-04-03T16:35:05Z",
+      "archived_at": "2026-04-04T09:11:59Z",
       "topics": [],
       "license": "mit",
       "forks": 2608,
@@ -811,11 +811,11 @@
       "name": "zzzgydi/clash-verge",
       "description": "A Clash GUI based on tauri. Supports Windows, macOS and Linux.",
       "url": "https://github.com/zzzgydi/clash-verge",
-      "stars": 22025,
+      "stars": 22026,
       "language": "TypeScript",
       "last_commit": "2023-11-03T08:00:47Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:49:53Z",
+      "archived_at": "2026-04-04T11:19:24Z",
       "topics": [
         "clash",
         "cross-platform",
@@ -824,7 +824,7 @@
         "tauri"
       ],
       "license": null,
-      "forks": 3177,
+      "forks": 3178,
       "open_issues": 235
     },
     {
@@ -863,7 +863,7 @@
         "rts"
       ],
       "license": "other",
-      "forks": 5443,
+      "forks": 5442,
       "open_issues": 0
     },
     {
@@ -893,11 +893,11 @@
       "name": "apache/mxnet",
       "description": "Lightweight, Portable, Flexible Distributed/Mobile Deep Learning with Dynamic, Mutation-aware Dataflow Dep Scheduler; for Python, R, Julia, Scala, Go, Javascript and more",
       "url": "https://github.com/apache/mxnet",
-      "stars": 20813,
+      "stars": 20812,
       "language": "C++",
       "last_commit": "2023-10-25T21:28:33Z",
       "archived": true,
-      "archived_at": "2026-04-02T16:22:57Z",
+      "archived_at": "2026-04-04T06:59:49Z",
       "topics": [
         "mxnet"
       ],
@@ -909,14 +909,14 @@
       "name": "google/eng-practices",
       "description": "Google's Engineering Practices documentation",
       "url": "https://github.com/google/eng-practices",
-      "stars": 20505,
+      "stars": 20504,
       "language": null,
       "last_commit": "2024-09-19T05:27:52Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:40:46Z",
+      "archived_at": "2026-04-04T03:38:11Z",
       "topics": [],
       "license": "other",
-      "forks": 2010,
+      "forks": 2011,
       "open_issues": 20
     },
     {
@@ -944,11 +944,11 @@
       "name": "web3/web3.js",
       "description": "Collection of comprehensive TypeScript libraries for Interaction with the Ethereum JSON RPC API and utility functions.",
       "url": "https://github.com/web3/web3.js",
-      "stars": 19958,
+      "stars": 19956,
       "language": "TypeScript",
       "last_commit": "2025-03-05T08:48:59Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:58:52Z",
+      "archived_at": "2026-04-04T11:26:29Z",
       "topics": [
         "abi-decoders",
         "abi-encoders",
@@ -989,14 +989,14 @@
       "name": "facebookarchive/pop",
       "description": "An extensible iOS and OS X animation library, useful for physics-based interactions.",
       "url": "https://github.com/facebookarchive/pop",
-      "stars": 19596,
+      "stars": 19594,
       "language": "Objective-C++",
       "last_commit": "2020-01-02T19:13:40Z",
       "archived": true,
-      "archived_at": "2026-04-03T18:44:39Z",
+      "archived_at": "2026-04-04T03:54:03Z",
       "topics": [],
       "license": "other",
-      "forks": 2861,
+      "forks": 2860,
       "open_issues": 58
     },
     {
@@ -1031,11 +1031,11 @@
       "name": "iperov/DeepFaceLab",
       "description": "DeepFaceLab is the leading software for creating deepfakes.",
       "url": "https://github.com/iperov/DeepFaceLab",
-      "stars": 19121,
+      "stars": 19124,
       "language": "Python",
       "last_commit": "2024-11-13T19:29:05Z",
       "archived": true,
-      "archived_at": "2026-04-03T22:11:54Z",
+      "archived_at": "2026-04-04T09:19:36Z",
       "topics": [
         "arxiv",
         "creating-deepfakes",
@@ -1090,7 +1090,7 @@
       "language": "PowerShell",
       "last_commit": "2023-03-10T04:15:01Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:17:01Z",
+      "archived_at": "2026-04-04T10:54:03Z",
       "topics": [
         "appxpackages",
         "bloatware",
@@ -1110,7 +1110,7 @@
         "windows10"
       ],
       "license": "mit",
-      "forks": 2074,
+      "forks": 2073,
       "open_issues": 300
     },
     {
@@ -1131,14 +1131,14 @@
       "name": "jantic/DeOldify",
       "description": "A Deep Learning based project for colorizing and restoring old images (and video!)",
       "url": "https://github.com/jantic/DeOldify",
-      "stars": 18458,
+      "stars": 18460,
       "language": "Python",
       "last_commit": "2024-10-19T17:17:35Z",
       "archived": true,
-      "archived_at": "2026-04-03T10:12:33Z",
+      "archived_at": "2026-04-04T07:40:59Z",
       "topics": [],
       "license": "mit",
-      "forks": 2650,
+      "forks": 2649,
       "open_issues": 1
     },
     {
@@ -1173,11 +1173,11 @@
       "name": "Python-World/python-mini-projects",
       "description": "A collection of simple python mini projects to enhance your python skills",
       "url": "https://github.com/Python-World/python-mini-projects",
-      "stars": 18149,
+      "stars": 18152,
       "language": "Python",
       "last_commit": "2022-07-17T08:51:24Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:04:36Z",
+      "archived_at": "2026-04-04T11:00:03Z",
       "topics": [
         "automate",
         "learn-to-code",
@@ -1189,7 +1189,7 @@
         "tools"
       ],
       "license": "mit",
-      "forks": 6003,
+      "forks": 6006,
       "open_issues": 74
     },
     {
@@ -1271,11 +1271,11 @@
       "name": "getlantern/download",
       "description": "Lantern官方版本下载 蓝灯 翻墙 代理 科学上网 外网 加速器 梯子 路由 proxy vpn circumvention gfw",
       "url": "https://github.com/getlantern/download",
-      "stars": 17602,
+      "stars": 17604,
       "language": null,
       "last_commit": "2022-04-18T15:54:31Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:34:34Z",
+      "archived_at": "2026-04-04T11:32:40Z",
       "topics": [
         "accelerator",
         "censorship",
@@ -1285,18 +1285,18 @@
         "vpn"
       ],
       "license": null,
-      "forks": 2975,
+      "forks": 2974,
       "open_issues": 0
     },
     {
       "name": "NVIDIA/nvidia-docker",
       "description": "Build and run Docker containers leveraging NVIDIA GPUs",
       "url": "https://github.com/NVIDIA/nvidia-docker",
-      "stars": 17527,
+      "stars": 17526,
       "language": null,
       "last_commit": "2023-12-06T09:16:49Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:04:12Z",
+      "archived_at": "2026-04-04T09:24:36Z",
       "topics": [
         "cuda",
         "docker",
@@ -1311,11 +1311,11 @@
       "name": "dotnet/corefx",
       "description": "This repo is used for servicing PR's for .NET Core 2.1 and 3.1. Please visit us at https://github.com/dotnet/runtime ",
       "url": "https://github.com/dotnet/corefx",
-      "stars": 17523,
+      "stars": 17521,
       "language": null,
       "last_commit": "2023-01-21T00:07:42Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:27:28Z",
+      "archived_at": "2026-04-04T07:45:27Z",
       "topics": [
         "coreclr",
         "corefx",
@@ -1351,7 +1351,7 @@
       "language": "Python",
       "last_commit": "2023-06-02T18:55:09Z",
       "archived": true,
-      "archived_at": "2026-04-03T08:10:56Z",
+      "archived_at": "2026-04-04T03:49:08Z",
       "topics": [
         "deep-learning",
         "machine-learning",
@@ -1426,7 +1426,7 @@
       "language": "Python",
       "last_commit": "2021-04-12T16:11:40Z",
       "archived": true,
-      "archived_at": "2026-04-03T21:50:11Z",
+      "archived_at": "2026-04-04T10:37:15Z",
       "topics": [
         "gfw",
         "proxy",
@@ -1456,7 +1456,7 @@
         "python"
       ],
       "license": "gpl-3.0",
-      "forks": 1656,
+      "forks": 1657,
       "open_issues": 355
     },
     {
@@ -1485,11 +1485,11 @@
       "name": "angular/material",
       "description": "Material design for AngularJS",
       "url": "https://github.com/angular/material",
-      "stars": 16415,
+      "stars": 16414,
       "language": "JavaScript",
       "last_commit": "2024-09-05T18:38:55Z",
       "archived": true,
-      "archived_at": "2026-04-03T06:47:32Z",
+      "archived_at": "2026-04-04T04:50:42Z",
       "topics": [
         "angularjs",
         "angularjs-material",
@@ -1505,11 +1505,11 @@
       "name": "twintproject/twint",
       "description": "An advanced Twitter scraping & OSINT tool written in Python that doesn't use Twitter's API, allowing you to scrape a user's followers, following, Tweets and more while evading most API limitations.",
       "url": "https://github.com/twintproject/twint",
-      "stars": 16356,
+      "stars": 16355,
       "language": "Python",
       "last_commit": "2023-02-23T13:58:09Z",
       "archived": true,
-      "archived_at": "2026-04-03T20:12:00Z",
+      "archived_at": "2026-04-04T10:51:16Z",
       "topics": [
         "elasticsearch",
         "kibana",
@@ -1539,18 +1539,18 @@
       "archived_at": "2026-04-03T23:15:33Z",
       "topics": [],
       "license": "other",
-      "forks": 1939,
+      "forks": 1940,
       "open_issues": 116
     },
     {
       "name": "avgupta456/github-trends",
       "description": "🚀 Level up your GitHub profile readme with customizable cards including LOC statistics!",
       "url": "https://github.com/avgupta456/github-trends",
-      "stars": 16077,
+      "stars": 16076,
       "language": "Python",
       "last_commit": "2025-01-25T12:51:50Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:57:41Z",
+      "archived_at": "2026-04-04T09:34:12Z",
       "topics": [
         "github",
         "github-api",
@@ -1658,21 +1658,21 @@
         "kubernetes"
       ],
       "license": "apache-2.0",
-      "forks": 16418,
+      "forks": 16417,
       "open_issues": 0
     },
     {
       "name": "MatsuriDayo/nekoray",
       "description": "不再维护，自寻替代品。 Qt based cross-platform GUI proxy configuration manager (backend: sing-box)",
       "url": "https://github.com/MatsuriDayo/nekoray",
-      "stars": 15306,
+      "stars": 15307,
       "language": "C++",
       "last_commit": "2024-12-12T08:25:39Z",
       "archived": true,
-      "archived_at": "2026-04-03T21:28:28Z",
+      "archived_at": "2026-04-04T07:44:42Z",
       "topics": [],
       "license": "gpl-3.0",
-      "forks": 1471,
+      "forks": 1472,
       "open_issues": 218
     },
     {
@@ -1699,11 +1699,11 @@
       "name": "OpenEthan/SMSBoom",
       "description": "SMSBoom - Deprecate: Due to judicial reasons, the repository has been suspended!",
       "url": "https://github.com/OpenEthan/SMSBoom",
-      "stars": 15254,
+      "stars": 15255,
       "language": "Python",
       "last_commit": "2024-03-20T03:30:32Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:46:59Z",
+      "archived_at": "2026-04-04T04:34:57Z",
       "topics": [
         "deprecated"
       ],
@@ -1715,28 +1715,28 @@
       "name": "Perfare/AssetStudio",
       "description": "AssetStudio is a tool for exploring, extracting and exporting assets and assetbundles.",
       "url": "https://github.com/Perfare/AssetStudio",
-      "stars": 15230,
+      "stars": 15231,
       "language": "C#",
       "last_commit": "2022-12-08T15:37:37Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:39:35Z",
+      "archived_at": "2026-04-04T01:24:46Z",
       "topics": [
         "unity",
         "unity3d"
       ],
       "license": "mit",
-      "forks": 2884,
+      "forks": 2886,
       "open_issues": 183
     },
     {
       "name": "facebookresearch/detr",
       "description": "End-to-End Object Detection with Transformers",
       "url": "https://github.com/facebookresearch/detr",
-      "stars": 15204,
+      "stars": 15205,
       "language": "Python",
       "last_commit": "2024-03-12T15:58:25Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:18:01Z",
+      "archived_at": "2026-04-04T10:43:31Z",
       "topics": [],
       "license": "apache-2.0",
       "forks": 2662,
@@ -1760,11 +1760,11 @@
       "name": "sundowndev/hacker-roadmap",
       "description": "A collection of hacking tools, resources and references to practice ethical hacking.",
       "url": "https://github.com/sundowndev/hacker-roadmap",
-      "stars": 15191,
+      "stars": 15192,
       "language": null,
       "last_commit": "2023-10-16T11:21:45Z",
       "archived": true,
-      "archived_at": "2026-04-03T22:02:55Z",
+      "archived_at": "2026-04-04T06:04:12Z",
       "topics": [
         "exploitation",
         "frameworks",
@@ -1792,7 +1792,7 @@
       "language": "Shell",
       "last_commit": "2024-11-02T12:58:46Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:20:10Z",
+      "archived_at": "2026-04-04T10:13:40Z",
       "topics": [
         "home-assistant",
         "home-automation",
@@ -1825,11 +1825,11 @@
       "name": "solana-labs/solana",
       "description": "Web-Scale Blockchain for fast, secure, scalable, decentralized apps and marketplaces.",
       "url": "https://github.com/solana-labs/solana",
-      "stars": 14851,
+      "stars": 14850,
       "language": "Rust",
       "last_commit": "2025-01-22T19:41:54Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:33:50Z",
+      "archived_at": "2026-04-04T05:44:36Z",
       "topics": [
         "bitcoin",
         "blockchain",
@@ -1840,7 +1840,7 @@
         "solana"
       ],
       "license": "apache-2.0",
-      "forks": 5600,
+      "forks": 5601,
       "open_issues": 265
     },
     {
@@ -1865,14 +1865,14 @@
       "name": "vdumoulin/conv_arithmetic",
       "description": "A technical report on convolution arithmetic in the context of deep learning",
       "url": "https://github.com/vdumoulin/conv_arithmetic",
-      "stars": 14644,
+      "stars": 14643,
       "language": "TeX",
       "last_commit": "2023-06-08T21:06:47Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:34:53Z",
+      "archived_at": "2026-04-04T05:54:44Z",
       "topics": [],
       "license": "mit",
-      "forks": 2319,
+      "forks": 2318,
       "open_issues": 7
     },
     {
@@ -1909,7 +1909,7 @@
         "nodejs"
       ],
       "license": "mit",
-      "forks": 2180,
+      "forks": 2179,
       "open_issues": 354
     },
     {
@@ -2078,11 +2078,11 @@
       "name": "json-iterator/go",
       "description": "A high-performance 100% compatible drop-in replacement of \"encoding/json\"",
       "url": "https://github.com/json-iterator/go",
-      "stars": 13917,
+      "stars": 13918,
       "language": "Go",
       "last_commit": "2024-05-27T09:03:49Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:02:00Z",
+      "archived_at": "2026-04-04T05:44:05Z",
       "topics": [
         "deserialization",
         "go",
@@ -2101,11 +2101,11 @@
       "name": "fbsamples/f8app",
       "description": "Source code of the official F8 app of 2017, powered by React Native and other Facebook open source projects.",
       "url": "https://github.com/fbsamples/f8app",
-      "stars": 13916,
+      "stars": 13915,
       "language": "JavaScript",
       "last_commit": "2023-07-11T07:23:07Z",
       "archived": true,
-      "archived_at": "2026-04-03T08:10:07Z",
+      "archived_at": "2026-04-04T03:54:06Z",
       "topics": [],
       "license": "other",
       "forks": 2479,
@@ -2228,11 +2228,11 @@
       "name": "myspaghetti/macos-virtualbox",
       "description": "Push-button installer of macOS Catalina, Mojave, and High Sierra guests in Virtualbox on x86 CPUs for Windows, Linux, and macOS",
       "url": "https://github.com/myspaghetti/macos-virtualbox",
-      "stars": 13552,
+      "stars": 13553,
       "language": "Shell",
       "last_commit": "2023-08-06T15:57:37Z",
       "archived": true,
-      "archived_at": "2026-04-03T11:30:52Z",
+      "archived_at": "2026-04-04T09:20:11Z",
       "topics": [
         "bash-script",
         "macos",
@@ -2242,18 +2242,18 @@
         "virtualbox-efi"
       ],
       "license": "gpl-2.0",
-      "forks": 1122,
+      "forks": 1121,
       "open_issues": 1
     },
     {
       "name": "searx/searx",
       "description": "Privacy-respecting metasearch engine",
       "url": "https://github.com/searx/searx",
-      "stars": 13501,
+      "stars": 13502,
       "language": "Python",
       "last_commit": "2023-09-07T16:16:22Z",
       "archived": true,
-      "archived_at": "2026-04-01T19:58:21Z",
+      "archived_at": "2026-04-04T09:18:21Z",
       "topics": [
         "metasearch",
         "metasearch-engine",
@@ -2369,11 +2369,11 @@
       "name": "goabstract/Marketing-for-Engineers",
       "description": "A curated collection of marketing articles & tools to grow your product. ",
       "url": "https://github.com/goabstract/Marketing-for-Engineers",
-      "stars": 13085,
+      "stars": 13086,
       "language": null,
       "last_commit": "2020-10-27T20:51:02Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:05:28Z",
+      "archived_at": "2026-04-04T04:24:56Z",
       "topics": [
         "awesome-list",
         "bootstrapper",
@@ -2406,11 +2406,11 @@
       "name": "TonnyL/Awesome_APIs",
       "description": ":octocat: A collection of APIs",
       "url": "https://github.com/TonnyL/Awesome_APIs",
-      "stars": 12892,
+      "stars": 12893,
       "language": null,
       "last_commit": "2020-02-29T16:51:31Z",
       "archived": true,
-      "archived_at": "2026-04-03T20:52:44Z",
+      "archived_at": "2026-04-04T11:31:05Z",
       "topics": [
         "android",
         "api",
@@ -2598,7 +2598,7 @@
       "language": null,
       "last_commit": "2025-03-24T11:49:58Z",
       "archived": true,
-      "archived_at": "2026-04-02T11:13:00Z",
+      "archived_at": "2026-04-04T09:39:45Z",
       "topics": [
         "arduino",
         "assembly",
@@ -2624,11 +2624,11 @@
       "name": "apache/predictionio",
       "description": "PredictionIO, a machine learning server for developers and ML engineers.",
       "url": "https://github.com/apache/predictionio",
-      "stars": 12531,
+      "stars": 12533,
       "language": "Scala",
       "last_commit": "2021-01-09T10:30:58Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:14:04Z",
+      "archived_at": "2026-04-04T10:55:12Z",
       "topics": [
         "big-data",
         "predictionio",
@@ -2656,11 +2656,11 @@
       "name": "noodle-run/noodle",
       "description": "Rethinking Student Productivity",
       "url": "https://github.com/noodle-run/noodle",
-      "stars": 12293,
+      "stars": 12294,
       "language": "TypeScript",
       "last_commit": "2024-10-17T02:31:07Z",
       "archived": true,
-      "archived_at": "2026-04-02T10:38:13Z",
+      "archived_at": "2026-04-04T03:52:00Z",
       "topics": [
         "drizzle-orm",
         "education",
@@ -2691,7 +2691,7 @@
       "language": "JavaScript",
       "last_commit": "2024-05-27T19:00:23Z",
       "archived": true,
-      "archived_at": "2026-04-03T22:21:30Z",
+      "archived_at": "2026-04-04T02:38:09Z",
       "topics": [
         "combobox",
         "dropdown",
@@ -2775,7 +2775,7 @@
         "windows"
       ],
       "license": "apache-2.0",
-      "forks": 5208,
+      "forks": 5207,
       "open_issues": 141
     },
     {
@@ -2813,11 +2813,11 @@
       "name": "ansible/ansible-examples",
       "description": "A few starter examples of ansible playbooks, to show features and how they work together.  See http://galaxy.ansible.com for example roles from the Ansible community for deploying many popular applications.",
       "url": "https://github.com/ansible/ansible-examples",
-      "stars": 12031,
+      "stars": 12030,
       "language": "Shell",
       "last_commit": "2024-05-16T09:00:20Z",
       "archived": true,
-      "archived_at": "2026-04-03T10:11:15Z",
+      "archived_at": "2026-04-04T08:11:31Z",
       "topics": [],
       "license": null,
       "forks": 8003,
@@ -2827,11 +2827,11 @@
       "name": "NetEase/pomelo",
       "description": "A fast,scalable,distributed game server framework for Node.js.",
       "url": "https://github.com/NetEase/pomelo",
-      "stars": 11898,
+      "stars": 11900,
       "language": "JavaScript",
       "last_commit": "2023-08-10T09:22:21Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:48:55Z",
+      "archived_at": "2026-04-04T07:08:10Z",
       "topics": [],
       "license": "mit",
       "forks": 2881,
@@ -2890,18 +2890,18 @@
       "name": "thedevdojo/voyager",
       "description": "Voyager - The Missing Laravel Admin",
       "url": "https://github.com/thedevdojo/voyager",
-      "stars": 11811,
+      "stars": 11810,
       "language": "PHP",
       "last_commit": "2025-02-07T14:58:08Z",
       "archived": true,
-      "archived_at": "2026-04-03T21:55:52Z",
+      "archived_at": "2026-04-03T23:54:56Z",
       "topics": [
         "laravel",
         "laravel-admin",
         "voyager"
       ],
       "license": "mit",
-      "forks": 2659,
+      "forks": 2658,
       "open_issues": 459
     },
     {
@@ -2985,11 +2985,11 @@
       "name": "xupefei/Locale-Emulator",
       "description": "Yet Another System Region and Language Simulator",
       "url": "https://github.com/xupefei/Locale-Emulator",
-      "stars": 11421,
+      "stars": 11423,
       "language": "C#",
       "last_commit": "2022-04-15T09:55:46Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:36:20Z",
+      "archived_at": "2026-04-04T07:19:41Z",
       "topics": [],
       "license": "lgpl-3.0",
       "forks": 815,
@@ -2999,11 +2999,11 @@
       "name": "dive-into-machine-learning/dive-into-machine-learning",
       "description": "Free ways to dive into machine learning with Python and Jupyter Notebook. Notebooks, courses, and other links. (First posted in 2016.)",
       "url": "https://github.com/dive-into-machine-learning/dive-into-machine-learning",
-      "stars": 11397,
+      "stars": 11398,
       "language": null,
       "last_commit": "2022-06-17T23:22:08Z",
       "archived": true,
-      "archived_at": "2026-04-02T08:32:19Z",
+      "archived_at": "2026-04-04T11:16:52Z",
       "topics": [],
       "license": "cc-by-4.0",
       "forks": 1879,
@@ -3020,7 +3020,7 @@
       "archived_at": "2026-04-03T20:24:48Z",
       "topics": [],
       "license": "other",
-      "forks": 4148,
+      "forks": 4147,
       "open_issues": 663
     },
     {
@@ -3276,18 +3276,18 @@
       "archived_at": "2026-04-02T20:43:58Z",
       "topics": [],
       "license": "mit",
-      "forks": 1155,
+      "forks": 1154,
       "open_issues": 251
     },
     {
       "name": "GoogleChromeLabs/ndb",
       "description": "ndb is an improved debugging experience for Node.js, enabled by Chrome DevTools",
       "url": "https://github.com/GoogleChromeLabs/ndb",
-      "stars": 10897,
+      "stars": 10896,
       "language": "JavaScript",
       "last_commit": "2022-05-26T07:03:35Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:06:29Z",
+      "archived_at": "2026-04-04T10:20:19Z",
       "topics": [
         "debugging",
         "devtools",
@@ -3301,11 +3301,11 @@
       "name": "fdehau/tui-rs",
       "description": "Build terminal user interfaces and dashboards using Rust",
       "url": "https://github.com/fdehau/tui-rs",
-      "stars": 10875,
+      "stars": 10876,
       "language": "Rust",
       "last_commit": "2023-08-06T07:35:02Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:23:22Z",
+      "archived_at": "2026-04-04T04:48:14Z",
       "topics": [
         "dashboard",
         "rust",
@@ -3327,7 +3327,7 @@
       "archived_at": "2026-04-03T12:04:48Z",
       "topics": [],
       "license": "apache-2.0",
-      "forks": 1387,
+      "forks": 1388,
       "open_issues": 142
     },
     {
@@ -3450,11 +3450,11 @@
       "name": "dotnet-architecture/eShopOnWeb",
       "description": "Sample ASP.NET Core 8.0 reference application, now community supported: https://github.com/NimblePros/eShopOnWeb",
       "url": "https://github.com/dotnet-architecture/eShopOnWeb",
-      "stars": 10644,
+      "stars": 10643,
       "language": "C#",
       "last_commit": "2025-01-13T20:55:37Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:20:57Z",
+      "archived_at": "2026-04-04T07:11:19Z",
       "topics": [
         "architecture",
         "asp-net-core",
@@ -3475,18 +3475,18 @@
         "software-architecture"
       ],
       "license": "mit",
-      "forks": 5949,
+      "forks": 5950,
       "open_issues": 20
     },
     {
       "name": "facebookresearch/ParlAI",
       "description": "A framework for training and evaluating AI models on a variety of openly available dialogue datasets.",
       "url": "https://github.com/facebookresearch/ParlAI",
-      "stars": 10632,
+      "stars": 10631,
       "language": "Python",
       "last_commit": "2023-11-03T14:30:00Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:05:40Z",
+      "archived_at": "2026-04-04T09:24:37Z",
       "topics": [],
       "license": "mit",
       "forks": 2074,
@@ -3496,11 +3496,11 @@
       "name": "MathewSachin/Captura",
       "description": "Capture Screen, Audio, Cursor, Mouse Clicks and Keystrokes",
       "url": "https://github.com/MathewSachin/Captura",
-      "stars": 10605,
+      "stars": 10604,
       "language": "C#",
       "last_commit": "2023-04-09T14:52:52Z",
       "archived": true,
-      "archived_at": "2026-04-03T20:37:23Z",
+      "archived_at": "2026-04-04T07:11:14Z",
       "topics": [
         "capture",
         "chocolatey",
@@ -3544,7 +3544,7 @@
       "language": "Python",
       "last_commit": "2019-07-02T11:23:43Z",
       "archived": true,
-      "archived_at": "2026-04-03T21:40:21Z",
+      "archived_at": "2026-04-04T04:34:14Z",
       "topics": [
         "e",
         "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
@@ -3606,7 +3606,7 @@
         "vue"
       ],
       "license": null,
-      "forks": 986,
+      "forks": 985,
       "open_issues": 2
     },
     {
@@ -3687,11 +3687,11 @@
       "name": "Snoopy1866/LiTiaotiao-Custom-Rules",
       "description": null,
       "url": "https://github.com/Snoopy1866/LiTiaotiao-Custom-Rules",
-      "stars": 10358,
+      "stars": 10356,
       "language": null,
       "last_commit": "2024-11-08T07:51:46Z",
       "archived": true,
-      "archived_at": "2026-04-03T06:16:03Z",
+      "archived_at": "2026-04-04T06:59:50Z",
       "topics": [],
       "license": null,
       "forks": 748,
@@ -3701,11 +3701,11 @@
       "name": "sourcegraph/sourcegraph-public-snapshot",
       "description": "Code AI platform with Code Search & Cody",
       "url": "https://github.com/sourcegraph/sourcegraph-public-snapshot",
-      "stars": 10259,
+      "stars": 10260,
       "language": "Go",
       "last_commit": "2024-09-02T11:52:13Z",
       "archived": true,
-      "archived_at": "2026-04-03T16:26:19Z",
+      "archived_at": "2026-04-04T07:40:30Z",
       "topics": [
         "code-intelligence",
         "code-search",
@@ -3714,7 +3714,7 @@
         "sourcegraph"
       ],
       "license": "other",
-      "forks": 1360,
+      "forks": 1362,
       "open_issues": 4746
     },
     {
@@ -3728,7 +3728,7 @@
       "archived_at": "2026-04-01T17:55:04Z",
       "topics": [],
       "license": "mit",
-      "forks": 2147,
+      "forks": 2146,
       "open_issues": 130
     },
     {
@@ -3774,11 +3774,11 @@
       "name": "askmike/gekko",
       "description": "A bitcoin trading bot written in node - https://gekko.wizb.it/",
       "url": "https://github.com/askmike/gekko",
-      "stars": 10168,
+      "stars": 10167,
       "language": "JavaScript",
       "last_commit": "2020-02-16T14:25:26Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:48:57Z",
+      "archived_at": "2026-04-04T03:37:59Z",
       "topics": [
         "bitcoin",
         "exchange",
@@ -3787,7 +3787,7 @@
         "trading-strategies"
       ],
       "license": "mit",
-      "forks": 3842,
+      "forks": 3841,
       "open_issues": 0
     },
     {
@@ -3827,11 +3827,11 @@
       "name": "facebookresearch/demucs",
       "description": "Code for the paper Hybrid Spectrogram and Waveform Source Separation",
       "url": "https://github.com/facebookresearch/demucs",
-      "stars": 9927,
+      "stars": 9930,
       "language": "Python",
       "last_commit": "2024-04-24T20:25:19Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:22:17Z",
+      "archived_at": "2026-04-04T07:06:29Z",
       "topics": [],
       "license": "mit",
       "forks": 1455,
@@ -3879,11 +3879,11 @@
       "name": "Flipper-XFW/Xtreme-Firmware",
       "description": "The Dom amongst the Flipper Zero Firmware. Give your Flipper the power and freedom it is really craving. Let it show you its true form. Dont delay, switch to the one and only true Master today!    ",
       "url": "https://github.com/Flipper-XFW/Xtreme-Firmware",
-      "stars": 9872,
+      "stars": 9873,
       "language": "C",
       "last_commit": "2024-11-19T01:52:33Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:32:19Z",
+      "archived_at": "2026-04-04T08:01:53Z",
       "topics": [
         "cfw",
         "custom-firmware",
@@ -3893,7 +3893,7 @@
         "flipperzero"
       ],
       "license": "gpl-3.0",
-      "forks": 714,
+      "forks": 715,
       "open_issues": 64
     },
     {
@@ -3914,11 +3914,11 @@
       "name": "darknessomi/musicbox",
       "description": "网易云音乐命令行版本",
       "url": "https://github.com/darknessomi/musicbox",
-      "stars": 9820,
+      "stars": 9819,
       "language": "Python",
       "last_commit": "2022-06-28T07:42:25Z",
       "archived": true,
-      "archived_at": "2026-04-03T13:42:44Z",
+      "archived_at": "2026-04-04T05:57:35Z",
       "topics": [
         "linux",
         "music",
@@ -3968,7 +3968,7 @@
         "windows"
       ],
       "license": "mit",
-      "forks": 2648,
+      "forks": 2647,
       "open_issues": 137
     },
     {
@@ -4098,11 +4098,11 @@
       "name": "seven332/EhViewer",
       "description": "[DEPRECATED] An Unofficial E-Hentai Application for Android",
       "url": "https://github.com/seven332/EhViewer",
-      "stars": 9561,
+      "stars": 9563,
       "language": "Java",
       "last_commit": "2019-08-09T04:50:17Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:09:32Z",
+      "archived_at": "2026-04-04T11:05:51Z",
       "topics": [
         "android",
         "comic",
@@ -4167,11 +4167,11 @@
       "name": "vfsfitvnm/ViMusic",
       "description": "An Android application for streaming music from YouTube Music",
       "url": "https://github.com/vfsfitvnm/ViMusic",
-      "stars": 9419,
+      "stars": 9420,
       "language": "Kotlin",
       "last_commit": "2024-07-15T23:40:32Z",
       "archived": true,
-      "archived_at": "2026-04-03T13:29:07Z",
+      "archived_at": "2026-04-04T06:12:54Z",
       "topics": [
         "android",
         "jetpack-compose",
@@ -4180,7 +4180,7 @@
         "youtube"
       ],
       "license": "gpl-3.0",
-      "forks": 1240,
+      "forks": 1239,
       "open_issues": 731
     },
     {
@@ -4247,7 +4247,7 @@
         "unmaintained"
       ],
       "license": "other",
-      "forks": 2917,
+      "forks": 2916,
       "open_issues": 0
     },
     {
@@ -4302,11 +4302,11 @@
       "name": "dotnet/blazor",
       "description": "Blazor moved to https://github.com/dotnet/aspnetcore",
       "url": "https://github.com/dotnet/blazor",
-      "stars": 9297,
+      "stars": 9296,
       "language": "PowerShell",
       "last_commit": "2021-02-23T15:13:56Z",
       "archived": true,
-      "archived_at": "2026-04-02T16:44:15Z",
+      "archived_at": "2026-04-04T07:11:24Z",
       "topics": [],
       "license": "apache-2.0",
       "forks": 644,
@@ -4320,7 +4320,7 @@
       "language": "Jupyter Notebook",
       "last_commit": "2023-04-16T22:03:47Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:53:27Z",
+      "archived_at": "2026-04-04T07:50:43Z",
       "topics": [
         "deep-learning",
         "deep-learning-stock",
@@ -4381,7 +4381,7 @@
       "archived_at": "2026-04-03T20:25:09Z",
       "topics": [],
       "license": "mit",
-      "forks": 989,
+      "forks": 990,
       "open_issues": 138
     },
     {
@@ -4410,11 +4410,11 @@
       "name": "byt3bl33d3r/CrackMapExec",
       "description": "A swiss army knife for pentesting networks",
       "url": "https://github.com/byt3bl33d3r/CrackMapExec",
-      "stars": 9115,
+      "stars": 9116,
       "language": "Python",
       "last_commit": "2023-12-06T17:09:42Z",
       "archived": true,
-      "archived_at": "2026-04-03T13:36:37Z",
+      "archived_at": "2026-04-04T09:29:39Z",
       "topics": [
         "active-directory",
         "networks",
@@ -4431,11 +4431,11 @@
       "name": "scaffold-eth/scaffold-eth",
       "description": "🏗 forkable Ethereum dev stack focused on fast product iterations ",
       "url": "https://github.com/scaffold-eth/scaffold-eth",
-      "stars": 9095,
+      "stars": 9094,
       "language": "CSS",
       "last_commit": "2024-06-04T15:20:23Z",
       "archived": true,
-      "archived_at": "2026-04-03T07:24:36Z",
+      "archived_at": "2026-04-04T02:12:08Z",
       "topics": [
         "buidler",
         "create-react-app",
@@ -4458,28 +4458,28 @@
       "name": "NAStool/nas-tools",
       "description": "NAS媒体库管理工具",
       "url": "https://github.com/NAStool/nas-tools",
-      "stars": 9079,
+      "stars": 9081,
       "language": null,
       "last_commit": "2023-05-16T00:41:13Z",
       "archived": true,
-      "archived_at": "2026-04-02T17:20:50Z",
+      "archived_at": "2026-04-04T03:07:44Z",
       "topics": [
         "nas",
         "python"
       ],
       "license": "agpl-3.0",
-      "forks": 1749,
+      "forks": 1750,
       "open_issues": 170
     },
     {
       "name": "microsoft/vscode-tips-and-tricks",
       "description": "Collection of helpful tips and tricks for VS Code. ",
       "url": "https://github.com/microsoft/vscode-tips-and-tricks",
-      "stars": 9073,
+      "stars": 9074,
       "language": null,
       "last_commit": "2020-05-24T11:29:20Z",
       "archived": true,
-      "archived_at": "2026-04-02T17:09:19Z",
+      "archived_at": "2026-04-04T01:36:25Z",
       "topics": [],
       "license": null,
       "forks": 687,
@@ -4528,7 +4528,7 @@
       "language": "Python",
       "last_commit": "2024-01-27T15:51:44Z",
       "archived": true,
-      "archived_at": "2026-04-03T10:21:55Z",
+      "archived_at": "2026-04-04T04:10:49Z",
       "topics": [
         "changing-colorschemes",
         "colorscheme",
@@ -4566,14 +4566,14 @@
       "name": "thoughtbot/paperclip",
       "description": "Easy file attachment management for ActiveRecord",
       "url": "https://github.com/thoughtbot/paperclip",
-      "stars": 9016,
+      "stars": 9017,
       "language": "Ruby",
       "last_commit": "2023-07-13T17:57:58Z",
       "archived": true,
-      "archived_at": "2026-04-03T09:36:53Z",
+      "archived_at": "2026-04-04T05:01:29Z",
       "topics": [],
       "license": "other",
-      "forks": 2414,
+      "forks": 2413,
       "open_issues": 53
     },
     {
@@ -4596,11 +4596,11 @@
       "name": "bytedance/IconPark",
       "description": "🍎Transform an SVG icon into multiple themes, and generate React icons，Vue icons，svg icons",
       "url": "https://github.com/bytedance/IconPark",
-      "stars": 8980,
+      "stars": 8981,
       "language": "TypeScript",
       "last_commit": "2023-02-24T07:46:02Z",
       "archived": true,
-      "archived_at": "2026-04-03T09:32:28Z",
+      "archived_at": "2026-04-04T10:07:56Z",
       "topics": [
         "fill",
         "icon",
@@ -4626,7 +4626,7 @@
       "language": "Go",
       "last_commit": "2023-04-19T18:46:51Z",
       "archived": true,
-      "archived_at": "2026-04-01T19:57:31Z",
+      "archived_at": "2026-04-04T09:37:30Z",
       "topics": [],
       "license": "mit",
       "forks": 1166,
@@ -4682,11 +4682,11 @@
       "name": "LSPosed/LSPatch",
       "description": "LSPatch: A non-root Xposed framework extending from LSPosed",
       "url": "https://github.com/LSPosed/LSPatch",
-      "stars": 8934,
+      "stars": 8936,
       "language": "Java",
       "last_commit": "2023-12-13T04:54:49Z",
       "archived": true,
-      "archived_at": "2026-04-03T13:35:47Z",
+      "archived_at": "2026-04-04T09:00:01Z",
       "topics": [],
       "license": "gpl-3.0",
       "forks": 1079,
@@ -4696,11 +4696,11 @@
       "name": "jzhang38/TinyLlama",
       "description": "The TinyLlama project is an open endeavor to pretrain a 1.1B Llama model on 3 trillion tokens.",
       "url": "https://github.com/jzhang38/TinyLlama",
-      "stars": 8931,
+      "stars": 8930,
       "language": "Python",
       "last_commit": "2024-05-03T20:21:20Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:46:02Z",
+      "archived_at": "2026-04-04T03:32:48Z",
       "topics": [],
       "license": "apache-2.0",
       "forks": 604,
@@ -4710,11 +4710,11 @@
       "name": "vvbbnn00/WARP-Clash-API",
       "description": "该项目可以让你通过订阅的方式使用Cloudflare WARP+，自动获取流量。This project enables you to use Cloudflare WARP+ through subscription, automatically acquiring traffic.",
       "url": "https://github.com/vvbbnn00/WARP-Clash-API",
-      "stars": 8850,
+      "stars": 8849,
       "language": "Python",
       "last_commit": "2024-09-04T00:11:27Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:16:41Z",
+      "archived_at": "2026-04-04T10:29:50Z",
       "topics": [
         "clash",
         "cloudflare",
@@ -4788,7 +4788,7 @@
       "language": "C",
       "last_commit": "2024-01-10T11:19:48Z",
       "archived": true,
-      "archived_at": "2026-04-02T19:49:48Z",
+      "archived_at": "2026-04-04T10:26:30Z",
       "topics": [],
       "license": null,
       "forks": 2465,
@@ -4847,11 +4847,11 @@
       "name": "BewlyBewly/BewlyBewly",
       "description": "Just make a few small changes to your Bilibili homepage. (English | 简体中文 | 正體中文 | 廣東話)",
       "url": "https://github.com/BewlyBewly/BewlyBewly",
-      "stars": 8721,
+      "stars": 8722,
       "language": "Vue",
       "last_commit": "2025-02-26T04:17:04Z",
       "archived": true,
-      "archived_at": "2026-04-03T11:31:15Z",
+      "archived_at": "2026-04-04T08:31:50Z",
       "topics": [
         "bilibili",
         "browser-extension",
@@ -4860,7 +4860,7 @@
         "dark-theme"
       ],
       "license": "mit",
-      "forks": 391,
+      "forks": 392,
       "open_issues": 39
     },
     {
@@ -4976,7 +4976,7 @@
       "archived_at": "2026-04-03T07:15:55Z",
       "topics": [],
       "license": "mit",
-      "forks": 2100,
+      "forks": 2101,
       "open_issues": 66
     },
     {
@@ -5133,7 +5133,7 @@
       "language": "Python",
       "last_commit": "2024-05-31T13:04:15Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:40:43Z",
+      "archived_at": "2026-04-04T07:10:25Z",
       "topics": [],
       "license": "other",
       "forks": 775,
@@ -5259,18 +5259,18 @@
       "archived_at": "2026-04-03T12:02:46Z",
       "topics": [],
       "license": "apache-2.0",
-      "forks": 1273,
+      "forks": 1272,
       "open_issues": 335
     },
     {
       "name": "EleutherAI/gpt-neo",
       "description": "An implementation of model parallel GPT-2 and GPT-3-style models using the mesh-tensorflow library.",
       "url": "https://github.com/EleutherAI/gpt-neo",
-      "stars": 8283,
+      "stars": 8282,
       "language": "Python",
       "last_commit": "2022-02-25T06:27:12Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:08:02Z",
+      "archived_at": "2026-04-04T05:39:08Z",
       "topics": [
         "gpt",
         "gpt-2",
@@ -5286,11 +5286,11 @@
       "name": "DeviaVir/zenbot",
       "description": "Zenbot is a command-line cryptocurrency trading bot using Node.js and MongoDB.",
       "url": "https://github.com/DeviaVir/zenbot",
-      "stars": 8280,
+      "stars": 8279,
       "language": "HTML",
       "last_commit": "2022-02-14T16:11:27Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:49:13Z",
+      "archived_at": "2026-04-04T03:38:04Z",
       "topics": [
         "nodejs",
         "paper-trading",
@@ -5318,6 +5318,20 @@
       "open_issues": 79
     },
     {
+      "name": "facebookresearch/mae",
+      "description": "PyTorch implementation of MAE https//arxiv.org/abs/2111.06377",
+      "url": "https://github.com/facebookresearch/mae",
+      "stars": 8262,
+      "language": "Python",
+      "last_commit": "2024-07-23T18:15:40Z",
+      "archived": true,
+      "archived_at": "2026-04-04T03:30:20Z",
+      "topics": [],
+      "license": "other",
+      "forks": 1343,
+      "open_issues": 133
+    },
+    {
       "name": "onevcat/VVDocumenter-Xcode",
       "description": "Xcode plug-in which helps you write documentation comment easier, for both Objective-C and Swift.",
       "url": "https://github.com/onevcat/VVDocumenter-Xcode",
@@ -5330,20 +5344,6 @@
       "license": "mit",
       "forks": 1521,
       "open_issues": 63
-    },
-    {
-      "name": "facebookresearch/mae",
-      "description": "PyTorch implementation of MAE https//arxiv.org/abs/2111.06377",
-      "url": "https://github.com/facebookresearch/mae",
-      "stars": 8261,
-      "language": "Python",
-      "last_commit": "2024-07-23T18:15:40Z",
-      "archived": true,
-      "archived_at": "2026-04-02T14:38:16Z",
-      "topics": [],
-      "license": "other",
-      "forks": 1343,
-      "open_issues": 133
     },
     {
       "name": "uBlock-LLC/uBlock",
@@ -5373,11 +5373,11 @@
       "name": "Richasy/Bili.Uwp",
       "description": "适用于新系统UI的哔哩",
       "url": "https://github.com/Richasy/Bili.Uwp",
-      "stars": 8242,
+      "stars": 8240,
       "language": "C#",
       "last_commit": "2023-10-30T22:21:00Z",
       "archived": true,
-      "archived_at": "2026-04-03T06:15:50Z",
+      "archived_at": "2026-04-04T06:57:41Z",
       "topics": [
         "bilibili",
         "uwp"
@@ -5411,11 +5411,11 @@
       "name": "TeamVanced/VancedManager",
       "description": "Vanced Installer",
       "url": "https://github.com/TeamVanced/VancedManager",
-      "stars": 8203,
+      "stars": 8204,
       "language": "Kotlin",
       "last_commit": "2022-03-14T13:59:17Z",
       "archived": true,
-      "archived_at": "2026-04-03T20:03:25Z",
+      "archived_at": "2026-04-04T09:05:09Z",
       "topics": [
         "apk",
         "vanced",
@@ -5636,11 +5636,11 @@
       "name": "shadowsocks/shadowsocks-qt5",
       "description": "A cross-platform shadowsocks GUI client",
       "url": "https://github.com/shadowsocks/shadowsocks-qt5",
-      "stars": 7960,
+      "stars": 7959,
       "language": "C++",
       "last_commit": "2019-11-02T19:58:36Z",
       "archived": true,
-      "archived_at": "2026-04-02T07:41:40Z",
+      "archived_at": "2026-04-04T09:49:06Z",
       "topics": [
         "cross-platform",
         "proxy",
@@ -5677,11 +5677,11 @@
       "name": "the-paperless-project/paperless",
       "description": "Scan, index, and archive all of your paper documents",
       "url": "https://github.com/the-paperless-project/paperless",
-      "stars": 7923,
+      "stars": 7924,
       "language": "Python",
       "last_commit": "2021-04-06T20:00:58Z",
       "archived": true,
-      "archived_at": "2026-04-03T08:21:54Z",
+      "archived_at": "2026-04-04T10:41:42Z",
       "topics": [
         "archiving",
         "documents",
@@ -5692,30 +5692,6 @@
       "license": "gpl-3.0",
       "forks": 501,
       "open_issues": 177
-    },
-    {
-      "name": "brave/browser-laptop",
-      "description": "[DEPRECATED] Please see https://github.com/brave/brave-browser for the current version of Brave",
-      "url": "https://github.com/brave/browser-laptop",
-      "stars": 7922,
-      "language": "JavaScript",
-      "last_commit": "2019-04-11T05:59:09Z",
-      "archived": true,
-      "archived_at": "2026-04-02T17:06:26Z",
-      "topics": [
-        "bat",
-        "brave",
-        "browser",
-        "electron",
-        "javascript",
-        "linux",
-        "macos",
-        "muon",
-        "windows"
-      ],
-      "license": "other",
-      "forks": 963,
-      "open_issues": 298
     },
     {
       "name": "flynn/flynn",
@@ -5730,6 +5706,30 @@
       "license": "bsd-3-clause",
       "forks": 591,
       "open_issues": 0
+    },
+    {
+      "name": "brave/browser-laptop",
+      "description": "[DEPRECATED] Please see https://github.com/brave/brave-browser for the current version of Brave",
+      "url": "https://github.com/brave/browser-laptop",
+      "stars": 7921,
+      "language": "JavaScript",
+      "last_commit": "2019-04-11T05:59:09Z",
+      "archived": true,
+      "archived_at": "2026-04-04T10:36:27Z",
+      "topics": [
+        "bat",
+        "brave",
+        "browser",
+        "electron",
+        "javascript",
+        "linux",
+        "macos",
+        "muon",
+        "windows"
+      ],
+      "license": "other",
+      "forks": 963,
+      "open_issues": 298
     },
     {
       "name": "acheong08/EdgeGPT",
@@ -5930,11 +5930,11 @@
       "name": "rovo89/Xposed",
       "description": "The native part of the Xposed framework (mainly the modified app_process binary).",
       "url": "https://github.com/rovo89/Xposed",
-      "stars": 7686,
+      "stars": 7685,
       "language": "C++",
       "last_commit": "2020-06-08T18:58:59Z",
       "archived": true,
-      "archived_at": "2026-04-03T11:29:31Z",
+      "archived_at": "2026-04-04T03:50:55Z",
       "topics": [
         "android",
         "xposed"
@@ -5954,7 +5954,7 @@
       "archived_at": "2026-04-03T06:15:19Z",
       "topics": [],
       "license": "bsd-3-clause",
-      "forks": 2310,
+      "forks": 2309,
       "open_issues": 2422
     },
     {
@@ -5975,11 +5975,11 @@
       "name": "dylanaraps/pure-sh-bible",
       "description": "📖 A collection of pure POSIX sh alternatives to external processes.",
       "url": "https://github.com/dylanaraps/pure-sh-bible",
-      "stars": 7654,
+      "stars": 7653,
       "language": "Shell",
       "last_commit": "2023-12-31T10:24:40Z",
       "archived": true,
-      "archived_at": "2026-04-03T15:18:58Z",
+      "archived_at": "2026-04-04T10:14:49Z",
       "topics": [
         "bible",
         "book",
@@ -6001,11 +6001,11 @@
       "name": "P3TERX/Actions-OpenWrt",
       "description": "A template for building OpenWrt with GitHub Actions | 使用 GitHub Actions 在线云编译 OpenWrt 固件",
       "url": "https://github.com/P3TERX/Actions-OpenWrt",
-      "stars": 7630,
+      "stars": 7631,
       "language": "Shell",
       "last_commit": "2024-03-02T08:44:16Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:11:30Z",
+      "archived_at": "2026-04-04T07:22:51Z",
       "topics": [
         "actions",
         "actions-openwrt",
@@ -6016,7 +6016,7 @@
         "openwrt-zh-cn"
       ],
       "license": "mit",
-      "forks": 6867,
+      "forks": 6868,
       "open_issues": 0
     },
     {
@@ -6124,14 +6124,14 @@
       "name": "facebookresearch/dino",
       "description": "PyTorch code for Vision Transformers training with the Self-Supervised learning method DINO",
       "url": "https://github.com/facebookresearch/dino",
-      "stars": 7507,
+      "stars": 7508,
       "language": "Python",
       "last_commit": "2024-07-03T16:21:59Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:51:44Z",
+      "archived_at": "2026-04-04T09:04:43Z",
       "topics": [],
       "license": "apache-2.0",
-      "forks": 1030,
+      "forks": 1031,
       "open_issues": 113
     },
     {
@@ -6305,8 +6305,29 @@
       "archived_at": "2026-04-02T09:59:57Z",
       "topics": [],
       "license": "gpl-3.0",
-      "forks": 1566,
+      "forks": 1565,
       "open_issues": 243
+    },
+    {
+      "name": "WindowsAddict/IDM-Activation-Script",
+      "description": "An open source tool to activate and reset trial of Internet Download Manager",
+      "url": "https://github.com/WindowsAddict/IDM-Activation-Script",
+      "stars": 7310,
+      "language": "Batchfile",
+      "last_commit": "2024-04-09T23:32:47Z",
+      "archived": true,
+      "archived_at": "2026-04-04T11:24:07Z",
+      "topics": [
+        "ias",
+        "idm",
+        "idm-activation-script",
+        "idm-crack",
+        "idm-trial-reset",
+        "internet-download-manager"
+      ],
+      "license": null,
+      "forks": 907,
+      "open_issues": 0
     },
     {
       "name": "square/dagger",
@@ -6326,11 +6347,11 @@
       "name": "neuecc/UniRx",
       "description": "Reactive Extensions for Unity",
       "url": "https://github.com/neuecc/UniRx",
-      "stars": 7307,
+      "stars": 7306,
       "language": "C#",
       "last_commit": "2024-02-16T10:42:13Z",
       "archived": true,
-      "archived_at": "2026-04-03T07:11:43Z",
+      "archived_at": "2026-04-04T08:26:55Z",
       "topics": [
         "c-sharp",
         "linq",
@@ -6370,27 +6391,6 @@
       "license": "mit",
       "forks": 699,
       "open_issues": 94
-    },
-    {
-      "name": "WindowsAddict/IDM-Activation-Script",
-      "description": "An open source tool to activate and reset trial of Internet Download Manager",
-      "url": "https://github.com/WindowsAddict/IDM-Activation-Script",
-      "stars": 7303,
-      "language": "Batchfile",
-      "last_commit": "2024-04-09T23:32:47Z",
-      "archived": true,
-      "archived_at": "2026-04-03T16:01:45Z",
-      "topics": [
-        "ias",
-        "idm",
-        "idm-activation-script",
-        "idm-crack",
-        "idm-trial-reset",
-        "internet-download-manager"
-      ],
-      "license": null,
-      "forks": 907,
-      "open_issues": 0
     },
     {
       "name": "chrisvfritz/prerender-spa-plugin",
@@ -6605,11 +6605,11 @@
       "name": "paritytech/polkadot",
       "description": "Polkadot Node Implementation",
       "url": "https://github.com/paritytech/polkadot",
-      "stars": 7133,
+      "stars": 7132,
       "language": "Rust",
       "last_commit": "2023-11-15T13:20:33Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:06:31Z",
+      "archived_at": "2026-04-04T05:07:43Z",
       "topics": [
         "blockchain",
         "client",
@@ -6875,7 +6875,7 @@
         "redux"
       ],
       "license": "mit",
-      "forks": 2226,
+      "forks": 2227,
       "open_issues": 72
     },
     {
@@ -6896,11 +6896,11 @@
       "name": "fluxcd/flux",
       "description": "Successor: https://github.com/fluxcd/flux2",
       "url": "https://github.com/fluxcd/flux",
-      "stars": 6870,
+      "stars": 6869,
       "language": "Go",
       "last_commit": "2022-11-01T15:16:50Z",
       "archived": true,
-      "archived_at": "2026-04-02T08:33:59Z",
+      "archived_at": "2026-04-04T08:00:37Z",
       "topics": [
         "gitops",
         "kubernetes",
@@ -7055,11 +7055,11 @@
       "name": "imfunniee/gitfolio",
       "description": ":octocat: personal website + blog  for every github user",
       "url": "https://github.com/imfunniee/gitfolio",
-      "stars": 6763,
+      "stars": 6764,
       "language": "JavaScript",
       "last_commit": "2022-02-19T12:44:41Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:03:50Z",
+      "archived_at": "2026-04-04T03:03:29Z",
       "topics": [
         "awesome",
         "blog",
@@ -7081,10 +7081,10 @@
       "language": null,
       "last_commit": "2024-04-08T00:22:09Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:31:20Z",
+      "archived_at": "2026-04-04T04:25:27Z",
       "topics": [],
       "license": null,
-      "forks": 1081,
+      "forks": 1080,
       "open_issues": 2
     },
     {
@@ -7156,17 +7156,17 @@
       "name": "googlecreativelab/quickdraw-dataset",
       "description": "Documentation on how to access and use the Quick, Draw! Dataset.",
       "url": "https://github.com/googlecreativelab/quickdraw-dataset",
-      "stars": 6694,
+      "stars": 6696,
       "language": null,
       "last_commit": "2025-03-11T00:12:28Z",
       "archived": true,
-      "archived_at": "2026-04-02T02:58:28Z",
+      "archived_at": "2026-04-04T08:43:52Z",
       "topics": [
         "dataset",
         "quickdraw-dataset"
       ],
       "license": "other",
-      "forks": 1052,
+      "forks": 1053,
       "open_issues": 32
     },
     {
@@ -7254,7 +7254,7 @@
       "language": "C++",
       "last_commit": "2025-02-27T16:20:58Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:40:45Z",
+      "archived_at": "2026-04-04T08:40:46Z",
       "topics": [
         "command-and-conquer",
         "open-source",
@@ -7262,18 +7262,18 @@
         "rts"
       ],
       "license": "other",
-      "forks": 1340,
+      "forks": 1341,
       "open_issues": 0
     },
     {
       "name": "MycroftAI/mycroft-core",
       "description": "Mycroft Core, the Mycroft Artificial Intelligence platform. ",
       "url": "https://github.com/MycroftAI/mycroft-core",
-      "stars": 6620,
+      "stars": 6619,
       "language": "Python",
       "last_commit": "2024-09-08T08:02:02Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:04:42Z",
+      "archived_at": "2026-04-04T06:23:54Z",
       "topics": [
         "ai",
         "arch",
@@ -7545,18 +7545,18 @@
       "name": "yuantuo666/baiduwp-php",
       "description": "A tool to get the download link of the Baidu netdisk / 一个获取百度网盘分享链接下载地址的工具",
       "url": "https://github.com/yuantuo666/baiduwp-php",
-      "stars": 6433,
+      "stars": 6432,
       "language": "HTML",
       "last_commit": "2024-04-11T06:19:00Z",
       "archived": true,
-      "archived_at": "2026-04-02T23:19:56Z",
+      "archived_at": "2026-04-04T06:58:15Z",
       "topics": [
         "baidunetdisk",
         "baiduyun",
         "php"
       ],
       "license": "mit",
-      "forks": 1347,
+      "forks": 1346,
       "open_issues": 0
     },
     {
@@ -7596,11 +7596,11 @@
       "name": "mozilla-mobile/fenix",
       "description": " ⚠️ Fenix (Firefox for Android) moved to a new repository. It is now developed and maintained as part of: https://github.com/mozilla-mobile/firefox-android",
       "url": "https://github.com/mozilla-mobile/fenix",
-      "stars": 6410,
+      "stars": 6409,
       "language": "Kotlin",
       "last_commit": "2023-02-20T10:15:34Z",
       "archived": true,
-      "archived_at": "2026-04-01T18:45:43Z",
+      "archived_at": "2026-04-04T09:37:47Z",
       "topics": [
         "android",
         "browser",
@@ -7696,11 +7696,11 @@
       "name": "SuLingGG/OpenWrt-Rpi",
       "description": "Raspberry Pi & NanoPi R2S/R4S & G-Dock & x86 OpenWrt Compile Project. (Based on Github Action / Daily Update)",
       "url": "https://github.com/SuLingGG/OpenWrt-Rpi",
-      "stars": 6373,
+      "stars": 6372,
       "language": "Shell",
       "last_commit": "2023-05-03T13:34:05Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:07:40Z",
+      "archived_at": "2026-04-04T02:05:08Z",
       "topics": [
         "g-dock",
         "github-actions",
@@ -7718,11 +7718,11 @@
       "name": "datreeio/datree",
       "description": "Prevent Kubernetes misconfigurations from reaching production (again 😤 )! From code to cloud, Datree provides an E2E policy enforcement solution to run automatic checks for rule violations. See our docs: https://hub.datree.io",
       "url": "https://github.com/datreeio/datree",
-      "stars": 6349,
+      "stars": 6348,
       "language": "Go",
       "last_commit": "2024-04-23T02:14:19Z",
       "archived": true,
-      "archived_at": "2026-04-03T18:32:19Z",
+      "archived_at": "2026-04-04T10:13:27Z",
       "topics": [
         "admission-webhook",
         "best-practices",
@@ -7758,11 +7758,11 @@
       "name": "facebookresearch/ConvNeXt",
       "description": "Code release for ConvNeXt model",
       "url": "https://github.com/facebookresearch/ConvNeXt",
-      "stars": 6342,
+      "stars": 6343,
       "language": "Python",
       "last_commit": "2023-01-08T14:23:08Z",
       "archived": true,
-      "archived_at": "2026-04-03T03:51:18Z",
+      "archived_at": "2026-04-04T01:12:55Z",
       "topics": [],
       "license": "mit",
       "forks": 738,
@@ -7892,11 +7892,11 @@
       "name": "FaisalUmair/udemy-downloader-gui",
       "description": "A desktop application for downloading Udemy Courses",
       "url": "https://github.com/FaisalUmair/udemy-downloader-gui",
-      "stars": 6272,
+      "stars": 6275,
       "language": "JavaScript",
       "last_commit": "2024-04-06T16:06:13Z",
       "archived": true,
-      "archived_at": "2026-04-03T13:29:23Z",
+      "archived_at": "2026-04-04T11:18:44Z",
       "topics": [
         "downloader",
         "electron",
@@ -7910,7 +7910,7 @@
         "windows"
       ],
       "license": "mit",
-      "forks": 1902,
+      "forks": 1907,
       "open_issues": 418
     },
     {
@@ -8035,11 +8035,11 @@
       "name": "Tokyo-Metro-Gov/covid19",
       "description": "東京都 新型コロナウイルス感染症対策サイト / Tokyo COVID-19 Task Force website",
       "url": "https://github.com/Tokyo-Metro-Gov/covid19",
-      "stars": 6197,
+      "stars": 6196,
       "language": "Vue",
       "last_commit": "2023-06-01T02:34:24Z",
       "archived": true,
-      "archived_at": "2026-04-02T02:33:23Z",
+      "archived_at": "2026-04-04T10:24:06Z",
       "topics": [
         "covid-19"
       ],
@@ -8070,7 +8070,7 @@
         "web-search"
       ],
       "license": "gpl-3.0",
-      "forks": 533,
+      "forks": 534,
       "open_issues": 3
     },
     {
@@ -8209,11 +8209,11 @@
       "name": "CommunityToolkit/WindowsCommunityToolkit",
       "description": "ARCHIVE - New Repo: https://aka.ms/toolkit/windows",
       "url": "https://github.com/CommunityToolkit/WindowsCommunityToolkit",
-      "stars": 6094,
+      "stars": 6093,
       "language": "C#",
       "last_commit": "2024-10-31T15:52:52Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:04:44Z",
+      "archived_at": "2026-04-04T10:31:24Z",
       "topics": [],
       "license": "other",
       "forks": 1374,
@@ -8223,11 +8223,11 @@
       "name": "go-ego/riot",
       "description": "Go Open Source, Distributed, Simple and efficient Search Engine; Warning: This is V1 and beta version, because of big memory consume, and the V2 will be rewrite all code.",
       "url": "https://github.com/go-ego/riot",
-      "stars": 6067,
+      "stars": 6066,
       "language": "Go",
       "last_commit": "2020-10-13T13:31:05Z",
       "archived": true,
-      "archived_at": "2026-03-31T05:33:46Z",
+      "archived_at": "2026-04-04T08:52:26Z",
       "topics": [
         "go",
         "golang",
@@ -8267,11 +8267,11 @@
       "name": "TheRealJoelmatic/RemoveAdblockThing",
       "description": " The intrusive \"Ad blocker are not allowed on YouTube\"  message is annoying. This open-source project aims to address this issue by providing a solution to bypass YouTube's ad blocker detection",
       "url": "https://github.com/TheRealJoelmatic/RemoveAdblockThing",
-      "stars": 6035,
+      "stars": 6034,
       "language": "JavaScript",
       "last_commit": "2024-12-24T20:21:57Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:55:20Z",
+      "archived_at": "2026-04-04T11:20:14Z",
       "topics": [
         "adblock",
         "remove-not-allowed",
@@ -8427,7 +8427,7 @@
       "archived_at": "2026-04-03T21:57:40Z",
       "topics": [],
       "license": "gpl-3.0",
-      "forks": 2263,
+      "forks": 2262,
       "open_issues": 326
     },
     {
@@ -8448,11 +8448,11 @@
       "name": "GoogleChrome/rendertron",
       "description": "A Headless Chrome rendering solution",
       "url": "https://github.com/GoogleChrome/rendertron",
-      "stars": 5957,
+      "stars": 5956,
       "language": "TypeScript",
       "last_commit": "2022-10-06T08:01:36Z",
       "archived": true,
-      "archived_at": "2026-04-02T21:42:11Z",
+      "archived_at": "2026-04-04T02:53:41Z",
       "topics": [
         "hacktoberfest",
         "headless-chrome",
@@ -8791,11 +8791,11 @@
       "name": "googlearchive/code-prettify",
       "description": "An embeddable script that makes source-code snippets in HTML prettier.",
       "url": "https://github.com/googlearchive/code-prettify",
-      "stars": 5779,
+      "stars": 5780,
       "language": "JavaScript",
       "last_commit": "2020-04-21T16:43:49Z",
       "archived": true,
-      "archived_at": "2026-03-17T18:42:38Z",
+      "archived_at": "2026-04-04T02:39:23Z",
       "topics": [],
       "license": "apache-2.0",
       "forks": 887,
@@ -8978,18 +8978,18 @@
         "tailwind"
       ],
       "license": "mit",
-      "forks": 4050,
+      "forks": 4049,
       "open_issues": 72
     },
     {
       "name": "coder/sshcode",
       "description": "Run VS Code on any server over SSH.",
       "url": "https://github.com/coder/sshcode",
-      "stars": 5713,
+      "stars": 5712,
       "language": "Go",
       "last_commit": "2020-08-10T18:36:45Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:07:07Z",
+      "archived_at": "2026-04-04T08:03:49Z",
       "topics": [],
       "license": "mit",
       "forks": 212,
@@ -9104,11 +9104,11 @@
       "name": "assaf/zombie",
       "description": "Insanely fast, full-stack, headless browser testing using node.js",
       "url": "https://github.com/assaf/zombie",
-      "stars": 5639,
+      "stars": 5640,
       "language": "JavaScript",
       "last_commit": "2022-12-09T04:54:13Z",
       "archived": true,
-      "archived_at": "2026-04-03T08:07:58Z",
+      "archived_at": "2026-04-04T06:18:48Z",
       "topics": [],
       "license": "mit",
       "forks": 510,
@@ -9138,14 +9138,14 @@
       "name": "gothinkster/react-redux-realworld-example-app",
       "description": "Exemplary real world application built with React + Redux",
       "url": "https://github.com/gothinkster/react-redux-realworld-example-app",
-      "stars": 5624,
+      "stars": 5625,
       "language": "JavaScript",
       "last_commit": "2024-03-13T13:18:54Z",
       "archived": true,
-      "archived_at": "2026-04-03T10:12:18Z",
+      "archived_at": "2026-04-04T07:29:45Z",
       "topics": [],
       "license": "mit",
-      "forks": 2560,
+      "forks": 2559,
       "open_issues": 87
     },
     {
@@ -9248,24 +9248,6 @@
       "open_issues": 24
     },
     {
-      "name": "encode/apistar",
-      "description": "The Web API toolkit. 🛠",
-      "url": "https://github.com/encode/apistar",
-      "stars": 5562,
-      "language": "Python",
-      "last_commit": "2022-02-24T05:00:58Z",
-      "archived": true,
-      "archived_at": "2026-04-02T16:44:21Z",
-      "topics": [
-        "api",
-        "python",
-        "rest"
-      ],
-      "license": "bsd-3-clause",
-      "forks": 406,
-      "open_issues": 30
-    },
-    {
       "name": "amlcurran/ShowcaseView",
       "description": "[Archived] Highlight the best bits of your app to users quickly, simply, and cool...ly",
       "url": "https://github.com/amlcurran/ShowcaseView",
@@ -9278,6 +9260,24 @@
       "license": null,
       "forks": 1270,
       "open_issues": 95
+    },
+    {
+      "name": "encode/apistar",
+      "description": "The Web API toolkit. 🛠",
+      "url": "https://github.com/encode/apistar",
+      "stars": 5561,
+      "language": "Python",
+      "last_commit": "2022-02-24T05:00:58Z",
+      "archived": true,
+      "archived_at": "2026-04-04T03:38:06Z",
+      "topics": [
+        "api",
+        "python",
+        "rest"
+      ],
+      "license": "bsd-3-clause",
+      "forks": 406,
+      "open_issues": 30
     },
     {
       "name": "xamarin/Xamarin.Forms",
@@ -9385,18 +9385,18 @@
       "archived_at": "2026-04-01T11:27:01Z",
       "topics": [],
       "license": null,
-      "forks": 1724,
+      "forks": 1723,
       "open_issues": 71
     },
     {
       "name": "CodePanda66/CSPostgraduate-408",
       "description": "💯  CSPostgraduate 计算机考研 408 专业课资料及真题资源",
       "url": "https://github.com/CodePanda66/CSPostgraduate-408",
-      "stars": 5505,
+      "stars": 5506,
       "language": "C++",
       "last_commit": "2023-01-07T19:08:27Z",
       "archived": true,
-      "archived_at": "2026-04-03T16:20:35Z",
+      "archived_at": "2026-04-04T02:13:05Z",
       "topics": [
         "408",
         "computernetwork",
@@ -9597,11 +9597,11 @@
       "name": "Consensys/ethereum-developer-tools-list",
       "description": "A guide to available tools and platforms for developing on Ethereum.",
       "url": "https://github.com/Consensys/ethereum-developer-tools-list",
-      "stars": 5432,
+      "stars": 5431,
       "language": null,
       "last_commit": "2025-03-09T17:40:55Z",
       "archived": true,
-      "archived_at": "2026-04-03T10:11:38Z",
+      "archived_at": "2026-04-04T05:09:01Z",
       "topics": [],
       "license": null,
       "forks": 1363,
@@ -9663,11 +9663,11 @@
       "name": "hiroppy/fusuma",
       "description": "✍️ Fusuma makes slides with Markdown easily.",
       "url": "https://github.com/hiroppy/fusuma",
-      "stars": 5384,
+      "stars": 5385,
       "language": "JavaScript",
       "last_commit": "2024-12-05T23:10:12Z",
       "archived": true,
-      "archived_at": "2026-03-31T03:26:03Z",
+      "archived_at": "2026-04-04T02:33:18Z",
       "topics": [
         "a11y",
         "keynote",
@@ -9788,11 +9788,11 @@
       "name": "mpc-hc/mpc-hc",
       "description": "MPC-HC's main repository.  For support use our Trac: https://trac.mpc-hc.org/",
       "url": "https://github.com/mpc-hc/mpc-hc",
-      "stars": 5311,
+      "stars": 5312,
       "language": "C",
       "last_commit": "2020-04-24T11:04:40Z",
       "archived": true,
-      "archived_at": "2026-04-03T13:32:16Z",
+      "archived_at": "2026-04-04T06:33:05Z",
       "topics": [
         "audio",
         "c-plus-plus",
@@ -9816,7 +9816,7 @@
         "xvid"
       ],
       "license": "gpl-3.0",
-      "forks": 1976,
+      "forks": 1977,
       "open_issues": 17
     },
     {
@@ -9861,20 +9861,6 @@
       "open_issues": 46
     },
     {
-      "name": "euske/pdfminer",
-      "description": "Python PDF Parser (Not actively maintained). Check out pdfminer.six.",
-      "url": "https://github.com/euske/pdfminer",
-      "stars": 5301,
-      "language": "Python",
-      "last_commit": "2022-12-07T11:28:01Z",
-      "archived": true,
-      "archived_at": "2026-04-03T10:38:31Z",
-      "topics": [],
-      "license": "mit",
-      "forks": 1117,
-      "open_issues": 243
-    },
-    {
       "name": "facebookarchive/Keyframes",
       "description": "A library for converting Adobe AE shape based animations to a data format and playing it back on Android and iOS devices.",
       "url": "https://github.com/facebookarchive/Keyframes",
@@ -9887,6 +9873,20 @@
       "license": "other",
       "forks": 299,
       "open_issues": 36
+    },
+    {
+      "name": "euske/pdfminer",
+      "description": "Python PDF Parser (Not actively maintained). Check out pdfminer.six.",
+      "url": "https://github.com/euske/pdfminer",
+      "stars": 5300,
+      "language": "Python",
+      "last_commit": "2022-12-07T11:28:01Z",
+      "archived": true,
+      "archived_at": "2026-04-04T03:37:57Z",
+      "topics": [],
+      "license": "mit",
+      "forks": 1117,
+      "open_issues": 243
     },
     {
       "name": "joshuaclayton/blueprint-css",
@@ -10005,11 +10005,11 @@
       "name": "dotnet/tye",
       "description": "Tye is a tool that makes developing, testing, and deploying microservices and distributed applications easier. Project Tye includes a local orchestrator to make developing microservices easier and the ability to deploy microservices to Kubernetes with minimal configuration.",
       "url": "https://github.com/dotnet/tye",
-      "stars": 5231,
+      "stars": 5230,
       "language": "C#",
       "last_commit": "2023-11-20T21:09:49Z",
       "archived": true,
-      "archived_at": "2026-04-02T02:55:47Z",
+      "archived_at": "2026-04-04T07:11:35Z",
       "topics": [],
       "license": "mit",
       "forks": 517,
@@ -10033,11 +10033,11 @@
       "name": "holoiso-eol/holoiso",
       "description": "SteamOS 3 (Holo) archiso configuration",
       "url": "https://github.com/holoiso-eol/holoiso",
-      "stars": 5222,
+      "stars": 5221,
       "language": "Shell",
       "last_commit": "2024-01-30T13:29:32Z",
       "archived": true,
-      "archived_at": "2026-04-03T18:29:23Z",
+      "archived_at": "2026-04-04T08:26:59Z",
       "topics": [],
       "license": "other",
       "forks": 261,
@@ -10068,7 +10068,7 @@
         "nlp"
       ],
       "license": "mit",
-      "forks": 503,
+      "forks": 502,
       "open_issues": 3
     },
     {
@@ -10103,32 +10103,14 @@
       "open_issues": 56
     },
     {
-      "name": "Karumi/Dexter",
-      "description": "Android library that simplifies the process of requesting permissions at runtime.",
-      "url": "https://github.com/Karumi/Dexter",
-      "stars": 5209,
-      "language": "Java",
-      "last_commit": "2021-07-02T10:55:40Z",
-      "archived": true,
-      "archived_at": "2026-03-31T23:24:31Z",
-      "topics": [
-        "android",
-        "android-library",
-        "permissions"
-      ],
-      "license": "apache-2.0",
-      "forks": 673,
-      "open_issues": 34
-    },
-    {
       "name": "JanDeDobbeleer/oh-my-posh2",
       "description": "A prompt theming engine for Powershell",
       "url": "https://github.com/JanDeDobbeleer/oh-my-posh2",
-      "stars": 5209,
+      "stars": 5211,
       "language": "PowerShell",
       "last_commit": "2021-02-16T07:48:59Z",
       "archived": true,
-      "archived_at": "2026-04-02T06:42:42Z",
+      "archived_at": "2026-04-04T02:17:25Z",
       "topics": [
         "agnoster",
         "agnoster-theme",
@@ -10146,6 +10128,24 @@
       "license": "mit",
       "forks": 281,
       "open_issues": 0
+    },
+    {
+      "name": "Karumi/Dexter",
+      "description": "Android library that simplifies the process of requesting permissions at runtime.",
+      "url": "https://github.com/Karumi/Dexter",
+      "stars": 5209,
+      "language": "Java",
+      "last_commit": "2021-07-02T10:55:40Z",
+      "archived": true,
+      "archived_at": "2026-03-31T23:24:31Z",
+      "topics": [
+        "android",
+        "android-library",
+        "permissions"
+      ],
+      "license": "apache-2.0",
+      "forks": 673,
+      "open_issues": 34
     },
     {
       "name": "GoogleChromeLabs/sw-precache",
@@ -10281,7 +10281,7 @@
         "riru"
       ],
       "license": null,
-      "forks": 600,
+      "forks": 599,
       "open_issues": 1
     },
     {
@@ -10295,7 +10295,7 @@
       "archived_at": "2026-04-03T08:13:52Z",
       "topics": [],
       "license": "apache-2.0",
-      "forks": 1065,
+      "forks": 1066,
       "open_issues": 8
     },
     {
@@ -10318,6 +10318,26 @@
       "open_issues": 75
     },
     {
+      "name": "AhMyth/AhMyth-Android-RAT",
+      "description": "Android Remote Administration Tool",
+      "url": "https://github.com/AhMyth/AhMyth-Android-RAT",
+      "stars": 5116,
+      "language": "Smali",
+      "last_commit": "2021-08-12T21:23:08Z",
+      "archived": true,
+      "archived_at": "2026-04-04T10:21:35Z",
+      "topics": [
+        "ahmyth",
+        "ahmyth-rat",
+        "android",
+        "android-rat",
+        "electron-app"
+      ],
+      "license": "gpl-3.0",
+      "forks": 1845,
+      "open_issues": 205
+    },
+    {
       "name": "satya164/react-native-tab-view",
       "description": "A cross-platform Tab View component for React Native",
       "url": "https://github.com/satya164/react-native-tab-view",
@@ -10338,26 +10358,6 @@
       "license": "mit",
       "forks": 1056,
       "open_issues": 47
-    },
-    {
-      "name": "AhMyth/AhMyth-Android-RAT",
-      "description": "Android Remote Administration Tool",
-      "url": "https://github.com/AhMyth/AhMyth-Android-RAT",
-      "stars": 5114,
-      "language": "Smali",
-      "last_commit": "2021-08-12T21:23:08Z",
-      "archived": true,
-      "archived_at": "2026-04-03T20:53:30Z",
-      "topics": [
-        "ahmyth",
-        "ahmyth-rat",
-        "android",
-        "android-rat",
-        "electron-app"
-      ],
-      "license": "gpl-3.0",
-      "forks": 1844,
-      "open_issues": 205
     },
     {
       "name": "jackmoore/autosize",
@@ -10499,11 +10499,11 @@
       "name": "lostdesign/webgems",
       "description": "A curated list of resources for devs and designers. Join me on devcord.com if you are up for a chit chat :)",
       "url": "https://github.com/lostdesign/webgems",
-      "stars": 5030,
+      "stars": 5031,
       "language": "Vue",
       "last_commit": "2022-07-21T01:18:19Z",
       "archived": true,
-      "archived_at": "2026-04-03T21:23:39Z",
+      "archived_at": "2026-04-04T06:50:26Z",
       "topics": [
         "bookmark",
         "hacktoberfest",
@@ -10558,11 +10558,11 @@
       "name": "pamoroso/free-python-books",
       "description": "Python books free to read online or download",
       "url": "https://github.com/pamoroso/free-python-books",
-      "stars": 5023,
+      "stars": 5022,
       "language": null,
       "last_commit": "2024-03-18T16:33:56Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:06:57Z",
+      "archived_at": "2026-04-04T10:02:26Z",
       "topics": [
         "free-ebooks",
         "learning-python",
@@ -10577,11 +10577,11 @@
       "name": "Plachtaa/VITS-fast-fine-tuning",
       "description": "This repo is a pipeline of VITS finetuning for fast speaker adaptation TTS, and many-to-many voice conversion",
       "url": "https://github.com/Plachtaa/VITS-fast-fine-tuning",
-      "stars": 5022,
+      "stars": 5021,
       "language": "Python",
       "last_commit": "2025-01-21T12:54:43Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:14:00Z",
+      "archived_at": "2026-04-04T05:52:09Z",
       "topics": [],
       "license": "apache-2.0",
       "forks": 736,
@@ -10682,7 +10682,7 @@
         "txt-to-handwriting"
       ],
       "license": "mit",
-      "forks": 1188,
+      "forks": 1187,
       "open_issues": 32
     },
     {
@@ -10736,11 +10736,11 @@
       "name": "inputsh/awesome-linux",
       "description": ":penguin: A list of awesome projects and resources that make Linux even more awesome. :penguin:",
       "url": "https://github.com/inputsh/awesome-linux",
-      "stars": 4962,
+      "stars": 4964,
       "language": null,
       "last_commit": "2023-02-04T17:02:53Z",
       "archived": true,
-      "archived_at": "2026-04-03T18:35:26Z",
+      "archived_at": "2026-04-04T11:06:38Z",
       "topics": [
         "awesome",
         "awesome-list",
@@ -10805,7 +10805,7 @@
         "windows"
       ],
       "license": "mit",
-      "forks": 1185,
+      "forks": 1186,
       "open_issues": 1
     },
     {
@@ -10843,11 +10843,11 @@
       "name": "garbles/why-did-you-update",
       "description": ":boom: Puts your console on blast when React is making unnecessary updates.",
       "url": "https://github.com/garbles/why-did-you-update",
-      "stars": 4939,
+      "stars": 4938,
       "language": "JavaScript",
       "last_commit": "2017-09-23T05:54:19Z",
       "archived": true,
-      "archived_at": "2026-03-22T09:17:04Z",
+      "archived_at": "2026-04-04T09:39:46Z",
       "topics": [],
       "license": null,
       "forks": 82,
@@ -10892,11 +10892,11 @@
       "name": "ffffffff0x/Digital-Privacy",
       "description": "Information Protection & OSINT resources | 一个关于数字隐私搜集、保护、清理集一体的方案,外加开源信息收集(OSINT)对抗",
       "url": "https://github.com/ffffffff0x/Digital-Privacy",
-      "stars": 4930,
+      "stars": 4931,
       "language": null,
       "last_commit": "2022-10-09T09:48:34Z",
       "archived": true,
-      "archived_at": "2026-04-03T19:11:58Z",
+      "archived_at": "2026-04-04T09:18:30Z",
       "topics": [
         "ffffffff0x",
         "osint",
@@ -10914,11 +10914,11 @@
       "name": "10se1ucgo/DisableWinTracking",
       "description": "Uses some known methods that attempt to minimize tracking in Windows 10",
       "url": "https://github.com/10se1ucgo/DisableWinTracking",
-      "stars": 4922,
+      "stars": 4923,
       "language": "Python",
       "last_commit": "2021-02-03T21:36:04Z",
       "archived": true,
-      "archived_at": "2026-04-03T07:58:39Z",
+      "archived_at": "2026-04-04T02:28:29Z",
       "topics": [],
       "license": "lgpl-3.0",
       "forks": 368,
@@ -10967,7 +10967,7 @@
         "vendor"
       ],
       "license": "bsd-3-clause",
-      "forks": 389,
+      "forks": 390,
       "open_issues": 122
     },
     {
@@ -11027,11 +11027,11 @@
       "name": "google/liquidfun",
       "description": "2D physics engine for games",
       "url": "https://github.com/google/liquidfun",
-      "stars": 4894,
+      "stars": 4895,
       "language": "C++",
       "last_commit": "2023-04-26T20:07:43Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:21:52Z",
+      "archived_at": "2026-04-04T10:22:33Z",
       "topics": [],
       "license": null,
       "forks": 650,
@@ -11196,11 +11196,11 @@
       "name": "microsoft/QuantumKatas",
       "description": "Tutorials and programming exercises for learning Q# and quantum computing",
       "url": "https://github.com/microsoft/QuantumKatas",
-      "stars": 4839,
+      "stars": 4840,
       "language": "Jupyter Notebook",
       "last_commit": "2024-08-21T18:51:07Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:33:06Z",
+      "archived_at": "2026-04-04T10:55:32Z",
       "topics": [
         "coding-kata",
         "hacktoberfest",
@@ -11218,11 +11218,11 @@
       "name": "Hack-with-Github/Free-Security-eBooks",
       "description": "Free Security and Hacking eBooks",
       "url": "https://github.com/Hack-with-Github/Free-Security-eBooks",
-      "stars": 4831,
+      "stars": 4832,
       "language": null,
       "last_commit": "2019-07-10T09:15:27Z",
       "archived": true,
-      "archived_at": "2026-04-02T04:50:32Z",
+      "archived_at": "2026-04-04T06:06:39Z",
       "topics": [
         "cloud-security",
         "cyber-security",
@@ -11263,11 +11263,11 @@
       "name": "nbs-system/naxsi",
       "description": "NAXSI is an open-source, high performance, low rules maintenance WAF for NGINX",
       "url": "https://github.com/nbs-system/naxsi",
-      "stars": 4825,
+      "stars": 4824,
       "language": "C",
       "last_commit": "2023-11-08T09:27:13Z",
       "archived": true,
-      "archived_at": "2026-04-02T08:30:19Z",
+      "archived_at": "2026-04-04T03:52:38Z",
       "topics": [
         "c",
         "naxsi",
@@ -11476,11 +11476,11 @@
       "name": "etsy/AndroidStaggeredGrid",
       "description": "An Android staggered grid view which supports multiple columns with rows of varying sizes.",
       "url": "https://github.com/etsy/AndroidStaggeredGrid",
-      "stars": 4765,
+      "stars": 4764,
       "language": "Java",
       "last_commit": "2023-04-09T20:59:34Z",
       "archived": true,
-      "archived_at": "2026-04-03T16:35:05Z",
+      "archived_at": "2026-04-04T03:54:02Z",
       "topics": [
         "non-sox"
       ],
@@ -11524,11 +11524,11 @@
       "name": "microsoft/vscode-dev-containers",
       "description": "NOTE: Most of the contents of this repository have been migrated to the new devcontainers GitHub org (https://github.com/devcontainers). See https://github.com/devcontainers/template-starter and https://github.com/devcontainers/feature-starter for information on creating your own!",
       "url": "https://github.com/microsoft/vscode-dev-containers",
-      "stars": 4742,
+      "stars": 4744,
       "language": "Shell",
       "last_commit": "2023-11-30T01:20:08Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:06:41Z",
+      "archived_at": "2026-04-04T10:14:35Z",
       "topics": [
         "codespaces",
         "containers",
@@ -11564,25 +11564,6 @@
       "open_issues": 0
     },
     {
-      "name": "apache/incubator-weex-ui",
-      "description": "🏄  A rich interaction, lightweight, high performance UI library based on Weex.",
-      "url": "https://github.com/apache/incubator-weex-ui",
-      "stars": 4734,
-      "language": "Vue",
-      "last_commit": "2021-05-27T12:59:54Z",
-      "archived": true,
-      "archived_at": "2026-04-03T08:09:22Z",
-      "topics": [
-        "mobile",
-        "ui-components",
-        "vue",
-        "weex"
-      ],
-      "license": "apache-2.0",
-      "forks": 891,
-      "open_issues": 1
-    },
-    {
       "name": "zombodb/zombodb",
       "description": "Making Postgres and Elasticsearch work together like it's 2023",
       "url": "https://github.com/zombodb/zombodb",
@@ -11601,6 +11582,25 @@
       "license": "other",
       "forks": 214,
       "open_issues": 17
+    },
+    {
+      "name": "apache/incubator-weex-ui",
+      "description": "🏄  A rich interaction, lightweight, high performance UI library based on Weex.",
+      "url": "https://github.com/apache/incubator-weex-ui",
+      "stars": 4733,
+      "language": "Vue",
+      "last_commit": "2021-05-27T12:59:54Z",
+      "archived": true,
+      "archived_at": "2026-04-04T07:46:11Z",
+      "topics": [
+        "mobile",
+        "ui-components",
+        "vue",
+        "weex"
+      ],
+      "license": "apache-2.0",
+      "forks": 891,
+      "open_issues": 1
     },
     {
       "name": "remy/html5demos",
@@ -11663,11 +11663,11 @@
       "name": "ConsenSys-archive/ganache-ui",
       "description": "Personal blockchain for Ethereum development",
       "url": "https://github.com/ConsenSys-archive/ganache-ui",
-      "stars": 4714,
+      "stars": 4713,
       "language": "JavaScript",
       "last_commit": "2024-03-21T15:01:51Z",
       "archived": true,
-      "archived_at": "2026-04-03T10:11:37Z",
+      "archived_at": "2026-04-04T05:06:45Z",
       "topics": [
         "blockchain",
         "development",
@@ -11764,11 +11764,11 @@
       "name": "HuddleEng/PhantomCSS",
       "description": "Visual/CSS regression testing with PhantomJS",
       "url": "https://github.com/HuddleEng/PhantomCSS",
-      "stars": 4688,
+      "stars": 4689,
       "language": "JavaScript",
       "last_commit": "2018-12-10T10:28:42Z",
       "archived": true,
-      "archived_at": "2026-03-28T18:28:42Z",
+      "archived_at": "2026-04-04T06:18:25Z",
       "topics": [],
       "license": "mit",
       "forks": 258,
@@ -11844,11 +11844,11 @@
       "name": "Disassembler0/Win10-Initial-Setup-Script",
       "description": "PowerShell script for automation of routine tasks done after fresh installations of Windows 10 / Server 2016 / Server 2019",
       "url": "https://github.com/Disassembler0/Win10-Initial-Setup-Script",
-      "stars": 4655,
+      "stars": 4654,
       "language": "PowerShell",
       "last_commit": "2021-05-28T08:15:14Z",
       "archived": true,
-      "archived_at": "2026-04-03T13:24:44Z",
+      "archived_at": "2026-04-04T10:54:00Z",
       "topics": [
         "powershell",
         "sysadmin",
@@ -11880,11 +11880,11 @@
       "name": "gbeced/pyalgotrade",
       "description": "Python Algorithmic Trading Library",
       "url": "https://github.com/gbeced/pyalgotrade",
-      "stars": 4650,
+      "stars": 4648,
       "language": "Python",
       "last_commit": "2023-11-13T07:16:00Z",
       "archived": true,
-      "archived_at": "2026-04-02T18:48:46Z",
+      "archived_at": "2026-04-04T03:37:58Z",
       "topics": [],
       "license": "other",
       "forks": 1398,
@@ -11970,6 +11970,29 @@
       "open_issues": 0
     },
     {
+      "name": "pyrogram/pyrogram",
+      "description": "Elegant, modern and asynchronous Telegram MTProto API framework in Python for users and bots",
+      "url": "https://github.com/pyrogram/pyrogram",
+      "stars": 4608,
+      "language": "Python",
+      "last_commit": "2024-12-23T21:00:22Z",
+      "archived": true,
+      "archived_at": "2026-04-04T04:02:06Z",
+      "topics": [
+        "async",
+        "client",
+        "framework",
+        "library",
+        "mtproto",
+        "pyrogram",
+        "python",
+        "telegram"
+      ],
+      "license": "lgpl-3.0",
+      "forks": 1385,
+      "open_issues": 281
+    },
+    {
       "name": "FormidableLabs/react-game-kit",
       "description": "Component library for making games with React  & React Native",
       "url": "https://github.com/FormidableLabs/react-game-kit",
@@ -11993,29 +12016,6 @@
       "license": "mit",
       "forks": 313,
       "open_issues": 29
-    },
-    {
-      "name": "pyrogram/pyrogram",
-      "description": "Elegant, modern and asynchronous Telegram MTProto API framework in Python for users and bots",
-      "url": "https://github.com/pyrogram/pyrogram",
-      "stars": 4607,
-      "language": "Python",
-      "last_commit": "2024-12-23T21:00:22Z",
-      "archived": true,
-      "archived_at": "2026-04-03T14:04:39Z",
-      "topics": [
-        "async",
-        "client",
-        "framework",
-        "library",
-        "mtproto",
-        "pyrogram",
-        "python",
-        "telegram"
-      ],
-      "license": "lgpl-3.0",
-      "forks": 1384,
-      "open_issues": 281
     },
     {
       "name": "jariz/vibrant.js",
@@ -12097,7 +12097,7 @@
         "validate"
       ],
       "license": "mit",
-      "forks": 601,
+      "forks": 602,
       "open_issues": 19
     },
     {
@@ -12225,11 +12225,11 @@
       "name": "accord-net/framework",
       "description": "Machine learning, computer vision, statistics and general scientific computing for .NET",
       "url": "https://github.com/accord-net/framework",
-      "stars": 4548,
+      "stars": 4547,
       "language": "C#",
       "last_commit": "2020-11-18T19:53:02Z",
       "archived": true,
-      "archived_at": "2026-04-02T07:02:49Z",
+      "archived_at": "2026-04-04T08:50:07Z",
       "topics": [
         "c-sharp",
         "computer-vision",
@@ -12252,11 +12252,11 @@
       "name": "electronicarts/CnC_Generals_Zero_Hour",
       "description": "Command and Conquer: Generals - Zero Hour",
       "url": "https://github.com/electronicarts/CnC_Generals_Zero_Hour",
-      "stars": 4545,
+      "stars": 4546,
       "language": "C++",
       "last_commit": "2025-02-27T17:35:56Z",
       "archived": true,
-      "archived_at": "2026-04-03T23:17:13Z",
+      "archived_at": "2026-04-04T11:04:52Z",
       "topics": [
         "command-and-conquer",
         "open-source",
@@ -12449,11 +12449,11 @@
       "name": "jspahrsummers/libextobjc",
       "description": "A Cocoa library to extend the Objective-C programming language.",
       "url": "https://github.com/jspahrsummers/libextobjc",
-      "stars": 4515,
+      "stars": 4514,
       "language": "Objective-C",
       "last_commit": "2019-04-23T07:16:41Z",
       "archived": true,
-      "archived_at": "2026-04-03T16:14:02Z",
+      "archived_at": "2026-04-04T03:54:00Z",
       "topics": [],
       "license": "mit",
       "forks": 462,
@@ -12532,11 +12532,11 @@
       "name": "Freeyourgadget/Gadgetbridge",
       "description": "We are on codeberg.org now! https://codeberg.org/Freeyourgadget/Gadgetbridge -  Gadgetbridge - A free and cloudless replacement for your gadget vendors' closed source Android applications. Supports Pebble, Mi Band, Liveview, HPlus and more.",
       "url": "https://github.com/Freeyourgadget/Gadgetbridge",
-      "stars": 4489,
+      "stars": 4490,
       "language": "Java",
       "last_commit": "2024-12-23T17:24:07Z",
       "archived": true,
-      "archived_at": "2026-04-01T07:03:58Z",
+      "archived_at": "2026-04-04T08:21:36Z",
       "topics": [
         "amazfit",
         "android-application",
@@ -12641,14 +12641,14 @@
       "name": "JakeWharton/NineOldAndroids",
       "description": "[DEPRECATED] Android library for using the Honeycomb animation API on all versions of the platform back to 1.0!",
       "url": "https://github.com/JakeWharton/NineOldAndroids",
-      "stars": 4469,
+      "stars": 4470,
       "language": "Java",
       "last_commit": "2016-04-23T04:31:21Z",
       "archived": true,
-      "archived_at": "2026-04-02T13:04:38Z",
+      "archived_at": "2026-04-04T03:23:55Z",
       "topics": [],
       "license": "apache-2.0",
-      "forks": 1522,
+      "forks": 1523,
       "open_issues": 42
     },
     {
@@ -12876,11 +12876,11 @@
       "name": "buttercup/buttercup-desktop",
       "description": ":key: Cross-Platform Passwords & Secrets Vault",
       "url": "https://github.com/buttercup/buttercup-desktop",
-      "stars": 4411,
+      "stars": 4410,
       "language": "TypeScript",
       "last_commit": "2025-03-04T09:00:43Z",
       "archived": true,
-      "archived_at": "2026-04-02T11:27:28Z",
+      "archived_at": "2026-04-04T09:39:57Z",
       "topics": [
         "buttercup",
         "electron",
@@ -12909,14 +12909,28 @@
       "open_issues": 46
     },
     {
+      "name": "amazon-archives/amazon-dsstne",
+      "description": "Deep Scalable Sparse Tensor Network Engine (DSSTNE) is an Amazon developed library for building Deep Learning (DL) machine learning (ML) models ",
+      "url": "https://github.com/amazon-archives/amazon-dsstne",
+      "stars": 4400,
+      "language": "C++",
+      "last_commit": "2020-03-02T05:35:24Z",
+      "archived": true,
+      "archived_at": "2026-04-04T07:00:33Z",
+      "topics": [],
+      "license": "apache-2.0",
+      "forks": 727,
+      "open_issues": 45
+    },
+    {
       "name": "mholt/archiver",
       "description": "DEPRECATED. Please use mholt/archives instead.",
       "url": "https://github.com/mholt/archiver",
-      "stars": 4404,
+      "stars": 4400,
       "language": "Go",
       "last_commit": "2024-11-19T16:52:17Z",
       "archived": true,
-      "archived_at": "2026-04-03T00:19:46Z",
+      "archived_at": "2026-04-04T03:10:15Z",
       "topics": [
         "7zip",
         "archives",
@@ -12941,20 +12955,6 @@
       "license": "mit",
       "forks": 400,
       "open_issues": 10
-    },
-    {
-      "name": "amazon-archives/amazon-dsstne",
-      "description": "Deep Scalable Sparse Tensor Network Engine (DSSTNE) is an Amazon developed library for building Deep Learning (DL) machine learning (ML) models ",
-      "url": "https://github.com/amazon-archives/amazon-dsstne",
-      "stars": 4401,
-      "language": "C++",
-      "last_commit": "2020-03-02T05:35:24Z",
-      "archived": true,
-      "archived_at": "2026-03-31T23:31:38Z",
-      "topics": [],
-      "license": "apache-2.0",
-      "forks": 727,
-      "open_issues": 45
     },
     {
       "name": "ruicky/jd_sign_bot",
@@ -13036,11 +13036,11 @@
       "name": "cointop-sh/cointop",
       "description": "A fast and lightweight interactive terminal based UI application for tracking cryptocurrencies 🚀 by @miguelmota",
       "url": "https://github.com/cointop-sh/cointop",
-      "stars": 4383,
+      "stars": 4382,
       "language": "Go",
       "last_commit": "2024-04-07T22:46:01Z",
       "archived": true,
-      "archived_at": "2026-04-02T17:00:12Z",
+      "archived_at": "2026-04-04T00:22:16Z",
       "topics": [
         "bitcoin",
         "blockchain",
@@ -13109,7 +13109,7 @@
         "kong-admin-gui"
       ],
       "license": "mit",
-      "forks": 857,
+      "forks": 858,
       "open_issues": 362
     },
     {
@@ -13162,11 +13162,11 @@
       "name": "facebookresearch/deit",
       "description": "Official DeiT repository",
       "url": "https://github.com/facebookresearch/deit",
-      "stars": 4328,
+      "stars": 4327,
       "language": "Python",
       "last_commit": "2024-03-15T13:20:37Z",
       "archived": true,
-      "archived_at": "2026-04-03T09:27:30Z",
+      "archived_at": "2026-04-04T09:24:44Z",
       "topics": [],
       "license": "apache-2.0",
       "forks": 589,
@@ -13190,11 +13190,11 @@
       "name": "arismelachroinos/lscript",
       "description": "The LAZY script will make your life easier, and of course faster.",
       "url": "https://github.com/arismelachroinos/lscript",
-      "stars": 4319,
+      "stars": 4320,
       "language": "Shell",
       "last_commit": "2021-08-28T14:04:20Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:43:00Z",
+      "archived_at": "2026-04-04T09:17:25Z",
       "topics": [
         "antivirus-evasion",
         "bypass-antivirus",
@@ -13314,6 +13314,28 @@
       "open_issues": 159
     },
     {
+      "name": "coreb1t/awesome-pentest-cheat-sheets",
+      "description": "Collection of the cheat sheets useful for pentesting",
+      "url": "https://github.com/coreb1t/awesome-pentest-cheat-sheets",
+      "stars": 4294,
+      "language": null,
+      "last_commit": "2024-02-16T13:38:52Z",
+      "archived": true,
+      "archived_at": "2026-04-04T09:29:57Z",
+      "topics": [
+        "awesome",
+        "cheatsheet",
+        "penetration-testing",
+        "pentest",
+        "pentest-cheat-sheets",
+        "security",
+        "security-cheat-sheets"
+      ],
+      "license": null,
+      "forks": 785,
+      "open_issues": 2
+    },
+    {
       "name": "ArtSabintsev/Siren",
       "description": "Notify users when a new version of your app is available and prompt them to upgrade.",
       "url": "https://github.com/ArtSabintsev/Siren",
@@ -13334,28 +13356,6 @@
       "license": "mit",
       "forks": 412,
       "open_issues": 0
-    },
-    {
-      "name": "coreb1t/awesome-pentest-cheat-sheets",
-      "description": "Collection of the cheat sheets useful for pentesting",
-      "url": "https://github.com/coreb1t/awesome-pentest-cheat-sheets",
-      "stars": 4291,
-      "language": null,
-      "last_commit": "2024-02-16T13:38:52Z",
-      "archived": true,
-      "archived_at": "2026-04-03T16:26:54Z",
-      "topics": [
-        "awesome",
-        "cheatsheet",
-        "penetration-testing",
-        "pentest",
-        "pentest-cheat-sheets",
-        "security",
-        "security-cheat-sheets"
-      ],
-      "license": null,
-      "forks": 785,
-      "open_issues": 2
     },
     {
       "name": "angular-translate/angular-translate",
@@ -13556,14 +13556,14 @@
       "name": "avibrazil/RDM",
       "description": "Easily set Mac Retina display to higher unsupported resolutions",
       "url": "https://github.com/avibrazil/RDM",
-      "stars": 4230,
+      "stars": 4231,
       "language": "Objective-C++",
       "last_commit": "2023-11-29T00:54:59Z",
       "archived": true,
-      "archived_at": "2026-04-02T21:40:34Z",
+      "archived_at": "2026-04-04T09:15:40Z",
       "topics": [],
       "license": null,
-      "forks": 384,
+      "forks": 385,
       "open_issues": 57
     },
     {
@@ -13671,7 +13671,7 @@
       "archived_at": "2026-04-03T23:33:53Z",
       "topics": [],
       "license": "apache-2.0",
-      "forks": 2396,
+      "forks": 2395,
       "open_issues": 67
     },
     {
@@ -13706,11 +13706,11 @@
       "name": "syncthing/syncthing-android",
       "description": "Wrapper of syncthing for Android.",
       "url": "https://github.com/syncthing/syncthing-android",
-      "stars": 4184,
+      "stars": 4185,
       "language": "Java",
       "last_commit": "2024-12-03T21:13:47Z",
       "archived": true,
-      "archived_at": "2026-04-03T05:31:16Z",
+      "archived_at": "2026-04-04T03:26:41Z",
       "topics": [
         "android",
         "java",
@@ -13783,11 +13783,11 @@
       "name": "google/btree",
       "description": "BTree provides a simple, ordered, in-memory data structure for Go programs.",
       "url": "https://github.com/google/btree",
-      "stars": 4156,
+      "stars": 4157,
       "language": "Go",
       "last_commit": "2024-08-21T16:46:53Z",
       "archived": true,
-      "archived_at": "2026-03-28T14:56:22Z",
+      "archived_at": "2026-04-04T01:02:14Z",
       "topics": [],
       "license": "apache-2.0",
       "forks": 422,
@@ -14231,11 +14231,11 @@
       "name": "rovo89/XposedBridge",
       "description": "The Java part of the Xposed framework.",
       "url": "https://github.com/rovo89/XposedBridge",
-      "stars": 4057,
+      "stars": 4056,
       "language": "JavaScript",
       "last_commit": "2021-03-23T08:11:36Z",
       "archived": true,
-      "archived_at": "2026-04-03T21:57:44Z",
+      "archived_at": "2026-04-04T03:56:17Z",
       "topics": [
         "android",
         "xposed"
@@ -14264,7 +14264,7 @@
         "xbox360-controller"
       ],
       "license": "bsd-3-clause",
-      "forks": 385,
+      "forks": 386,
       "open_issues": 9
     },
     {
@@ -14326,11 +14326,11 @@
       "name": "google/eleventy-high-performance-blog",
       "description": "A high performance blog template for the 11ty static site generator.",
       "url": "https://github.com/google/eleventy-high-performance-blog",
-      "stars": 4050,
+      "stars": 4051,
       "language": "JavaScript",
       "last_commit": "2024-06-18T01:18:43Z",
       "archived": true,
-      "archived_at": "2026-04-01T17:41:56Z",
+      "archived_at": "2026-04-04T05:42:25Z",
       "topics": [
         "11ty",
         "11ty-template",
@@ -14375,11 +14375,11 @@
       "name": "ModernFlyouts-Community/ModernFlyouts",
       "description": "A modern Fluent Design replacement for the old Metro themed flyouts present in Windows.",
       "url": "https://github.com/ModernFlyouts-Community/ModernFlyouts",
-      "stars": 4039,
+      "stars": 4040,
       "language": "C#",
       "last_commit": "2024-11-17T02:39:02Z",
       "archived": true,
-      "archived_at": "2026-04-03T14:10:13Z",
+      "archived_at": "2026-04-04T10:31:32Z",
       "topics": [
         "airplane-mode",
         "audio",
@@ -14447,7 +14447,7 @@
       "archived_at": "2026-04-01T15:25:34Z",
       "topics": [],
       "license": null,
-      "forks": 6263,
+      "forks": 6262,
       "open_issues": 0
     },
     {
@@ -14477,14 +14477,14 @@
       "name": "facebookresearch/esm",
       "description": "Evolutionary Scale Modeling (esm): Pretrained language models for proteins",
       "url": "https://github.com/facebookresearch/esm",
-      "stars": 4021,
+      "stars": 4022,
       "language": "Python",
       "last_commit": "2024-02-07T03:31:38Z",
       "archived": true,
-      "archived_at": "2026-04-03T15:16:44Z",
+      "archived_at": "2026-04-04T02:14:58Z",
       "topics": [],
       "license": "mit",
-      "forks": 781,
+      "forks": 782,
       "open_issues": 115
     },
     {
@@ -14589,7 +14589,7 @@
       "archived_at": "2026-03-31T09:45:28Z",
       "topics": [],
       "license": "other",
-      "forks": 786,
+      "forks": 787,
       "open_issues": 161
     },
     {
@@ -14626,7 +14626,7 @@
         "svg"
       ],
       "license": "mit",
-      "forks": 339,
+      "forks": 340,
       "open_issues": 114
     },
     {
@@ -14740,7 +14740,7 @@
         "xposed"
       ],
       "license": null,
-      "forks": 1519,
+      "forks": 1518,
       "open_issues": 157
     },
     {
@@ -14818,7 +14818,7 @@
       "archived_at": "2026-03-30T13:15:39Z",
       "topics": [],
       "license": "mit",
-      "forks": 1408,
+      "forks": 1406,
       "open_issues": 20
     },
     {
@@ -14829,7 +14829,7 @@
       "language": "JavaScript",
       "last_commit": "2024-07-24T22:21:03Z",
       "archived": true,
-      "archived_at": "2026-04-03T10:12:57Z",
+      "archived_at": "2026-04-04T03:05:21Z",
       "topics": [
         "boilerplate",
         "chrome-extension",
@@ -14840,7 +14840,7 @@
         "webpack"
       ],
       "license": "mit",
-      "forks": 1163,
+      "forks": 1164,
       "open_issues": 77
     },
     {
@@ -15275,7 +15275,7 @@
         "virtual-machine"
       ],
       "license": "gpl-3.0",
-      "forks": 494,
+      "forks": 493,
       "open_issues": 3
     },
     {
@@ -15376,11 +15376,11 @@
       "name": "Significant-Gravitas/Auto-GPT-Plugins",
       "description": "Plugins for Auto-GPT",
       "url": "https://github.com/Significant-Gravitas/Auto-GPT-Plugins",
-      "stars": 3847,
+      "stars": 3848,
       "language": "Python",
       "last_commit": "2024-04-29T13:45:09Z",
       "archived": true,
-      "archived_at": "2026-04-03T20:38:20Z",
+      "archived_at": "2026-04-04T10:14:08Z",
       "topics": [],
       "license": "mit",
       "forks": 547,
@@ -15415,6 +15415,20 @@
       "open_issues": 39
     },
     {
+      "name": "googlefonts/roboto-2",
+      "description": "The Roboto family of fonts",
+      "url": "https://github.com/googlefonts/roboto-2",
+      "stars": 3840,
+      "language": "Python",
+      "last_commit": "2025-04-01T16:56:26Z",
+      "archived": true,
+      "archived_at": "2026-04-04T07:46:47Z",
+      "topics": [],
+      "license": "apache-2.0",
+      "forks": 307,
+      "open_issues": 157
+    },
+    {
       "name": "apachecn/hands-on-ml-zh",
       "description": ":book: [译] Sklearn 与 TensorFlow 机器学习实用指南【版权问题，网站已下线！！】",
       "url": "https://github.com/apachecn/hands-on-ml-zh",
@@ -15434,20 +15448,6 @@
       "license": null,
       "forks": 1531,
       "open_issues": 19
-    },
-    {
-      "name": "googlefonts/roboto-2",
-      "description": "The Roboto family of fonts",
-      "url": "https://github.com/googlefonts/roboto-2",
-      "stars": 3839,
-      "language": "Python",
-      "last_commit": "2025-04-01T16:56:26Z",
-      "archived": true,
-      "archived_at": "2026-03-30T05:16:41Z",
-      "topics": [],
-      "license": "apache-2.0",
-      "forks": 307,
-      "open_issues": 157
     },
     {
       "name": "pkluz/PKRevealController",
@@ -15559,6 +15559,25 @@
       "open_issues": 5
     },
     {
+      "name": "inputsh/awesome-c",
+      "description": "Continuing the development of awesome-c list on GitHub",
+      "url": "https://github.com/inputsh/awesome-c",
+      "stars": 3816,
+      "language": null,
+      "last_commit": "2022-09-27T14:10:08Z",
+      "archived": true,
+      "archived_at": "2026-04-04T11:13:15Z",
+      "topics": [
+        "awesome",
+        "awesome-list",
+        "c",
+        "list"
+      ],
+      "license": "other",
+      "forks": 360,
+      "open_issues": 18
+    },
+    {
       "name": "ionorg/ion",
       "description": "Real-Distributed  RTC System by pure Go and Flutter",
       "url": "https://github.com/ionorg/ion",
@@ -15579,25 +15598,6 @@
       "license": "mit",
       "forks": 512,
       "open_issues": 33
-    },
-    {
-      "name": "inputsh/awesome-c",
-      "description": "Continuing the development of awesome-c list on GitHub",
-      "url": "https://github.com/inputsh/awesome-c",
-      "stars": 3814,
-      "language": null,
-      "last_commit": "2022-09-27T14:10:08Z",
-      "archived": true,
-      "archived_at": "2026-04-03T02:05:02Z",
-      "topics": [
-        "awesome",
-        "awesome-list",
-        "c",
-        "list"
-      ],
-      "license": "other",
-      "forks": 360,
-      "open_issues": 18
     },
     {
       "name": "egoist/docute",
@@ -15782,34 +15782,15 @@
       "name": "innnky/so-vits-svc",
       "description": "基于vits与softvc的歌声音色转换模型",
       "url": "https://github.com/innnky/so-vits-svc",
-      "stars": 3781,
+      "stars": 3780,
       "language": "Python",
       "last_commit": "2024-10-19T16:16:34Z",
       "archived": true,
-      "archived_at": "2026-04-03T15:13:41Z",
+      "archived_at": "2026-04-04T10:05:44Z",
       "topics": [],
       "license": "agpl-3.0",
       "forks": 27,
       "open_issues": 98
-    },
-    {
-      "name": "JanKallman/EPPlus",
-      "description": "Create advanced Excel spreadsheets using .NET",
-      "url": "https://github.com/JanKallman/EPPlus",
-      "stars": 3777,
-      "language": "C#",
-      "last_commit": "2020-08-29T16:29:42Z",
-      "archived": true,
-      "archived_at": "2026-04-03T03:21:56Z",
-      "topics": [
-        "dotnet",
-        "excel",
-        "ooxml",
-        "spreadsheet"
-      ],
-      "license": null,
-      "forks": 1188,
-      "open_issues": 453
     },
     {
       "name": "jsoma/tabletop",
@@ -15824,6 +15805,25 @@
       "license": "mit",
       "forks": 443,
       "open_issues": 19
+    },
+    {
+      "name": "JanKallman/EPPlus",
+      "description": "Create advanced Excel spreadsheets using .NET",
+      "url": "https://github.com/JanKallman/EPPlus",
+      "stars": 3776,
+      "language": "C#",
+      "last_commit": "2020-08-29T16:29:42Z",
+      "archived": true,
+      "archived_at": "2026-04-04T07:11:22Z",
+      "topics": [
+        "dotnet",
+        "excel",
+        "ooxml",
+        "spreadsheet"
+      ],
+      "license": null,
+      "forks": 1188,
+      "open_issues": 453
     },
     {
       "name": "htr-tech/nexphisher",
@@ -15879,7 +15879,7 @@
         "bbrmod"
       ],
       "license": "gpl-2.0",
-      "forks": 2552,
+      "forks": 2553,
       "open_issues": 29
     },
     {
@@ -15918,11 +15918,11 @@
       "name": "microservices-demo/microservices-demo",
       "description": "Deployment scripts & config for Sock Shop",
       "url": "https://github.com/microservices-demo/microservices-demo",
-      "stars": 3764,
+      "stars": 3763,
       "language": "Python",
       "last_commit": "2023-12-05T14:11:58Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:02:57Z",
+      "archived_at": "2026-04-04T08:29:11Z",
       "topics": [
         "docker",
         "ecs",
@@ -16144,7 +16144,7 @@
         "transformers"
       ],
       "license": "apache-2.0",
-      "forks": 467,
+      "forks": 466,
       "open_issues": 0
     },
     {
@@ -16297,7 +16297,7 @@
       "language": "Python",
       "last_commit": "2020-08-23T07:47:42Z",
       "archived": true,
-      "archived_at": "2026-04-02T08:34:04Z",
+      "archived_at": "2026-04-04T03:13:09Z",
       "topics": [
         "chat",
         "chatbot",
@@ -16519,11 +16519,11 @@
       "name": "sun0225SUN/Awesome-Love-Code",
       "description": "表白代码收藏馆~谁说程序猿不懂浪漫❤️",
       "url": "https://github.com/sun0225SUN/Awesome-Love-Code",
-      "stars": 3635,
+      "stars": 3634,
       "language": "JavaScript",
       "last_commit": "2025-02-26T12:04:27Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:51:02Z",
+      "archived_at": "2026-04-04T04:35:18Z",
       "topics": [],
       "license": "mit",
       "forks": 1647,
@@ -16568,7 +16568,7 @@
         "web-app"
       ],
       "license": "other",
-      "forks": 1549,
+      "forks": 1548,
       "open_issues": 42
     },
     {
@@ -16608,11 +16608,11 @@
       "name": "bhattsameer/Bombers",
       "description": "SMS/Email/Whatsapp/Twitter/Instagram bombers Collection :bomb::bomb::bomb: :boom: Also added collection of some Fake SMS utilities which helps in skip phone number based SMS verification by using a temporary phone number that acts like a proxy.",
       "url": "https://github.com/bhattsameer/Bombers",
-      "stars": 3603,
+      "stars": 3604,
       "language": "Python",
       "last_commit": "2023-10-24T13:06:29Z",
       "archived": true,
-      "archived_at": "2026-04-03T18:04:27Z",
+      "archived_at": "2026-04-04T03:49:32Z",
       "topics": [
         "bomber",
         "bombers-collection",
@@ -16713,20 +16713,6 @@
       "open_issues": 147
     },
     {
-      "name": "Topshelf/Topshelf",
-      "description": "An easy service hosting framework for building Windows services using .NET",
-      "url": "https://github.com/Topshelf/Topshelf",
-      "stars": 3593,
-      "language": "C#",
-      "last_commit": "2021-10-24T12:27:54Z",
-      "archived": true,
-      "archived_at": "2026-03-29T13:00:34Z",
-      "topics": [],
-      "license": "apache-2.0",
-      "forks": 705,
-      "open_issues": 0
-    },
-    {
       "name": "GetFirefly/firefly",
       "description": "An alternative BEAM implementation, designed for WebAssembly",
       "url": "https://github.com/GetFirefly/firefly",
@@ -16748,6 +16734,20 @@
       "license": "apache-2.0",
       "forks": 110,
       "open_issues": 49
+    },
+    {
+      "name": "Topshelf/Topshelf",
+      "description": "An easy service hosting framework for building Windows services using .NET",
+      "url": "https://github.com/Topshelf/Topshelf",
+      "stars": 3592,
+      "language": "C#",
+      "last_commit": "2021-10-24T12:27:54Z",
+      "archived": true,
+      "archived_at": "2026-04-04T07:11:03Z",
+      "topics": [],
+      "license": "apache-2.0",
+      "forks": 705,
+      "open_issues": 0
     },
     {
       "name": "FeeiCN/Security-PPT",
@@ -16796,11 +16796,11 @@
       "name": "skoruba/IdentityServer4.Admin",
       "description": "The administration for the IdentityServer4 and Asp.Net Core Identity",
       "url": "https://github.com/skoruba/IdentityServer4.Admin",
-      "stars": 3588,
+      "stars": 3586,
       "language": "C#",
       "last_commit": "2024-12-04T08:25:35Z",
       "archived": true,
-      "archived_at": "2026-04-02T13:05:44Z",
+      "archived_at": "2026-04-04T07:46:05Z",
       "topics": [
         "admin",
         "asp-net-core",
@@ -16847,7 +16847,7 @@
         "zsh"
       ],
       "license": "gpl-3.0",
-      "forks": 202,
+      "forks": 201,
       "open_issues": 44
     },
     {
@@ -16861,7 +16861,7 @@
       "archived_at": "2026-04-02T16:22:22Z",
       "topics": [],
       "license": "other",
-      "forks": 2811,
+      "forks": 2810,
       "open_issues": 162
     },
     {
@@ -16910,11 +16910,11 @@
       "name": "ssbc/patchwork",
       "description": "A decentralized messaging and sharing app built on top of Secure Scuttlebutt (SSB).",
       "url": "https://github.com/ssbc/patchwork",
-      "stars": 3570,
+      "stars": 3571,
       "language": "JavaScript",
       "last_commit": "2021-05-12T06:57:58Z",
       "archived": true,
-      "archived_at": "2026-04-03T12:03:58Z",
+      "archived_at": "2026-04-04T04:00:12Z",
       "topics": [
         "decentralized",
         "decentralized-messaging",
@@ -17064,11 +17064,11 @@
       "name": "MacGapProject/MacGap1",
       "description": "Desktop WebKit wrapper for HTML/CSS/JS applications.",
       "url": "https://github.com/MacGapProject/MacGap1",
-      "stars": 3541,
+      "stars": 3542,
       "language": "Objective-C",
       "last_commit": "2020-03-26T14:47:58Z",
       "archived": true,
-      "archived_at": "2026-04-01T17:49:42Z",
+      "archived_at": "2026-04-04T01:37:26Z",
       "topics": [],
       "license": "other",
       "forks": 208,
@@ -17264,20 +17264,6 @@
       "open_issues": 0
     },
     {
-      "name": "ChrisTitusTech/win10script",
-      "description": "This is the Ultimate Windows 10 Script from a creation from multiple debloat scripts and gists from github. ",
-      "url": "https://github.com/ChrisTitusTech/win10script",
-      "stars": 3508,
-      "language": "PowerShell",
-      "last_commit": "2022-06-24T03:57:47Z",
-      "archived": true,
-      "archived_at": "2026-03-31T04:02:43Z",
-      "topics": [],
-      "license": "mit",
-      "forks": 1026,
-      "open_issues": 121
-    },
-    {
       "name": "goby-lang/goby",
       "description": "Goby - Yet another programming language written in Go",
       "url": "https://github.com/goby-lang/goby",
@@ -17316,6 +17302,20 @@
       "open_issues": 0
     },
     {
+      "name": "ChrisTitusTech/win10script",
+      "description": "This is the Ultimate Windows 10 Script from a creation from multiple debloat scripts and gists from github. ",
+      "url": "https://github.com/ChrisTitusTech/win10script",
+      "stars": 3507,
+      "language": "PowerShell",
+      "last_commit": "2022-06-24T03:57:47Z",
+      "archived": true,
+      "archived_at": "2026-04-04T10:53:58Z",
+      "topics": [],
+      "license": "mit",
+      "forks": 1026,
+      "open_issues": 121
+    },
+    {
       "name": "rust-lang/rls",
       "description": "Repository for the Rust Language Server (aka RLS)",
       "url": "https://github.com/rust-lang/rls",
@@ -17337,11 +17337,11 @@
       "name": "nytimes/Store",
       "description": "Android Library for Async Data Loading and Caching",
       "url": "https://github.com/nytimes/Store",
-      "stars": 3503,
+      "stars": 3504,
       "language": "Java",
       "last_commit": "2019-12-06T21:32:10Z",
       "archived": true,
-      "archived_at": "2026-04-03T08:05:58Z",
+      "archived_at": "2026-04-04T04:26:15Z",
       "topics": [
         "android-library",
         "caching",
@@ -17746,11 +17746,11 @@
       "name": "google/prompt-to-prompt",
       "description": null,
       "url": "https://github.com/google/prompt-to-prompt",
-      "stars": 3442,
+      "stars": 3443,
       "language": "Jupyter Notebook",
       "last_commit": "2024-05-14T08:06:32Z",
       "archived": true,
-      "archived_at": "2026-04-02T04:20:57Z",
+      "archived_at": "2026-04-04T07:18:37Z",
       "topics": [],
       "license": "apache-2.0",
       "forks": 319,
@@ -18050,14 +18050,32 @@
       "open_issues": 237
     },
     {
+      "name": "31b4/Leetcode-Premium-Bypass",
+      "description": "Leetcode Premium Unlocker 2024",
+      "url": "https://github.com/31b4/Leetcode-Premium-Bypass",
+      "stars": 3404,
+      "language": "JavaScript",
+      "last_commit": "2024-02-06T08:12:02Z",
+      "archived": true,
+      "archived_at": "2026-04-02T23:23:59Z",
+      "topics": [
+        "leetcode",
+        "leetcode-premium",
+        "leetcode-questions"
+      ],
+      "license": "mit",
+      "forks": 324,
+      "open_issues": 9
+    },
+    {
       "name": "iusztinpaul/hands-on-llms",
       "description": "🦖 𝗟𝗲𝗮𝗿𝗻 about 𝗟𝗟𝗠𝘀, 𝗟𝗟𝗠𝗢𝗽𝘀, and 𝘃𝗲𝗰𝘁𝗼𝗿 𝗗𝗕𝘀 for free by designing, training, and deploying a real-time financial advisor LLM system ~ 𝘴𝘰𝘶𝘳𝘤𝘦 𝘤𝘰𝘥𝘦 + 𝘷𝘪𝘥𝘦𝘰 & 𝘳𝘦𝘢𝘥𝘪𝘯𝘨 𝘮𝘢𝘵𝘦𝘳𝘪𝘢𝘭𝘴",
       "url": "https://github.com/iusztinpaul/hands-on-llms",
-      "stars": 3404,
+      "stars": 3403,
       "language": "Jupyter Notebook",
       "last_commit": "2024-12-09T14:55:28Z",
       "archived": true,
-      "archived_at": "2026-04-03T15:16:36Z",
+      "archived_at": "2026-04-04T06:59:16Z",
       "topics": [
         "3-pipeline-design",
         "aws",
@@ -18081,24 +18099,6 @@
       "license": "mit",
       "forks": 550,
       "open_issues": 19
-    },
-    {
-      "name": "31b4/Leetcode-Premium-Bypass",
-      "description": "Leetcode Premium Unlocker 2024",
-      "url": "https://github.com/31b4/Leetcode-Premium-Bypass",
-      "stars": 3404,
-      "language": "JavaScript",
-      "last_commit": "2024-02-06T08:12:02Z",
-      "archived": true,
-      "archived_at": "2026-04-02T23:23:59Z",
-      "topics": [
-        "leetcode",
-        "leetcode-premium",
-        "leetcode-questions"
-      ],
-      "license": "mit",
-      "forks": 324,
-      "open_issues": 9
     },
     {
       "name": "google/cdc-file-transfer",
@@ -18157,25 +18157,25 @@
       "name": "facebookarchive/FBMemoryProfiler",
       "description": "iOS tool that helps with profiling iOS Memory usage.",
       "url": "https://github.com/facebookarchive/FBMemoryProfiler",
-      "stars": 3394,
+      "stars": 3393,
       "language": "Objective-C",
       "last_commit": "2020-04-25T15:58:50Z",
       "archived": true,
-      "archived_at": "2026-04-01T15:08:30Z",
+      "archived_at": "2026-04-04T03:54:06Z",
       "topics": [],
       "license": "other",
-      "forks": 374,
+      "forks": 373,
       "open_issues": 20
     },
     {
       "name": "peter-iakovlev/Telegram",
       "description": "Telegram Messenger for iOS",
       "url": "https://github.com/peter-iakovlev/Telegram",
-      "stars": 3382,
+      "stars": 3381,
       "language": "Objective-C",
       "last_commit": "2019-01-14T11:02:28Z",
       "archived": true,
-      "archived_at": "2026-04-02T18:59:49Z",
+      "archived_at": "2026-04-04T10:35:49Z",
       "topics": [],
       "license": null,
       "forks": 876,
@@ -18390,11 +18390,11 @@
       "name": "ConsenSys-archive/ganache-cli-archive",
       "description": "Fast Ethereum RPC client for testing and development. See https://github.com/trufflesuite/ganache for current development.",
       "url": "https://github.com/ConsenSys-archive/ganache-cli-archive",
-      "stars": 3330,
+      "stars": 3329,
       "language": "JavaScript",
       "last_commit": "2021-12-02T01:30:22Z",
       "archived": true,
-      "archived_at": "2026-03-29T16:12:06Z",
+      "archived_at": "2026-04-04T05:06:46Z",
       "topics": [],
       "license": "mit",
       "forks": 687,
@@ -18418,11 +18418,11 @@
       "name": "ayaka14732/ChatGPTAPIFree",
       "description": "A simple and open-source proxy API that allows you to access OpenAI's ChatGPT API for free!",
       "url": "https://github.com/ayaka14732/ChatGPTAPIFree",
-      "stars": 3322,
+      "stars": 3321,
       "language": "JavaScript",
       "last_commit": "2023-03-27T04:31:47Z",
       "archived": true,
-      "archived_at": "2026-04-03T17:29:24Z",
+      "archived_at": "2026-04-04T09:53:22Z",
       "topics": [
         "api",
         "chatbot",

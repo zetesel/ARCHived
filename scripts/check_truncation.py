@@ -6,26 +6,31 @@ This script is intentionally small and safe for CI use.
 import json
 import os
 import sys
+import logging
+
+logger = logging.getLogger(__name__)
+if not logging.getLogger().handlers:
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 
 def main() -> int:
     f = "dead-projects.json"
     if not os.path.exists(f):
-        print("dead-projects.json not found, skipping truncation check")
+        logger.info("dead-projects.json not found, skipping truncation check")
         return 0
 
     with open(f, "r", encoding="utf-8") as fh:
         data = json.load(fh)
 
     truncated = data.get("metadata", {}).get("truncated", False)
-    print("truncated=", truncated)
+    logger.info("truncated=%s", truncated)
 
     if truncated:
         if os.environ.get("FAIL_ON_TRUNCATED", "false").lower() in ("1", "true", "yes"):
-            print("ERROR: Results truncated by GitHub Search API")
+            logger.error("ERROR: Results truncated by GitHub Search API")
             return 1
         else:
-            print("WARNING: Results truncated by GitHub Search API — see dead-projects.json")
+            logger.warning("Results truncated by GitHub Search API — see dead-projects.json")
     return 0
 
 

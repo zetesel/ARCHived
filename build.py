@@ -24,42 +24,82 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 
 
 def run_scraper():
-    """Execute the scraper script to generate fresh data."""
-    logger.info("Running scraper...")
-    # Run scraper with defaults; allow collect.py to accept CLI args in the future
-    # Allow skipping scraper for faster CI/debugging via env var
+    """Execute the scraper module in-process to avoid subprocess overhead.
+
+    This imports the scraper and invokes its CLI function programmatically.
+    If the scraper's CLI changes we fall back to invoking it as a subprocess.
+
+    Respects the following environment variables:
+    - SKIP_SCRAPER: if set to 1/true/yes, skip the scraper run entirely.
+    - ARCHIVED_MONTHS: months of inactivity (default: 12).
+    - ARCHIVED_MIN_STARS: minimum stars threshold (default: 10).
+
+    Also skips when dead-projects.json already exists at the workspace root
+    (e.g. when the workflow ran collect.py as a separate step beforehand).
+    """
+    logger.info("Running scraper (in-process)...")
+
+    # Allow skipping scraper via env var for CI/debugging
     if os.environ.get('SKIP_SCRAPER', '').lower() in ('1', 'true', 'yes'):
         logger.info('SKIP_SCRAPER set; skipping scraper run')
         return True
 
-    # We intentionally use subprocess.run with an explicit argv list (no
-    # shell=True) to execute the scraper in a separate process. This is
-    # done to preserve the existing execution environment and to keep the
-    # build tool simple. The arguments are static and not derived from
-    # untrusted input, so the risk of command injection is minimal.
-    #
-    # Bandit flags subprocess usage as a warning (B404/B603). If you prefer,
-    # we can call the scraper's main function directly to avoid spawning a
-    # new process.
-    result = subprocess.run([
-        sys.executable,
-        "scraper/collect.py",
-        "--months",
-        "12",
-        "--min-stars",
-        "10",
-    ], capture_output=True, text=True)
+    # Skip if dead-projects.json was already produced (e.g. by a prior workflow step)
+    if Path("dead-projects.json").exists():
+        logger.info('dead-projects.json already exists; skipping scraper run')
+        return True
 
-    if result.stdout:
-        logger.info(result.stdout)
-    if result.stderr:
-        logger.warning("STDERR: %s", result.stderr)
+    # Read collection criteria from environment, falling back to defaults.
+    try:
+        months = int(os.environ.get('ARCHIVED_MONTHS', '12'))
+    except (ValueError, TypeError):
+        logger.warning("Invalid ARCHIVED_MONTHS value; using default 12")
+        months = 12
+    try:
+        min_stars = int(os.environ.get('ARCHIVED_MIN_STARS', '10'))
+    except (ValueError, TypeError):
+        logger.warning("Invalid ARCHIVED_MIN_STARS value; using default 10")
+        min_stars = 10
 
-    if result.returncode != 0:
-        logger.error("Scraper failed!")
+    # Try to call the scraper module directly for better testability and to
+    # avoid forking a second Python interpreter. Fall back to subprocess if
+    # the import fails.
+    scraper_collect = None
+    try:
+        from scraper import collect as scraper_collect  # type: ignore[assignment]
+    except ImportError as import_err:  # pragma: no cover
+        logger.warning("Could not import scraper module (%s). Will try subprocess.", import_err)
+
+    if scraper_collect is not None:
+        try:
+            projects, truncated = scraper_collect.collect_projects(months=months, min_stars=min_stars)
+            scraper_collect.save_json(projects, "dead-projects.json", months=months, min_stars=min_stars, truncated=truncated)
+            return True
+        except scraper_collect.RateLimitAbort as e:  # pragma: no cover
+            # Rate-limited in CI: don't attempt subprocess (same limit applies).
+            logger.error("Scraper aborted due to rate limit: %s", e)
+            return False
+        except Exception as e:  # pragma: no cover - fallback path
+            logger.warning("In-process scraper failed (%s). Falling back to subprocess.", e)
+
+    try:
+        result = subprocess.run([
+            sys.executable,
+            "scraper/collect.py",
+            "--months",
+            str(months),
+            "--min-stars",
+            str(min_stars),
+        ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        if result.stdout:
+            logger.info(result.stdout)
+        if result.returncode != 0:
+            logger.error("Scraper subprocess failed: returncode=%s", result.returncode)
+            return False
+        return True
+    except Exception as e2:
+        logger.exception("Failed to run scraper subprocess: %s", e2)
         return False
-
-    return True
 
 
 def ensure_docs_dir():
@@ -96,14 +136,34 @@ def main():
     logger.info("ARCHived - Site Builder")
     logger.info("%s", "=" * 60)
 
-    # Step 1: Run scraper
-    if not run_scraper():
-        return 1
+    # Step 1: Run scraper. If it fails, allow continuation when an existing
+    # docs/ artifact already contains dead-projects.json (use last-known
+    # generated data to avoid blocking deployments on transient scraper/GitHub
+    # API issues). If neither exists, treat as a hard failure.
+    scraper_ok = run_scraper()
 
-    # Check that dead-projects.json was created
-    if not Path("dead-projects.json").exists():
-        logger.error("dead-projects.json not generated!")
-        return 1
+    # If scraper failed, try to fall back to docs/dead-projects.json
+    if not scraper_ok:
+        logger.warning("Scraper failed; attempting to proceed using existing docs/ artifact if present")
+
+    # Check that dead-projects.json was created at the repository root. If not,
+    # fall back to docs/dead-projects.json (copy it to the root) so CI steps
+    # that expect dead-projects.json at the workspace root (upload-artifact)
+    # still work.
+    root_dead = Path("dead-projects.json")
+    docs_dead = DOCS_DIR / "dead-projects.json"
+
+    if not root_dead.exists():
+        if docs_dead.exists():
+            logger.warning("root dead-projects.json missing — copying %s -> %s", docs_dead, root_dead)
+            try:
+                shutil.copy2(docs_dead, root_dead)
+            except Exception as e:
+                logger.exception("Failed to copy fallback dead-projects.json: %s", e)
+                return 1
+        else:
+            logger.error("dead-projects.json not generated and no fallback found in %s", DOCS_DIR)
+            return 1
 
     # Step 2: Prepare docs directory
     ensure_docs_dir()
