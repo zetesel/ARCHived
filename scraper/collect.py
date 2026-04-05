@@ -33,6 +33,10 @@ OUTPUT_FILE = "dead-projects.json"
 # Logger
 logger = logging.getLogger(__name__)
 
+
+class RateLimitAbort(RuntimeError):
+    """Raised when the scraper is aborted due to a rate limit in CI."""
+
 # Configurable knobs (can be overridden in tests via environment variables)
 # Maximum seconds we will sleep when hitting a rate limit reset. Prevents
 # CI/workflows from sleeping for hours if the GitHub reset header is far
@@ -166,7 +170,7 @@ def search_repositories(query: str, page: int = 1, max_retries: int = 3, session
                     # In CI we prefer to fail fast rather than sleep long
                     if os.environ.get('CI', '').lower() in ('1', 'true', 'yes') and sleep_s > 10:
                         logger.error('In CI environment and rate limited — aborting to avoid long sleep')
-                        return None
+                        raise RateLimitAbort('Rate limited in CI; aborting to avoid long sleep')
 
                     time.sleep(sleep_s)
                     continue
@@ -336,6 +340,9 @@ def main():
         save_json(projects, args.output, months=args.months, min_stars=args.min_stars, truncated=truncated)
         logger.info("\u2713 Complete!")
         return 0
+    except RateLimitAbort as e:
+        logger.error("Aborted due to rate limit: %s", e)
+        return 1
     except KeyboardInterrupt:
         logger.info("Interrupted by user")
         return 130

@@ -28,6 +28,14 @@ def run_scraper():
 
     This imports the scraper and invokes its CLI function programmatically.
     If the scraper's CLI changes we fall back to invoking it as a subprocess.
+
+    Respects the following environment variables:
+    - SKIP_SCRAPER: if set to 1/true/yes, skip the scraper run entirely.
+    - ARCHIVED_MONTHS: months of inactivity (default: 12).
+    - ARCHIVED_MIN_STARS: minimum stars threshold (default: 10).
+
+    Also skips when dead-projects.json already exists at the workspace root
+    (e.g. when the workflow ran collect.py as a separate step beforehand).
     """
     logger.info("Running scraper (in-process)...")
 
@@ -36,37 +44,62 @@ def run_scraper():
         logger.info('SKIP_SCRAPER set; skipping scraper run')
         return True
 
+    # Skip if dead-projects.json was already produced (e.g. by a prior workflow step)
+    if Path("dead-projects.json").exists():
+        logger.info('dead-projects.json already exists; skipping scraper run')
+        return True
+
+    # Read collection criteria from environment, falling back to defaults.
+    try:
+        months = int(os.environ.get('ARCHIVED_MONTHS', '12'))
+    except (ValueError, TypeError):
+        logger.warning("Invalid ARCHIVED_MONTHS value; using default 12")
+        months = 12
+    try:
+        min_stars = int(os.environ.get('ARCHIVED_MIN_STARS', '10'))
+    except (ValueError, TypeError):
+        logger.warning("Invalid ARCHIVED_MIN_STARS value; using default 10")
+        min_stars = 10
+
     # Try to call the scraper module directly for better testability and to
     # avoid forking a second Python interpreter. Fall back to subprocess if
-    # import fails for any reason.
+    # the import fails.
+    scraper_collect = None
     try:
-        # Import here to avoid overhead when skipping
-        from scraper import collect as scraper_collect
+        from scraper import collect as scraper_collect  # type: ignore[assignment]
+    except ImportError as import_err:  # pragma: no cover
+        logger.warning("Could not import scraper module (%s). Will try subprocess.", import_err)
 
-        # Use collect_projects with default values and write output via save_json
-        projects, truncated = scraper_collect.collect_projects()
-        scraper_collect.save_json(projects, "dead-projects.json", months=12, min_stars=10, truncated=truncated)
-        return True
-    except Exception as e:  # pragma: no cover - fallback path
-        logger.warning("In-process scraper failed (%s). Falling back to subprocess.", e)
+    if scraper_collect is not None:
         try:
-            result = subprocess.run([
-                sys.executable,
-                "scraper/collect.py",
-                "--months",
-                "12",
-                "--min-stars",
-                "10",
-            ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-            if result.stdout:
-                logger.info(result.stdout)
-            if result.returncode != 0:
-                logger.error("Scraper subprocess failed: returncode=%s", result.returncode)
-                return False
+            projects, truncated = scraper_collect.collect_projects(months=months, min_stars=min_stars)
+            scraper_collect.save_json(projects, "dead-projects.json", months=months, min_stars=min_stars, truncated=truncated)
             return True
-        except Exception as e2:
-            logger.exception("Failed to run scraper subprocess: %s", e2)
+        except scraper_collect.RateLimitAbort as e:  # pragma: no cover
+            # Rate-limited in CI: don't attempt subprocess (same limit applies).
+            logger.error("Scraper aborted due to rate limit: %s", e)
             return False
+        except Exception as e:  # pragma: no cover - fallback path
+            logger.warning("In-process scraper failed (%s). Falling back to subprocess.", e)
+
+    try:
+        result = subprocess.run([
+            sys.executable,
+            "scraper/collect.py",
+            "--months",
+            str(months),
+            "--min-stars",
+            str(min_stars),
+        ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        if result.stdout:
+            logger.info(result.stdout)
+        if result.returncode != 0:
+            logger.error("Scraper subprocess failed: returncode=%s", result.returncode)
+            return False
+        return True
+    except Exception as e2:
+        logger.exception("Failed to run scraper subprocess: %s", e2)
+        return False
 
 
 def ensure_docs_dir():
