@@ -54,14 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Attach event listeners that depend on the DOM
-    languageFilter && languageFilter.addEventListener('change', applyFilters);
+    if (languageFilter) languageFilter.addEventListener('change', applyFilters);
     if (textSearch) textSearch.addEventListener('input', applyFilters);
-    starsFilter && starsFilter.addEventListener('input', function() {
-        starsValue && (starsValue.textContent = parseInt(this.value).toLocaleString());
+    if (starsFilter) starsFilter.addEventListener('input', function() {
+        if (starsValue) starsValue.textContent = parseInt(this.value).toLocaleString();
         applyFilters();
     });
-    sortBy && sortBy.addEventListener('change', applyFilters);
-    pageSizeSelect && pageSizeSelect.addEventListener('change', function() {
+    if (sortBy) sortBy.addEventListener('change', applyFilters);
+    if (pageSizeSelect) pageSizeSelect.addEventListener('change', function() {
         pageSizeRaw = this.value;
         pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10) || 50;
         virtualized = pageSize === 'all';
@@ -120,13 +120,13 @@ async function loadProjects() {
         const collectedAt = data.metadata?.generated_at || projects[0]?.collected_at;
         if (collectedAt) {
             const date = new Date(collectedAt);
-            lastUpdated.textContent = date.toLocaleDateString('en-US', {
+            if (lastUpdated) lastUpdated.textContent = date.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric'
             });
         } else {
-            lastUpdated.textContent = 'Unknown';
+            if (lastUpdated) lastUpdated.textContent = 'Unknown';
         }
 
         populateLanguages();
@@ -138,9 +138,11 @@ async function loadProjects() {
         const maxStars = projects.reduce((max, p) => Math.max(max, p.stars || 0), 0);
         // Ensure a reasonable minimum max
         const sliderMax = Math.max(100, Math.ceil(maxStars / 100) * 100);
-        starsFilter.max = sliderMax;
-        starsFilter.value = 0;
-        starsValue.textContent = parseInt(starsFilter.value).toLocaleString();
+        if (starsFilter) {
+            starsFilter.max = sliderMax;
+            starsFilter.value = 0;
+        }
+        if (starsValue) starsValue.textContent = parseInt(starsFilter ? starsFilter.value : 0).toLocaleString();
 
         applyFilters();
     } catch (error) {
@@ -200,8 +202,8 @@ function populateLanguages() {
 
 // Apply all filters
 function applyFilters() {
-    const selectedLanguage = languageFilter.value;
-    const minStars = parseInt(starsFilter.value);
+    const selectedLanguage = languageFilter ? languageFilter.value : 'all';
+    const minStars = starsFilter ? parseInt(starsFilter.value, 10) || 0 : 0;
     const rawQuery = (textSearch && textSearch.value) ? textSearch.value.trim() : '';
     const queryLower = rawQuery.toLowerCase();
 
@@ -241,7 +243,7 @@ function applyFilters() {
     });
 
     // Sort
-    const sortValue = sortBy.value;
+    const sortValue = sortBy ? sortBy.value : '';
     filteredProjects.sort((a, b) => {
         switch (sortValue) {
             case 'stars-desc':
@@ -262,8 +264,8 @@ function applyFilters() {
     });
 
     // Update counts
-    totalCount.textContent = projects.length.toLocaleString();
-    visibleCount.textContent = filteredProjects.length.toLocaleString();
+    if (totalCount) totalCount.textContent = projects.length.toLocaleString();
+    if (visibleCount) visibleCount.textContent = filteredProjects.length.toLocaleString();
 
     // Reset pagination if current page would be out of range
     const maxPages = computeMaxPages();
