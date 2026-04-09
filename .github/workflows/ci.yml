@@ -16,7 +16,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          # Use Python 3.11 so modern dependency versions (requests>=2.33) are available
+          python-version: '3.11'
 
       - name: Install deps
         run: |
