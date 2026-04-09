@@ -54,13 +54,13 @@ async function loadProjects() {
         const collectedAt = data.metadata?.generated_at || projects[0]?.collected_at;
         if (collectedAt) {
             const date = new Date(collectedAt);
-            lastUpdated.textContent = date.toLocaleDateString('en-US', {
+            safeSetText(lastUpdated, date.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric'
-            });
+            }));
         } else {
-            lastUpdated.textContent = 'Unknown';
+            safeSetText(lastUpdated, 'Unknown');
         }
 
         populateLanguages();
@@ -72,9 +72,11 @@ async function loadProjects() {
         const maxStars = projects.reduce((max, p) => Math.max(max, p.stars || 0), 0);
         // Ensure a reasonable minimum max
         const sliderMax = Math.max(100, Math.ceil(maxStars / 100) * 100);
-        starsFilter.max = sliderMax;
-        starsFilter.value = 0;
-        starsValue.textContent = parseInt(starsFilter.value).toLocaleString();
+        if (starsFilter) {
+            starsFilter.max = sliderMax;
+            starsFilter.value = 0;
+        }
+        safeSetText(starsValue, parseInt(starsFilter ? starsFilter.value : 0, 10).toLocaleString());
 
         applyFilters();
     } catch (error) {
@@ -114,14 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
         virtualized = pageSize === 'all';
     }
 
-    languageFilter && languageFilter.addEventListener('change', applyFilters);
+    if (languageFilter) languageFilter.addEventListener('change', applyFilters);
     if (textSearch) textSearch.addEventListener('input', applyFilters);
-    starsFilter && starsFilter.addEventListener('input', function() {
-        starsValue && (starsValue.textContent = parseInt(this.value).toLocaleString());
+    if (starsFilter) starsFilter.addEventListener('input', function() {
+        safeSetText(starsValue, parseInt(this.value, 10).toLocaleString());
         applyFilters();
     });
     sortBy && sortBy.addEventListener('change', applyFilters);
-    pageSizeSelect && pageSizeSelect.addEventListener('change', function() {
+    if (pageSizeSelect) pageSizeSelect.addEventListener('change', function() {
         pageSizeRaw = this.value;
         pageSize = pageSizeRaw === 'all' ? 'all' : parseInt(pageSizeRaw, 10) || 50;
         virtualized = pageSize === 'all';
@@ -129,14 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
         virtualWindow = { start: 0, end: 20 };
         applyFilters();
     });
-    prevPageBtn && prevPageBtn.addEventListener('click', function() {
+    if (prevPageBtn) prevPageBtn.addEventListener('click', function() {
         if (currentPage > 1) {
             currentPage -= 1;
             applyFilters();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
-    nextPageBtn && nextPageBtn.addEventListener('click', function() {
+    if (nextPageBtn) nextPageBtn.addEventListener('click', function() {
         const maxPages = computeMaxPages();
         if (currentPage < maxPages) {
             currentPage += 1;
@@ -194,9 +196,9 @@ function populateLanguages() {
 
 // Apply all filters
 function applyFilters() {
-    const selectedLanguage = languageFilter.value;
-    const minStars = parseInt(starsFilter.value);
-    const rawQuery = (textSearch && textSearch.value) ? textSearch.value.trim() : '';
+    const selectedLanguage = languageFilter ? languageFilter.value : 'all';
+    const minStars = starsFilter ? parseInt(safeGetValue(starsFilter, '0'), 10) || 0 : 0;
+    const rawQuery = textSearch ? safeGetValue(textSearch, '').trim() : '';
     const queryLower = rawQuery.toLowerCase();
 
     // If using Fuse.js, run the fuzzy search once per query and cache the matching names
@@ -235,7 +237,7 @@ function applyFilters() {
     });
 
     // Sort
-    const sortValue = sortBy.value;
+    const sortValue = sortBy ? sortBy.value : '';
     filteredProjects.sort((a, b) => {
         switch (sortValue) {
             case 'stars-desc':
@@ -256,8 +258,8 @@ function applyFilters() {
     });
 
     // Update counts
-    totalCount.textContent = projects.length.toLocaleString();
-    visibleCount.textContent = filteredProjects.length.toLocaleString();
+    safeSetText(totalCount, projects.length.toLocaleString());
+    safeSetText(visibleCount, filteredProjects.length.toLocaleString());
 
     // Reset pagination if current page would be out of range
     const maxPages = computeMaxPages();
@@ -504,6 +506,20 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// Safe DOM helpers to avoid runtime errors when optional elements are missing
+function safeSetText(el, text) {
+    if (el && typeof el.textContent !== 'undefined') el.textContent = text;
+}
+
+function safeGetValue(el, fallback = '') {
+    if (!el) return fallback;
+    try {
+        return el.value;
+    } catch (e) {
+        return fallback;
+    }
+}
+
 // Utility: sanitize external URLs to avoid javascript: or other unsafe schemes
 function sanitizeUrl(raw) {
     if (!raw) return null;
@@ -541,7 +557,7 @@ function computeMaxPages(projectCount = filteredProjects.length, size = pageSize
 function updatePaginationInfo() {
     if (!pageInfo) return;
     const maxPages = computeMaxPages();
-    pageInfo.textContent = `Page ${currentPage} of ${maxPages}`;
+    safeSetText(pageInfo, `Page ${currentPage} of ${maxPages}`);
 }
 
 // Note: event listeners and initial load are attached when DOMContentLoaded
