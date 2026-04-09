@@ -26,4 +26,5 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest -q
+          # Ensure repository root is on PYTHONPATH so tests can import local modules
+          PYTHONPATH=. pytest -q
