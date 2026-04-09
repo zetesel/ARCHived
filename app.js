@@ -76,7 +76,7 @@ async function loadProjects() {
             starsFilter.max = sliderMax;
             starsFilter.value = 0;
         }
-        safeSetText(starsValue, parseInt(starsFilter ? starsFilter.value : 0).toLocaleString());
+        safeSetText(starsValue, parseInt(starsFilter ? starsFilter.value : 0, 10).toLocaleString());
 
         applyFilters();
     } catch (error) {
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (languageFilter) languageFilter.addEventListener('change', applyFilters);
     if (textSearch) textSearch.addEventListener('input', applyFilters);
     if (starsFilter) starsFilter.addEventListener('input', function() {
-        safeSetText(starsValue, parseInt(this.value).toLocaleString());
+        safeSetText(starsValue, parseInt(this.value, 10).toLocaleString());
         applyFilters();
     });
     sortBy && sortBy.addEventListener('change', applyFilters);
@@ -198,7 +198,7 @@ function populateLanguages() {
 function applyFilters() {
     const selectedLanguage = languageFilter ? languageFilter.value : 'all';
     const minStars = starsFilter ? parseInt(safeGetValue(starsFilter, '0'), 10) || 0 : 0;
-    const rawQuery = (textSearch && safeGetValue(textSearch, '').trim()) ? safeGetValue(textSearch, '').trim() : '';
+    const rawQuery = textSearch ? safeGetValue(textSearch, '').trim() : '';
     const queryLower = rawQuery.toLowerCase();
 
     // If using Fuse.js, run the fuzzy search once per query and cache the matching names

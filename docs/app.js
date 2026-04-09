@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (languageFilter) languageFilter.addEventListener('change', applyFilters);
     if (textSearch) textSearch.addEventListener('input', applyFilters);
     if (starsFilter) starsFilter.addEventListener('input', function() {
-        if (starsValue) starsValue.textContent = parseInt(this.value).toLocaleString();
+        if (starsValue) starsValue.textContent = parseInt(this.value, 10).toLocaleString();
         applyFilters();
     });
     if (sortBy) sortBy.addEventListener('change', applyFilters);
@@ -142,7 +142,7 @@ async function loadProjects() {
             starsFilter.max = sliderMax;
             starsFilter.value = 0;
         }
-        if (starsValue) starsValue.textContent = parseInt(starsFilter ? starsFilter.value : 0).toLocaleString();
+        if (starsValue) starsValue.textContent = parseInt(starsFilter ? starsFilter.value : 0, 10).toLocaleString();
 
         applyFilters();
     } catch (error) {
